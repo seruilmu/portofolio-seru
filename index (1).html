@@ -1,0 +1,67 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images"
+public_folder: "/images"
+
+locale: "id"
+
+collections:
+  - name: "konten"
+    label: "Konten Website"
+    files:
+      - name: "site"
+        label: "Halaman Portofolio"
+        file: "data/content.json"
+        fields:
+          - { label: "Nama Brand", name: "brand", widget: "string" }
+          - { label: "Logo", name: "logo", widget: "image", required: false }
+          - { label: "Hero - Label kecil", name: "heroEyebrow", widget: "string" }
+          - { label: "Hero - Judul utama", name: "heroTitle", widget: "string" }
+          - { label: "Hero - Deskripsi", name: "heroText", widget: "text" }
+          - { label: "Video Header (link YouTube / .mp4) - opsional", name: "heroVideo", widget: "string", required: false }
+          - label: "Statistik"
+            name: "stats"
+            widget: "list"
+            fields:
+              - { label: "Angka", name: "value", widget: "string" }
+              - { label: "Label", name: "label", widget: "string" }
+              - { label: "Keterangan", name: "caption", widget: "string" }
+          - { label: "Tentang - Judul", name: "aboutTitle", widget: "string" }
+          - { label: "Tentang - Teks", name: "aboutText", widget: "text" }
+          - label: "Karya / Video"
+            name: "videos"
+            widget: "list"
+            fields:
+              - { label: "Judul", name: "title", widget: "string" }
+              - { label: "Deskripsi", name: "desc", widget: "text" }
+              - { label: "Link YouTube", name: "youtube", widget: "string", required: false }
+          - label: "Layanan"
+            name: "services"
+            widget: "list"
+            fields:
+              - { label: "Emoji", name: "icon", widget: "string" }
+              - { label: "Judul", name: "title", widget: "string" }
+              - { label: "Deskripsi", name: "desc", widget: "text" }
+          - { label: "Kelas - Judul", name: "classTitle", widget: "string" }
+          - { label: "Kelas - Teks", name: "classText", widget: "text" }
+          - label: "Item Kelas"
+            name: "classItems"
+            widget: "list"
+            fields:
+              - { label: "Judul", name: "title", widget: "string" }
+              - { label: "Deskripsi", name: "desc", widget: "text" }
+          - label: "Testimoni"
+            name: "testimonials"
+            widget: "list"
+            fields:
+              - { label: "Kutipan", name: "quote", widget: "text" }
+              - { label: "Nama", name: "name", widget: "string" }
+              - { label: "Keterangan", name: "meta", widget: "string" }
+          - { label: "Kontak - Judul", name: "contactTitle", widget: "string" }
+          - { label: "Kontak - Teks", name: "contactText", widget: "text" }
+          - { label: "Email", name: "email", widget: "string" }
+          - { label: "Link WhatsApp", name: "whatsapp", widget: "string", required: false }
+          - { label: "Link Instagram", name: "instagram", widget: "string", required: false }
+          - { label: "Link TikTok", name: "tiktok", widget: "string", required: false }

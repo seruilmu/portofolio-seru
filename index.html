@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Seru Ilmu — Portofolio Video Animasi AI</title>
+<title>Seru Digital — Portofolio Video Animasi AI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
@@ -153,15 +153,15 @@ if(window.netlifyIdentity){window.netlifyIdentity.on("init",function(u){if(!u){w
 (function(){
 "use strict";
 var DEFAULT_DATA = {
-  brand:"Seru Ilmu", logo:"",
+  brand:"Seru Digital", logo:"",
   heroEyebrow:"Kreator & Mentor Video Animasi AI",
   heroTitle:"Mengubah ide jadi cerita visual yang hidup.",
-  heroText:"Halo, saya Seru Ilmu. Saya membuat video animasi dan konten sinematik berbasis AI, sekaligus mengajarkan orang cara memproduksinya sendiri lewat ekosistem SERU DIGITAL LABS.",
+  heroText:"Seru Digital membuat video animasi dan konten sinematik berbasis AI, sekaligus mengajarkan orang cara memproduksinya sendiri lewat ekosistem SERU DIGITAL LABS.",
   heroVideo:"",
-  stats:[{value:"3 thn",label:"Pengalaman",caption:"Produksi konten video & animasi"},{value:"90+",label:"Karya",caption:"Video selesai untuk klien & project"},{value:"140+",label:"Murid",caption:"Peserta kelas & live session"},{value:"10+",label:"Klien",caption:"Brand & kreator"}],
-  aboutTitle:"Tentang saya", aboutText:"",
-  videos:[], services:[], classTitle:"Belajar bareng saya", classText:"", classItems:[], testimonials:[],
-  contactTitle:"Ayo kerja bareng", contactText:"", email:"seruilmu@gmail.com", whatsapp:"", instagram:""
+  stats:[{value:"2 thn",label:"Pengalaman",caption:"Produksi konten video & animasi"},{value:"50+",label:"Karya",caption:"Video selesai untuk klien & project"},{value:"100+",label:"Murid",caption:"Peserta kelas & live session"},{value:"30+",label:"Klien",caption:"Brand & kreator"}],
+  aboutTitle:"Tentang Seru Digital", aboutText:"",
+  videos:[], services:[], classTitle:"Belajar bareng Seru Digital", classText:"", classItems:[], testimonials:[],
+  contactTitle:"Ayo kerja bareng", contactText:"", email:"seru.ilmu@gmail.com", whatsapp:"", instagram:"", tiktok:""
 };
 var TOOLS=["SERA Cinema","SERA Storyboard","SERA Affiliate","SERA Karaktersheet","SERA Campaign","Leonardo AI","Google Veo","Midjourney","After Effects","Runway"];
 var data=DEFAULT_DATA;
@@ -195,8 +195,9 @@ function render(){
   var testiHtml='<div class="testi-grid">'+(s.testimonials||[]).map(function(t){return '<div class="testi-card"><p class="testi-quote">'+esc(t.quote)+'</p><div class="testi-name">'+esc(t.name)+'</div><div class="testi-meta">'+esc(t.meta)+'</div></div>';}).join("")+'</div>';
   var testiSec=sec("testimoni","Testimoni","Apa kata klien & murid","",testiHtml);
   var contactBtns='<a class="btn btn-primary" href="mailto:'+esc(s.email)+'">\u2709\uFE0F Email Saya</a>';
-  if(s.whatsapp)contactBtns+='<a class="btn btn-ghost" href="'+esc(s.whatsapp)+'" target="_blank" rel="noopener">WhatsApp</a>';
+  if(s.whatsapp)contactBtns+='<a class="btn btn-ghost" href="'+esc(s.whatsapp)+'" target="_blank" rel="noopener">\uD83D\uDCAC WhatsApp</a>';
   if(s.instagram)contactBtns+='<a class="btn btn-ghost" href="'+esc(s.instagram)+'" target="_blank" rel="noopener">Instagram</a>';
+  if(s.tiktok)contactBtns+='<a class="btn btn-ghost" href="'+esc(s.tiktok)+'" target="_blank" rel="noopener">TikTok</a>';
   var contactSec='<section id="kontak" class="section reveal"><div class="container"><div class="contact-card"><h2>'+esc(s.contactTitle)+'</h2><p>'+esc(s.contactText)+'</p><div class="contact-cta">'+contactBtns+'</div></div></div></section>';
   var footer='<footer class="footer"><div class="container">\u00A9 2026 '+esc(s.brand)+' \u2014 SERU DIGITAL LABS. Menampilkan karya & berbagi ilmu video animasi AI.</div></footer>';
   document.getElementById("app").innerHTML=nav+hero+marquee+statsSec+aboutSec+videoSec+serviceSec+classSec+testiSec+contactSec+footer;
