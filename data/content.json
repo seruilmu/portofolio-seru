@@ -1,0 +1,44 @@
+{
+  "brand": "Seru Ilmu",
+  "logo": "",
+  "heroEyebrow": "Kreator & Mentor Video Animasi AI",
+  "heroTitle": "Mengubah ide jadi cerita visual yang hidup.",
+  "heroText": "Halo, saya Seru Ilmu. Saya membuat video animasi dan konten sinematik berbasis AI, sekaligus mengajarkan orang cara memproduksinya sendiri lewat ekosistem SERU DIGITAL LABS.",
+  "heroVideo": "",
+  "stats": [
+    { "value": "3 thn", "label": "Pengalaman", "caption": "Produksi konten video & animasi" },
+    { "value": "90+", "label": "Karya", "caption": "Video selesai untuk klien & project" },
+    { "value": "140+", "label": "Murid", "caption": "Peserta kelas & live session" },
+    { "value": "10+", "label": "Klien", "caption": "Brand & kreator" }
+  ],
+  "aboutTitle": "Tentang saya",
+  "aboutText": "Saya seorang kreator yang fokus pada produksi konten kreatif berbasis AI — mulai dari video sinematik, animasi cerita, hingga konten iklan. Saya percaya setiap orang bisa membuat karya visual memukau jika diberi alur kerja dan alat yang tepat.\n\nSelain memproduksi karya, saya juga aktif berbagi ilmu. Lewat SERU DIGITAL LABS, saya membangun materi, tools, dan komunitas untuk membantu orang belajar membuat video animasi dari nol sampai mahir.",
+  "videos": [
+    { "title": "Kisah Inspiratif — Short Film", "desc": "Video sinematik bertema sejarah, dibuat dengan alur kerja SERA Cinema.", "youtube": "" },
+    { "title": "Iklan Produk — Campaign", "desc": "Konsep video ad 30 detik untuk brand lokal, dari ide hingga render akhir.", "youtube": "" },
+    { "title": "Konten Edukasi — Animasi", "desc": "Seri animasi penjelas dengan karakter konsisten memakai SERA Karaktersheet.", "youtube": "" },
+    { "title": "Konten Affiliate — Commerce", "desc": "Video review produk yang menjual, dibuat cepat dengan SERA Affiliate.", "youtube": "" }
+  ],
+  "services": [
+    { "icon": "🎬", "title": "Produksi Video AI", "desc": "Video sinematik & animasi cerita end-to-end, dari konsep hingga hasil jadi." },
+    { "icon": "📣", "title": "Konten Iklan & Campaign", "desc": "Konsep dan eksekusi video iklan untuk brand yang ingin tampil beda." },
+    { "icon": "🎨", "title": "Storyboard & Desain", "desc": "Mengubah ide jadi storyboard dan aset visual yang siap diproduksi." }
+  ],
+  "classTitle": "Belajar bareng saya",
+  "classText": "Saya mengajarkan orang membuat video animasi AI dari nol — lewat kelas, materi terstruktur, dan live session rutin di SERU DIGITAL LABS.",
+  "classItems": [
+    { "title": "Dasar Produksi Video AI", "desc": "Mengenal alur kerja, tools, dan cara membuat video pertama kamu." },
+    { "title": "Animasi Cerita & Karakter", "desc": "Membangun karakter konsisten dan menyusun cerita yang menarik." },
+    { "title": "Live Session & Mentoring", "desc": "Sesi langsung untuk praktik, tanya jawab, dan review karya peserta." }
+  ],
+  "testimonials": [
+    { "quote": "Hasil videonya jauh melebihi ekspektasi. Prosesnya cepat dan komunikasinya enak. Brand kami jadi lebih hidup.", "name": "Budi Santoso", "meta": "Owner, Brand Lokal — klien" },
+    { "quote": "Dari yang nggak ngerti apa-apa soal animasi, sekarang saya bisa bikin video sendiri. Cara ngajarnya jelas dan sabar banget.", "name": "Sarah Putri", "meta": "Peserta kelas — murid" },
+    { "quote": "Materi SERU DIGITAL LABS lengkap dan langsung bisa dipraktikkan. Worth it banget buat yang mau serius di konten video.", "name": "Andi Wijaya", "meta": "Content creator — murid" }
+  ],
+  "contactTitle": "Ayo kerja bareng",
+  "contactText": "Punya project video, butuh konten, atau ingin belajar produksi video animasi AI? Hubungi saya.",
+  "email": "seruilmu@gmail.com",
+  "whatsapp": "",
+  "instagram": ""
+}

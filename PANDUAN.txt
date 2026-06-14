@@ -1,0 +1,50 @@
+PANDUAN SETUP WEBSITE + BACKEND (Seru Ilmu)
+============================================
+
+Isi paket ini:
+- index.html        -> halaman website kamu
+- data/content.json -> isi konten (diedit lewat panel admin)
+- admin/            -> halaman login & editor (Decap CMS)
+
+TUJUAN: kamu bisa login -> edit -> perubahan langsung tayang, tanpa download-upload lagi.
+
+--------------------------------------------
+LANGKAH 1 - Buat akun & repo GitHub
+--------------------------------------------
+1. Daftar di https://github.com (gratis) kalau belum punya.
+2. Klik tombol + (kanan atas) -> New repository.
+3. Beri nama, misal: portofolio-seru. Pilih Public. Klik Create repository.
+4. Di halaman repo, klik "uploading an existing file".
+5. Drag SEMUA isi folder ini (index.html, folder data, folder admin) ke sana.
+   PENTING: yang diupload adalah ISI folder, bukan folder pembungkusnya.
+6. Klik Commit changes.
+
+--------------------------------------------
+LANGKAH 2 - Hubungkan ke Netlify
+--------------------------------------------
+1. Buka https://app.netlify.com -> Add new site -> Import an existing project.
+2. Pilih GitHub -> izinkan akses -> pilih repo portofolio-seru.
+3. Biarkan pengaturan default (build command kosong, publish directory kosong/"."). Klik Deploy.
+4. Tunggu sampai muncul alamat situs, mis. nama-acak.netlify.app.
+
+--------------------------------------------
+LANGKAH 3 - Aktifkan login (Identity + Git Gateway)
+--------------------------------------------
+1. Di dashboard situs Netlify: menu "Identity" (atau Integrations -> Identity) -> Enable Identity.
+2. Di Identity -> Registration -> pilih "Invite only".
+3. Scroll ke Services -> Git Gateway -> Enable Git Gateway.
+4. Tab Identity -> Invite users -> masukkan email kamu (seruilmu@gmail.com) -> Send.
+5. Cek email -> klik undangan -> buat password.
+
+--------------------------------------------
+LANGKAH 4 - Mulai edit!
+--------------------------------------------
+1. Buka: alamat-situs-kamu.netlify.app/admin/
+2. Login pakai email + password tadi.
+3. Klik "Konten Website" -> "Halaman Portofolio".
+4. Ubah teks, statistik, upload logo, tempel link YouTube, tambah testimoni, dll.
+5. Klik Publish -> tunggu ~1 menit -> perubahan otomatis tayang di website. Selesai!
+
+Tips: untuk ganti nama alamat situs -> Netlify -> Site configuration -> Change site name.
+
+Butuh bantuan di langkah mana pun? Screenshot saja, nanti dipandu.
