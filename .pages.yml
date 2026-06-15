@@ -24,6 +24,16 @@ content:
           - { name: caption, label: Keterangan, type: string }
       - { name: aboutTitle, label: "Tentang - Judul", type: string }
       - { name: aboutText, label: "Tentang - Teks", type: text }
+      - { name: whyTitle, label: "Kenapa Seru Digital - Judul", type: string }
+      - { name: whyText, label: "Kenapa Seru Digital - Teks", type: text }
+      - name: whyItems
+        label: Kenapa Seru Digital (kartu)
+        type: object
+        list: true
+        fields:
+          - { name: icon, label: Emoji, type: string }
+          - { name: title, label: Judul, type: string }
+          - { name: desc, label: Deskripsi, type: text }
       - name: videos
         label: Karya / Video
         type: object
