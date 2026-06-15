@@ -64,3 +64,4 @@ collections:
           - { label: "Email", name: "email", widget: "string" }
           - { label: "Link WhatsApp", name: "whatsapp", widget: "string", required: false }
           - { label: "Link Instagram", name: "instagram", widget: "string", required: false }
+          - { label: "Link TikTok", name: "tiktok", widget: "string", required: false }
