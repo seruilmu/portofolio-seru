@@ -1,0 +1,65 @@
+media:
+  input: images
+  output: /images
+
+content:
+  - name: site
+    label: Konten Website
+    type: file
+    path: data/content.json
+    fields:
+      - { name: brand, label: Nama Brand, type: string }
+      - { name: logo, label: Logo, type: image, required: false }
+      - { name: heroEyebrow, label: "Hero - Label kecil", type: string }
+      - { name: heroTitle, label: "Hero - Judul utama", type: string }
+      - { name: heroText, label: "Hero - Deskripsi", type: text }
+      - { name: heroVideo, label: "Video Header (link YouTube / .mp4)", type: string, required: false }
+      - name: stats
+        label: Statistik
+        type: object
+        list: true
+        fields:
+          - { name: value, label: Angka, type: string }
+          - { name: label, label: Label, type: string }
+          - { name: caption, label: Keterangan, type: string }
+      - { name: aboutTitle, label: "Tentang - Judul", type: string }
+      - { name: aboutText, label: "Tentang - Teks", type: text }
+      - name: videos
+        label: Karya / Video
+        type: object
+        list: true
+        fields:
+          - { name: title, label: Judul, type: string }
+          - { name: desc, label: Deskripsi, type: text }
+          - { name: youtube, label: Link YouTube, type: string, required: false }
+      - name: services
+        label: Layanan
+        type: object
+        list: true
+        fields:
+          - { name: icon, label: Emoji, type: string }
+          - { name: title, label: Judul, type: string }
+          - { name: desc, label: Deskripsi, type: text }
+      - { name: classTitle, label: "Kelas - Judul", type: string }
+      - { name: classText, label: "Kelas - Teks", type: text }
+      - name: classItems
+        label: Item Kelas
+        type: object
+        list: true
+        fields:
+          - { name: title, label: Judul, type: string }
+          - { name: desc, label: Deskripsi, type: text }
+      - name: testimonials
+        label: Testimoni
+        type: object
+        list: true
+        fields:
+          - { name: quote, label: Kutipan, type: text }
+          - { name: name, label: Nama, type: string }
+          - { name: meta, label: Keterangan, type: string }
+      - { name: contactTitle, label: "Kontak - Judul", type: string }
+      - { name: contactText, label: "Kontak - Teks", type: text }
+      - { name: email, label: Email, type: string }
+      - { name: whatsapp, label: Link WhatsApp, type: string, required: false }
+      - { name: instagram, label: Link Instagram, type: string, required: false }
+      - { name: tiktok, label: Link TikTok, type: string, required: false }
