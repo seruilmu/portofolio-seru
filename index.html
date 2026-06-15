@@ -159,7 +159,7 @@ h1,h2,h3{margin:0;}
 
 /* HERO VIDEO OVERLAY (text kiri terbaca, maskot kanan terang) */
 .hero--video .hero-overlay{background:linear-gradient(90deg,rgba(8,8,13,.95) 0%,rgba(8,8,13,.82) 30%,rgba(8,8,13,.42) 60%,rgba(8,8,13,.12) 82%,rgba(8,8,13,0) 100%),linear-gradient(0deg,var(--bg),transparent 32%);}
-@media(max-width:760px){.hero--video .hero-overlay{background:linear-gradient(0deg,rgba(8,8,13,.94),rgba(8,8,13,.55));}}
+@media(max-width:760px){.hero--video .hero-overlay{background:linear-gradient(0deg,rgba(8,8,13,.92) 0%,rgba(8,8,13,.5) 45%,rgba(8,8,13,.18) 76%,rgba(8,8,13,.06) 100%);}.hero-video-el{height:100%;min-height:100%;object-position:right center;}}
 
 /* === REVISI v2: motion, dividers, exclusivity === */
 body::before{content:"";position:fixed;inset:-20%;z-index:-1;background:radial-gradient(620px 420px at 18% 28%,rgba(124,92,255,.10),transparent 60%),radial-gradient(520px 380px at 82% 72%,rgba(67,229,255,.08),transparent 60%);animation:aurora 22s ease-in-out infinite alternate;pointer-events:none;}
@@ -216,7 +216,7 @@ function mascotSVG(){return '<div class="hero-mascot"><svg viewBox="0 0 480 470"
 function heroBg(v){
   if(v){var id=ytId(v);
     if(id)return '<div class="hero-video"><iframe src="https://www.youtube.com/embed/'+esc(id)+'?autoplay=1&mute=1&loop=1&playlist='+esc(id)+'&controls=0&showinfo=0&modestbranding=1&rel=0&playsinline=1" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>';
-    if(/\.(mp4|webm|ogg)(\?|$)/i.test(v))return '<video class="hero-video-el" autoplay muted loop playsinline src="'+esc(v)+'"></video>';
+    if(/\.(mp4|webm|ogg)(\?|$)/i.test(v))return '<video class="hero-video-el" autoplay muted loop playsinline preload="auto" webkit-playsinline="true" src="'+esc(v)+'"></video>';
   }
   return '<div class="hero-orbs"><span></span><span></span><span></span></div>';
 }
@@ -250,7 +250,9 @@ function render(){
   var footer='<footer class="footer"><div class="container">\u00A9 2026 '+esc(s.brand)+' \u2014 SERU DIGITAL LABS. Menampilkan karya & berbagi ilmu video animasi AI.</div></footer>';
   document.getElementById("app").innerHTML=nav+hero+marquee+statsSec+aboutSec+whySec+videoSec+serviceSec+classSec+testiSec+contactSec+footer;
   initReveal();
+  playHeroVideo();
 }
+function playHeroVideo(){var v=document.querySelector(".hero-video-el");if(!v)return;v.muted=true;v.setAttribute("muted","");v.setAttribute("playsinline","");var tryPlay=function(){try{var p=v.play();if(p&&p.catch)p.catch(function(){});}catch(e){}};tryPlay();v.addEventListener("loadeddata",tryPlay);v.addEventListener("canplay",tryPlay);var resume=function(){tryPlay();document.removeEventListener("touchstart",resume);document.removeEventListener("click",resume);};document.addEventListener("touchstart",resume,{once:true});document.addEventListener("click",resume,{once:true});}
 function countUp(el){var raw=el.getAttribute("data-val")||el.textContent;var m=raw.match(/^(\D*)(\d+)(.*)$/);if(!m){el.textContent=raw;return;}var pre=m[1],num=parseInt(m[2],10),suf=m[3],dur=1100,start=null;function step(ts){if(!start)start=ts;var p=Math.min((ts-start)/dur,1);el.textContent=pre+Math.floor(p*num)+suf;if(p<1)requestAnimationFrame(step);else el.textContent=pre+num+suf;}requestAnimationFrame(step);}
 function initReveal(){
   if(!("IntersectionObserver" in window)){[].forEach.call(document.querySelectorAll(".reveal"),function(e){e.classList.add("in");});return;}
