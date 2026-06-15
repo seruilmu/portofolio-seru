@@ -1,12 +1,13 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Seru Digital</title>
+<meta name="description" content="Seru Digital - video animasi & konten sinematik berbasis AI, plus kelas produksi lewat SERU DIGITAL LABS.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#08080d;--text:#f3f3f7;--muted:#9a9aae;--faint:#6b6b80;
@@ -35,7 +36,7 @@ h1,h2,h3{margin:0;}
 @media(max-width:720px){.nav-links{display:none;}}
 
 /* HERO */
-.hero{position:relative;min-height:94vh;display:flex;align-items:center;overflow:hidden;}
+.hero{position:relative;min-height:86vh;display:flex;align-items:center;overflow:hidden;}
 .hero-bg{position:absolute;inset:0;z-index:0;}
 .hero-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(8,8,13,.25),rgba(8,8,13,.72) 72%,var(--bg));}
 .hero-video{position:absolute;inset:0;overflow:hidden;}
@@ -46,7 +47,7 @@ h1,h2,h3{margin:0;}
 .hero-orbs span:nth-child(2){width:380px;height:380px;background:#ff5c8a;bottom:-90px;right:-20px;animation-delay:-5s;}
 .hero-orbs span:nth-child(3){width:320px;height:320px;background:#43e5ff;top:28%;right:22%;animation-delay:-9s;}
 @keyframes float{0%,100%{transform:translate(0,0) scale(1);}33%{transform:translate(46px,-34px) scale(1.09);}66%{transform:translate(-32px,22px) scale(.94);}}
-.hero-content{position:relative;z-index:2;width:100%;padding:130px 0 96px;}
+.hero-content{position:relative;z-index:2;width:100%;padding:118px 0 80px;}
 .eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:12.5px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--text);background:var(--surface2);border:1px solid var(--border);padding:8px 15px;border-radius:999px;animation:fadeUp .9s both;}
 .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--accent3);box-shadow:0 0 12px var(--accent3);}
 .hero-title{font-family:var(--display);font-size:clamp(42px,7.4vw,80px);line-height:1.02;letter-spacing:-.03em;margin:22px 0 20px;font-weight:700;max-width:15ch;animation:fadeUp .9s .1s both;}
@@ -70,10 +71,12 @@ h1,h2,h3{margin:0;}
 @keyframes scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 
 /* SECTIONS */
-.section{padding:92px 0;}
+.section{padding:64px 0;position:relative;}
+.section::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:min(1120px,88%);height:1px;background:linear-gradient(90deg,transparent,var(--border) 18%,var(--border) 82%,transparent);}
+.section--first::before{display:none;}
 .kicker{font-size:12.5px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--accent3);margin-bottom:12px;}
 .section-title{font-family:var(--display);font-size:clamp(28px,4vw,44px);letter-spacing:-.02em;margin:0 0 12px;font-weight:700;}
-.section-sub{color:var(--muted);font-size:17px;margin:0 0 44px;max-width:60ch;}
+.section-sub{color:var(--muted);font-size:17px;margin:0 0 32px;max-width:60ch;}
 
 /* STATS */
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
@@ -157,14 +160,37 @@ h1,h2,h3{margin:0;}
 /* HERO VIDEO OVERLAY (text kiri terbaca, maskot kanan terang) */
 .hero--video .hero-overlay{background:linear-gradient(90deg,rgba(8,8,13,.95) 0%,rgba(8,8,13,.82) 30%,rgba(8,8,13,.42) 60%,rgba(8,8,13,.12) 82%,rgba(8,8,13,0) 100%),linear-gradient(0deg,var(--bg),transparent 32%);}
 @media(max-width:760px){.hero--video .hero-overlay{background:linear-gradient(0deg,rgba(8,8,13,.94),rgba(8,8,13,.55));}}
+
+/* === REVISI v2: motion, dividers, exclusivity === */
+body::before{content:"";position:fixed;inset:-20%;z-index:-1;background:radial-gradient(620px 420px at 18% 28%,rgba(124,92,255,.10),transparent 60%),radial-gradient(520px 380px at 82% 72%,rgba(67,229,255,.08),transparent 60%);animation:aurora 22s ease-in-out infinite alternate;pointer-events:none;}
+@keyframes aurora{0%{transform:translate(0,0) scale(1);}100%{transform:translate(42px,-30px) scale(1.1);}}
+.stat,.video-card,.service-card,.class-item,.testi-card,.why-card{opacity:0;transform:translateY(26px);transition:opacity .6s cubic-bezier(.2,.7,.2,1),transform .6s cubic-bezier(.2,.7,.2,1),border-color .3s,box-shadow .3s;}
+.in .stat,.in .video-card,.in .service-card,.in .class-item,.in .testi-card,.in .why-card{opacity:1;transform:translateY(0);}
+.stat:nth-child(2),.video-card:nth-child(2),.service-card:nth-child(2),.class-item:nth-child(2),.testi-card:nth-child(2),.why-card:nth-child(2){transition-delay:.07s;}
+.stat:nth-child(3),.video-card:nth-child(3),.service-card:nth-child(3),.class-item:nth-child(3),.testi-card:nth-child(3),.why-card:nth-child(3){transition-delay:.14s;}
+.stat:nth-child(4),.video-card:nth-child(4),.service-card:nth-child(4),.class-item:nth-child(4),.testi-card:nth-child(4),.why-card:nth-child(4){transition-delay:.2s;}
+.why-card:nth-child(5),.video-card:nth-child(5),.class-item:nth-child(5){transition-delay:.27s;}
+.why-card:nth-child(6),.video-card:nth-child(6),.class-item:nth-child(6){transition-delay:.33s;}
+.in .video-card:hover{transform:translateY(-6px);transition-delay:0s;}
+.in .service-card:hover,.in .why-card:hover{transform:translateY(-5px);transition-delay:0s;}
+.in .stat:hover{transform:translateY(-5px);border-color:rgba(124,92,255,.4);transition-delay:0s;}
+.in .testi-card:hover{transform:translateY(-4px);transition-delay:0s;}
+/* why section */
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:6px;}
+.why-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:28px 24px;position:relative;overflow:hidden;}
+.why-card::after{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad);transform:scaleX(0);transform-origin:left;transition:transform .35s;}
+.why-card:hover{border-color:rgba(124,92,255,.45);box-shadow:0 20px 50px rgba(124,92,255,.18);}
+.why-card:hover::after{transform:scaleX(1);}
+.why-ico{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;font-size:22px;background:linear-gradient(135deg,rgba(124,92,255,.22),rgba(67,229,255,.14));border:1px solid var(--border);margin-bottom:16px;}
+.why-card h3{font-family:var(--display);font-size:18px;margin:0 0 8px;}
+.why-card p{margin:0;color:var(--muted);font-size:14px;line-height:1.6;}
+.service-card:hover{box-shadow:0 20px 50px rgba(67,229,255,.14);}
+@media(max-width:860px){.why-grid{grid-template-columns:1fr;}}
+@media (prefers-reduced-motion:reduce){.stat,.video-card,.service-card,.class-item,.testi-card,.why-card{opacity:1!important;transform:none!important;}body::before{animation:none;}}
 </style>
 </head>
 <body>
 <div id="app"></div>
-<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-<script>
-if(window.netlifyIdentity){window.netlifyIdentity.on("init",function(u){if(!u){window.netlifyIdentity.on("login",function(){document.location.href="/admin/";});}});}
-</script>
 <script>
 (function(){
 "use strict";
@@ -176,6 +202,8 @@ var DEFAULT_DATA = {
   heroVideo:"",
   stats:[{value:"2 thn",label:"Pengalaman",caption:"Produksi konten video & animasi"},{value:"50+",label:"Karya",caption:"Video selesai untuk klien & project"},{value:"100+",label:"Murid",caption:"Peserta kelas & live session"},{value:"30+",label:"Klien",caption:"Brand & kreator"}],
   aboutTitle:"Tentang Seru Digital", aboutText:"",
+  whyTitle:"Kenapa harus Seru Digital?", whyText:"Lebih dari sekadar bikin video — kamu dapat partner kreatif yang ngerti hasil, proses, dan ilmunya.",
+  whyItems:[{icon:"⚡",title:"Berbasis AI Terkini",desc:"Workflow & tools AI terbaru biar hasil cepat, konsisten, dan sinematik."},{icon:"🎯",title:"Hasil Premium",desc:"Kualitas visual setara studio, disesuaikan dengan brand kamu."},{icon:"🤝",title:"Komunikasi Enak",desc:"Proses jelas, update rutin, revisi tanpa drama."},{icon:"🎓",title:"Sekaligus Mentor",desc:"Bukan cuma bikin — kami juga ngajarin kamu produksi sendiri."},{icon:"🚀",title:"Pengerjaan Cepat",desc:"Alur kerja efisien, deadline aman tanpa korbankan kualitas."},{icon:"🌐",title:"Ekosistem LABS",desc:"Materi, tools SERA, & komunitas yang terus berkembang."}],
   videos:[], services:[], classTitle:"Belajar bareng Seru Digital", classText:"", classItems:[], testimonials:[],
   contactTitle:"Ayo kerja bareng", contactText:"", email:"seru.ilmu@gmail.com", whatsapp:"", instagram:"", tiktok:""
 };
@@ -196,13 +224,16 @@ function sec(id,kicker,title,sub,inner){return '<section id="'+id+'" class="sect
 function render(){
   var s=data;
   var brand=s.logo?'<img class="brand-logo" src="'+esc(s.logo)+'" alt="'+esc(s.brand)+'">':'<span class="brand-name">'+esc(s.brand)+'</span>';
-  var nav='<nav class="nav"><div class="nav-inner">'+brand+'<div class="nav-links"><a href="#karya">Karya</a><a href="#layanan">Layanan</a><a href="#kelas">Kelas</a><a href="#testimoni">Testimoni</a><a href="#kontak">Kontak</a></div></div></nav>';
+  var nav='<nav class="nav"><div class="nav-inner">'+brand+'<div class="nav-links"><a href="#kenapa">Kenapa</a><a href="#karya">Karya</a><a href="#layanan">Layanan</a><a href="#kelas">Kelas</a><a href="#testimoni">Testimoni</a><a href="#kontak">Kontak</a></div></div></nav>';
   var hero='<header class="hero'+(s.heroVideo?' hero--video':'')+'"><div class="hero-bg">'+heroBg(s.heroVideo)+'</div><div class="hero-overlay"></div><div class="hero-content"><div class="container"><span class="eyebrow"><span class="dot"></span>'+esc(s.heroEyebrow)+'</span><h1 class="hero-title">'+esc(s.heroTitle)+'</h1><p class="hero-sub">'+esc(s.heroText)+'</p><div class="hero-cta"><a class="btn btn-primary" href="#karya">\u25B6\uFE0F Lihat Karya</a><a class="btn btn-ghost" href="#kontak">Ajak Kolaborasi</a></div></div></div></header>';
   var chips=TOOLS.concat(TOOLS).map(function(t){return '<span class="chip">'+esc(t)+'</span>';}).join("");
   var marquee='<div class="marquee"><div class="marquee-track">'+chips+'</div></div>';
   var statsHtml='<div class="stats">'+(s.stats||[]).map(function(st){return '<div class="stat"><div class="stat-value" data-val="'+esc(st.value)+'">'+esc(st.value)+'</div><div class="stat-label">'+esc(st.label)+'</div><div class="stat-caption">'+esc(st.caption)+'</div></div>';}).join("")+'</div>';
-  var statsSec='<section class="section reveal" style="padding-top:64px;"><div class="container">'+statsHtml+'</div></section>';
+  var statsSec='<section class="section section--first reveal" style="padding-top:56px;"><div class="container">'+statsHtml+'</div></section>';
   var aboutSec=sec("tentang","Profil",s.aboutTitle,"",'<div class="about-text">'+nl2p(s.aboutText)+'</div>');
+  var whyArr=(s.whyItems&&s.whyItems.length)?s.whyItems:DEFAULT_DATA.whyItems;
+  var whyHtml='<div class="why-grid">'+whyArr.map(function(w){return '<article class="why-card"><div class="why-ico">'+esc(w.icon)+'</div><h3>'+esc(w.title)+'</h3><p>'+esc(w.desc)+'</p></article>';}).join("")+'</div>';
+  var whySec='<section id="kenapa" class="section why reveal"><div class="container"><p class="kicker">Why Seru Digital</p><h2 class="section-title">'+esc(s.whyTitle||DEFAULT_DATA.whyTitle)+'</h2><p class="section-sub">'+esc(s.whyText||DEFAULT_DATA.whyText)+'</p>'+whyHtml+'</div></section>';
   var videoHtml='<div class="video-grid">'+(s.videos||[]).map(function(v){var id=ytId(v.youtube);var media=id?'<iframe class="video-frame" src="https://www.youtube.com/embed/'+esc(id)+'" title="'+esc(v.title)+'" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>':'<div class="video-ph"><div class="play">\u25B6\uFE0F</div></div>';return '<article class="video-card">'+media+'<div class="video-info"><h3>'+esc(v.title)+'</h3><p>'+esc(v.desc)+'</p></div></article>';}).join("")+'</div>';
   var videoSec=sec("karya","Portofolio","Karya pilihan","Beberapa video yang sudah saya produksi \u2014 dari sinematik sampai konten iklan.",videoHtml);
   var serviceHtml='<div class="services-grid">'+(s.services||[]).map(function(sv){return '<article class="service-card"><div class="service-icon">'+esc(sv.icon)+'</div><h3>'+esc(sv.title)+'</h3><p>'+esc(sv.desc)+'</p></article>';}).join("")+'</div>';
@@ -217,7 +248,7 @@ function render(){
   if(s.tiktok)contactBtns+='<a class="btn btn-ghost" href="'+esc(s.tiktok)+'" target="_blank" rel="noopener">TikTok</a>';
   var contactSec='<section id="kontak" class="section reveal"><div class="container"><div class="contact-card"><h2>'+esc(s.contactTitle)+'</h2><p>'+esc(s.contactText)+'</p><div class="contact-cta">'+contactBtns+'</div></div></div></section>';
   var footer='<footer class="footer"><div class="container">\u00A9 2026 '+esc(s.brand)+' \u2014 SERU DIGITAL LABS. Menampilkan karya & berbagi ilmu video animasi AI.</div></footer>';
-  document.getElementById("app").innerHTML=nav+hero+marquee+statsSec+aboutSec+videoSec+serviceSec+classSec+testiSec+contactSec+footer;
+  document.getElementById("app").innerHTML=nav+hero+marquee+statsSec+aboutSec+whySec+videoSec+serviceSec+classSec+testiSec+contactSec+footer;
   initReveal();
 }
 function countUp(el){var raw=el.getAttribute("data-val")||el.textContent;var m=raw.match(/^(\D*)(\d+)(.*)$/);if(!m){el.textContent=raw;return;}var pre=m[1],num=parseInt(m[2],10),suf=m[3],dur=1100,start=null;function step(ts){if(!start)start=ts;var p=Math.min((ts-start)/dur,1);el.textContent=pre+Math.floor(p*num)+suf;if(p<1)requestAnimationFrame(step);else el.textContent=pre+num+suf;}requestAnimationFrame(step);}
