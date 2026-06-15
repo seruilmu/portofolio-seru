@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Seru Digital</title>
-<meta name="description" content="Seru Digital - video animasi & konten sinematik berbasis AI, plus kelas produksi lewat SERU DIGITAL LABS.">
+<meta name="description" content="Seru Digital - Kreator & Mentor Video Animasi AI. Produksi video animasi, iklan, cinematic AI, mentoring & komunitas VIP.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
@@ -30,9 +30,12 @@ h1,h2,h3{margin:0;}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 24px;max-width:var(--maxw);margin:0 auto;}
 .brand-name{font-family:var(--display);font-weight:700;font-size:18px;letter-spacing:-.02em;}
 .brand-logo{height:36px;width:auto;}
+.nav-right{display:flex;align-items:center;gap:22px;}
 .nav-links{display:flex;gap:28px;}
 .nav-links a{font-size:14px;color:var(--muted);text-decoration:none;transition:color .2s;}
 .nav-links a:hover{color:var(--text);}
+.lang-toggle{font-family:var(--display);font-size:13px;font-weight:600;color:var(--text);background:var(--surface2);border:1px solid var(--border);border-radius:999px;padding:7px 16px;cursor:pointer;letter-spacing:.04em;transition:transform .2s,background .2s,border-color .2s;}
+.lang-toggle:hover{transform:translateY(-1px);background:var(--surface);border-color:rgba(124,92,255,.5);}
 @media(max-width:720px){.nav-links{display:none;}}
 
 /* HERO */
@@ -161,7 +164,7 @@ h1,h2,h3{margin:0;}
 
 /* HERO VIDEO OVERLAY (text kiri terbaca, maskot kanan terang) */
 .hero--video .hero-overlay{background:linear-gradient(90deg,rgba(8,8,13,.95) 0%,rgba(8,8,13,.82) 30%,rgba(8,8,13,.42) 60%,rgba(8,8,13,.12) 82%,rgba(8,8,13,0) 100%),linear-gradient(0deg,var(--bg),transparent 32%);}
-@media(max-width:760px){.hero--video .hero-overlay{background:linear-gradient(0deg,rgba(8,8,13,.92) 0%,rgba(8,8,13,.5) 45%,rgba(8,8,13,.18) 76%,rgba(8,8,13,.06) 100%);}.hero-video-el{height:100%;min-height:100%;object-position:right center;}}
+@media(max-width:760px){.hero{display:flex;flex-direction:column;min-height:0;padding:0 18px 44px;}.hero-bg{position:relative;inset:auto;order:-1;width:100%;height:230px;border-radius:22px;overflow:hidden;margin:82px 0 26px;border:1px solid var(--border);box-shadow:0 20px 50px rgba(0,0,0,.5);}.hero-overlay{display:none;}.hero-content{padding:0;width:100%;}.hero-title{max-width:100%;}.hero-sub{max-width:100%;}.hero-video-el{object-position:center;}}
 
 /* === REVISI v2: motion, dividers, exclusivity === */
 body::before{content:"";position:fixed;inset:-20%;z-index:-1;background:radial-gradient(620px 420px at 18% 28%,rgba(124,92,255,.10),transparent 60%),radial-gradient(520px 380px at 82% 72%,rgba(67,229,255,.08),transparent 60%);animation:aurora 22s ease-in-out infinite alternate;pointer-events:none;}
@@ -190,10 +193,7 @@ body::before{content:"";position:fixed;inset:-20%;z-index:-1;background:radial-g
 @media(max-width:860px){.why-grid{grid-template-columns:1fr;}}
 @media (prefers-reduced-motion:reduce){.stat,.video-card,.service-card,.class-item,.testi-card,.why-card{opacity:1!important;transform:none!important;}body::before{animation:none;}}
 </style>
-</head>
-<body>
-<div id="app"></div>
-<script>
+</head><body><div id="app"></div><script>
 (function(){
 "use strict";
 var DEFAULT_DATA = {
@@ -204,17 +204,77 @@ var DEFAULT_DATA = {
   heroVideo:"",
   stats:[{value:"2 thn",label:"Pengalaman",caption:"Produksi konten video & animasi"},{value:"50+",label:"Karya",caption:"Video selesai untuk klien & project"},{value:"100+",label:"Murid",caption:"Peserta kelas & live session"},{value:"30+",label:"Klien",caption:"Brand & kreator"}],
   aboutTitle:"Tentang Seru Digital", aboutText:"",
-  whyTitle:"Kenapa harus Seru Digital?", whyText:"Lebih dari sekadar bikin video — kamu dapat partner kreatif yang ngerti hasil, proses, dan ilmunya.",
-  whyItems:[{icon:"⚡",title:"Berbasis AI Terkini",desc:"Workflow & tools AI terbaru biar hasil cepat, konsisten, dan sinematik."},{icon:"🎯",title:"Hasil Premium",desc:"Kualitas visual setara studio, disesuaikan dengan brand kamu."},{icon:"🤝",title:"Komunikasi Enak",desc:"Proses jelas, update rutin, revisi tanpa drama."},{icon:"🎓",title:"Sekaligus Mentor",desc:"Bukan cuma bikin — kami juga ngajarin kamu produksi sendiri."},{icon:"🚀",title:"Pengerjaan Cepat",desc:"Alur kerja efisien, deadline aman tanpa korbankan kualitas."},{icon:"🌐",title:"Ekosistem LABS",desc:"Materi, tools SERA, & komunitas yang terus berkembang."}],
-  videos:[], services:[{icon:"🤝",title:"Kerjasama Project AI",desc:"Kolaborasi project kreatif berbasis AI bareng brand & kreator — dari konsep sampai eksekusi."},{icon:"🎬",title:"Video Animasi AI",desc:"Produksi video animasi & karakter bercerita dengan workflow AI terkini."},{icon:"📣",title:"Video Iklan AI",desc:"Konten iklan yang menjual — visual menarik untuk produk & campaign brand."},{icon:"🎥",title:"Video Cinematic AI",desc:"Video sinematik beratmosfer untuk branding, opening, atau storytelling."},{icon:"🎯",title:"Mentoring Private 1:1",desc:"Bimbingan personal intensif yang disesuaikan dengan goal & level kamu."},{icon:"👑",title:"Komunitas VIP",desc:"Akses komunitas eksklusif yang sudah termasuk Edukasi AI — kelas & materi produksi video animasi AI dari nol sampai mahir, plus akses semua tools SERA."}], classTitle:"Belajar bareng Seru Digital", classText:"", classItems:[], testimonials:[],
+  whyTitle:"Kenapa harus Seru Digital?", whyText:"Lebih dari sekadar bikin video \u2014 kamu dapat partner kreatif yang ngerti hasil, proses, dan ilmunya.",
+  whyItems:[{icon:"\u26A1",title:"Berbasis AI Terkini",desc:"Workflow & tools AI terbaru biar hasil cepat, konsisten, dan sinematik."},{icon:"\uD83C\uDFAF",title:"Hasil Premium",desc:"Kualitas visual setara studio, disesuaikan dengan brand kamu."},{icon:"\uD83E\uDD1D",title:"Komunikasi Enak",desc:"Proses jelas, update rutin, revisi tanpa drama."},{icon:"\uD83C\uDF93",title:"Sekaligus Mentor",desc:"Bukan cuma bikin \u2014 kami juga ngajarin kamu produksi sendiri."},{icon:"\uD83D\uDE80",title:"Pengerjaan Cepat",desc:"Alur kerja efisien, deadline aman tanpa korbankan kualitas."},{icon:"\uD83C\uDF10",title:"Ekosistem LABS",desc:"Materi, tools SERA, & komunitas yang terus berkembang."}],
+  videos:[], services:[{icon:"\uD83E\uDD1D",title:"Kerjasama Project AI",desc:"Kolaborasi project kreatif berbasis AI bareng brand & kreator \u2014 dari konsep sampai eksekusi."},{icon:"\uD83C\uDFAC",title:"Video Animasi AI",desc:"Produksi video animasi & karakter bercerita dengan workflow AI terkini."},{icon:"\uD83D\uDCE3",title:"Video Iklan AI",desc:"Konten iklan yang menjual \u2014 visual menarik untuk produk & campaign brand."},{icon:"\uD83C\uDFA5",title:"Video Cinematic AI",desc:"Video sinematik beratmosfer untuk branding, opening, atau storytelling."},{icon:"\uD83C\uDFAF",title:"Mentoring Private 1:1",desc:"Bimbingan personal intensif yang disesuaikan dengan goal & level kamu."},{icon:"\uD83D\uDC51",title:"Komunitas VIP",desc:"Akses komunitas eksklusif yang sudah termasuk Edukasi AI \u2014 kelas & materi produksi video animasi AI dari nol sampai mahir, plus akses semua tools SERA."}], classTitle:"Belajar bareng Seru Digital", classText:"", classItems:[], testimonials:[],
   contactTitle:"Ayo kerja bareng", contactText:"", email:"seru.ilmu@gmail.com", whatsapp:"", instagram:"", tiktok:""
 };
+
+// English translations (untuk market luar negeri). Kontak, logo, video, brand diambil dari data ID.
+var DATA_EN = {
+  heroEyebrow:"AI Animation Video Creator & Mentor",
+  heroTitle:"Turning ideas into visual stories that come alive.",
+  heroText:"Seru Digital creates AI-powered animated videos and cinematic content, while also teaching people how to produce it themselves through the SERU DIGITAL LABS ecosystem.",
+  stats:[{value:"2 yrs",label:"Experience",caption:"Producing video & animation content"},{value:"50+",label:"Works",caption:"Videos completed for clients & projects"},{value:"100+",label:"Students",caption:"Class & live session participants"},{value:"30+",label:"Clients",caption:"Brands & creators"}],
+  aboutTitle:"About Seru Digital",
+  aboutText:"Seru Digital is a creative studio focused on AI-based content production \u2014 from cinematic videos and story animation to advertising content for brands. We believe every idea can be turned into stunning visual work with the right workflow and tools.\n\nBeyond producing work, Seru Digital is also active in sharing knowledge. Through SERU DIGITAL LABS, we build materials, tools, and a community to help anyone learn to make AI animation videos from zero to mastery.",
+  whyTitle:"Why choose Seru Digital?", whyText:"More than just making videos \u2014 you get a creative partner who understands the result, the process, and the craft behind it.",
+  whyItems:[{icon:"\u26A1",title:"Powered by Latest AI",desc:"The newest AI workflow & tools for fast, consistent, cinematic results."},{icon:"\uD83C\uDFAF",title:"Premium Results",desc:"Studio-grade visual quality, tailored to your brand."},{icon:"\uD83E\uDD1D",title:"Easy Communication",desc:"Clear process, regular updates, revisions without the drama."},{icon:"\uD83C\uDF93",title:"A Mentor Too",desc:"Not just making it \u2014 we also teach you to produce your own."},{icon:"\uD83D\uDE80",title:"Fast Turnaround",desc:"Efficient workflow, deadlines met without sacrificing quality."},{icon:"\uD83C\uDF10",title:"LABS Ecosystem",desc:"Materials, SERA tools, & a community that keeps growing."}],
+  services:[{icon:"\uD83E\uDD1D",title:"AI Project Collaboration",desc:"Creative AI-based project collaboration with brands & creators \u2014 from concept to execution."},{icon:"\uD83C\uDFAC",title:"AI Animation Video",desc:"Production of animated videos & storytelling characters with the latest AI workflow."},{icon:"\uD83D\uDCE3",title:"AI Ad Video",desc:"Ads that sell \u2014 eye-catching visuals for products & brand campaigns."},{icon:"\uD83C\uDFA5",title:"AI Cinematic Video",desc:"Atmospheric cinematic videos for branding, openings, or storytelling."},{icon:"\uD83C\uDFAF",title:"Private 1:1 Mentoring",desc:"Intensive personal guidance tailored to your goals & level."},{icon:"\uD83D\uDC51",title:"VIP Community",desc:"Exclusive community access that already includes AI Education \u2014 classes & materials for AI animation video production from zero to mastery, plus access to all SERA tools."}],
+  videos:[{title:"SUNSHIELD",desc:"Beauty clinic product \u2014 cinematic product video highlighting SUNSHIELD's strengths.",youtube:"https://youtube.com/shorts/pjTFAE8wPis"},{title:"M PASPOR",desc:"Public service \u2014 informative content for the M Paspor service.",youtube:"https://youtu.be/HqrmwXNvFqo"},{title:"EMS SCULPTING",desc:"Beauty clinic treatment \u2014 treatment video showcasing EMS Sculpting technology.",youtube:"https://youtube.com/shorts/3fR06DUR6rc"},{title:"Met Gala",desc:"Project for a client from Singapore \u2014 Met Gala themed content.",youtube:"https://youtube.com/shorts/qcgmXhwPgz4"},{title:"Transformation",desc:"Stunning visual transformation video using AI animation techniques.",youtube:"https://youtube.com/shorts/ZsJL9f9Zc9s"},{title:"History",desc:"Educational history-themed content in a cinematic style.",youtube:"https://youtu.be/WbqSByOgOyY"},{title:"GAMIS BONO",desc:"Commercial \u2014 fashion product video for Gamis Bono.",youtube:"https://youtube.com/shorts/_Yx_mJkfT2c"},{title:"Talking Character",desc:"Education \u2014 educational content with a talking character.",youtube:"https://youtube.com/shorts/IHA5FdGnPmQ"}],
+  classTitle:"Learn with Seru Digital",
+  classText:"We teach people to make AI animation videos from scratch \u2014 through classes, structured materials, and regular live sessions at SERU DIGITAL LABS.",
+  classItems:[{title:"AI Video Production Basics",desc:"Get to know the workflow, tools, and how to make your first video."},{title:"Story & Character Animation",desc:"Build consistent characters and craft compelling stories."},{title:"Live Sessions & Mentoring",desc:"Live sessions for practice, Q&A, and reviewing participants' work."}],
+  testimonials:[{quote:"The video results far exceeded our expectations. The process was fast and communication was great. Our brand feels more alive.",name:"Budi Santoso",meta:"Owner, Local Brand \u2014 client"},{quote:"From knowing nothing about animation, now I can make my own videos. The teaching is clear and very patient.",name:"Sarah Putri",meta:"Class participant \u2014 student"},{quote:"SERU DIGITAL LABS materials are complete and immediately applicable. Totally worth it for anyone serious about video content.",name:"Andi Wijaya",meta:"Content creator \u2014 student"}],
+  contactTitle:"Let's work together",
+  contactText:"Have a video project, need content, or want to learn AI animation video production? Get in touch with Seru Digital."
+};
+
+var UI = {
+  id:{
+    nav:["Layanan","Kelas","Karya","Kenapa","Testimoni","Kontak"],
+    heroBtnWork:"\u25B6\uFE0F Lihat Karya", heroBtnCollab:"Ajak Kolaborasi",
+    aboutKicker:"Profil",
+    whyKicker:"Why Seru Digital",
+    videoKicker:"Portofolio", videoTitle:"Karya pilihan", videoSub:"Beberapa video yang sudah saya produksi \u2014 dari sinematik sampai konten iklan.",
+    serviceKicker:"Layanan", serviceTitle:"Apa yang bisa saya bantu", serviceSub:"Solusi konten video & animasi untuk brand dan kreator.",
+    classKicker:"Belajar",
+    calloutTitle:"SERU DIGITAL LABS", calloutText:"Ekosistem belajar berisi materi, tools SERA, dan komunitas untuk membantu kamu menguasai produksi video animasi AI.",
+    joinBtn:"\uD83D\uDE80 Gabung Sekarang",
+    testiKicker:"Testimoni", testiTitle:"Apa kata klien & murid",
+    emailBtn:"\u2709\uFE0F Email Saya", waBtn:"\uD83D\uDCAC WhatsApp",
+    footerTag:"Menampilkan karya & berbagi ilmu video animasi AI.",
+    langLabel:"EN"
+  },
+  en:{
+    nav:["Services","Classes","Works","Why","Testimonials","Contact"],
+    heroBtnWork:"\u25B6\uFE0F View Works", heroBtnCollab:"Let's Collaborate",
+    aboutKicker:"Profile",
+    whyKicker:"Why Seru Digital",
+    videoKicker:"Portfolio", videoTitle:"Selected works", videoSub:"A few videos I've produced \u2014 from cinematic to advertising content.",
+    serviceKicker:"Services", serviceTitle:"What I can help with", serviceSub:"Video & animation content solutions for brands and creators.",
+    classKicker:"Learn",
+    calloutTitle:"SERU DIGITAL LABS", calloutText:"A learning ecosystem with materials, SERA tools, and a community to help you master AI animation video production.",
+    joinBtn:"\uD83D\uDE80 Join Now",
+    testiKicker:"Testimonials", testiTitle:"What clients & students say",
+    emailBtn:"\u2709\uFE0F Email Me", waBtn:"\uD83D\uDCAC WhatsApp",
+    footerTag:"Showcasing work & sharing AI animation video knowledge.",
+    langLabel:"ID"
+  }
+};
+
 var TOOLS=["SERA Cinema","SERA Storyboard","SERA Affiliate","SERA Karaktersheet","SERA Campaign","Leonardo AI","Google Veo","Midjourney","After Effects","Runway"];
 var data=DEFAULT_DATA;
+var lang=(function(){try{return localStorage.getItem("sd_lang")==="en"?"en":"id";}catch(e){return "id";}})();
+function currentData(){
+  if(lang==="en"){
+    return Object.assign({},DATA_EN,{brand:data.brand,logo:data.logo,heroVideo:data.heroVideo,email:data.email,whatsapp:data.whatsapp,instagram:data.instagram,tiktok:data.tiktok});
+  }
+  return data;
+}
 function esc(s){return (s==null?"":String(s)).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\"/g,"&quot;");}
 function ytId(url){if(!url)return "";var m=String(url).match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([\w-]{11})/);if(m)return m[1];if(/^[\w-]{11}$/.test(url))return url;return "";}
-function nl2p(t,cls){return String(t||"").split(/\n{2,}|\n/).filter(function(x){return x.trim();}).map(function(p){return "<p>"+esc(p)+"</p>";}).join("");}
-function mascotSVG(){return '<div class="hero-mascot"><svg viewBox="0 0 480 470" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><linearGradient id="mg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c5cff"/><stop offset="0.55" stop-color="#ff5c8a"/><stop offset="1" stop-color="#43e5ff"/></linearGradient><linearGradient id="sg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#43e5ff"/><stop offset="1" stop-color="#7c5cff"/></linearGradient></defs><g stroke="url(#mg)" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" fill="none"><line x1="60" y1="388" x2="470" y2="388"/><path class="scr" d="M250 356 L250 306 L186 306 L198 356 Z" fill="url(#sg)" stroke="none" opacity="0.5"/><path d="M250 356 L250 306 L186 306 L198 356 Z"/><path d="M198 356 L250 356 L268 380 L182 380 Z"/><path d="M214 258 C206 298 206 344 214 386 L300 386 C306 344 306 298 298 258 Z" fill="rgba(124,92,255,0.06)"/><path d="M242 258 L244 238 M270 258 L268 238"/><g class="headg"><circle cx="256" cy="202" r="34" fill="rgba(124,92,255,0.06)"/><path d="M224 192 C226 166 286 166 288 192 C288 178 280 170 256 170 C234 170 224 178 224 192 Z" fill="url(#mg)" stroke="none"/><circle cx="244" cy="204" r="2.6" fill="url(#mg)" stroke="none"/><circle cx="266" cy="204" r="2.6" fill="url(#mg)" stroke="none"/><path d="M247 216 Q256 222 265 216"/><animateTransform attributeName="transform" type="rotate" begin="0s" dur="9s" repeatCount="indefinite" values="0 256 236; 1.5 256 236; 0 256 236; 6 256 236; 6 256 236; 0 256 236; 0 256 236" keyTimes="0; 0.2; 0.45; 0.62; 0.72; 0.85; 1"/></g><g class="armR"><path d="M288 258 Q312 292 322 322" stroke-width="10"/></g><g class="armRf"><path d="M322 322 L336 366" stroke-width="9"/><circle cx="338" cy="368" r="6" fill="rgba(124,92,255,0.06)"/><path d="M330 350 L356 350 L353 376 L333 376 Z" fill="rgba(255,255,255,0.05)"/><path d="M356 356 Q368 358 366 367 Q364 373 357 372"/><path class="steam" d="M339 346 Q335 338 339 330 Q343 322 339 314" stroke-width="2.4"/><path class="steam s2" d="M349 346 Q345 338 349 330 Q353 322 349 314" stroke-width="2.4"/><animateTransform attributeName="transform" type="rotate" begin="0s" dur="9s" repeatCount="indefinite" values="0 322 322; 0 322 322; -34 322 322; -34 322 322; 0 322 322; 0 322 322" keyTimes="0; 0.5; 0.62; 0.72; 0.84; 1"/></g><g class="armL"><path d="M224 258 Q206 300 214 348" stroke-width="10"/><circle cx="214" cy="350" r="6.5" fill="rgba(124,92,255,0.06)"/><animateTransform attributeName="transform" type="rotate" begin="0s" dur="2.8s" repeatCount="1" fill="freeze" values="138 224 258; 148 224 258; 130 224 258; 148 224 258; 130 224 258; 70 224 258; 0 224 258" keyTimes="0; 0.12; 0.3; 0.48; 0.66; 0.85; 1"/></g></g></svg></div>';}
+function nl2p(t){return String(t||"").split(/\n{2,}|\n/).filter(function(x){return x.trim();}).map(function(p){return "<p>"+esc(p)+"</p>";}).join("");}
 function heroBg(v){
   if(v){var id=ytId(v);
     if(id)return '<div class="hero-video"><iframe src="https://www.youtube.com/embed/'+esc(id)+'?autoplay=1&mute=1&loop=1&playlist='+esc(id)+'&controls=0&showinfo=0&modestbranding=1&rel=0&playsinline=1" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>';
@@ -224,34 +284,38 @@ function heroBg(v){
 }
 function sec(id,kicker,title,sub,inner){return '<section id="'+id+'" class="section reveal"><div class="container">'+(kicker?'<p class="kicker">'+esc(kicker)+'</p>':'')+'<h2 class="section-title">'+esc(title)+'</h2>'+(sub?'<p class="section-sub">'+esc(sub)+'</p>':'')+inner+'</div></section>';}
 function render(){
-  var s=data;
+  var s=currentData(); var U=UI[lang];
   var brand=s.logo?'<img class="brand-logo" src="'+esc(s.logo)+'" alt="'+esc(s.brand)+'">':'<span class="brand-name">'+esc(s.brand)+'</span>';
-  var nav='<nav class="nav"><div class="nav-inner">'+brand+'<div class="nav-links"><a href="#layanan">Layanan</a><a href="#kelas">Kelas</a><a href="#karya">Karya</a><a href="#kenapa">Kenapa</a><a href="#testimoni">Testimoni</a><a href="#kontak">Kontak</a></div></div></nav>';
-  var hero='<header class="hero'+(s.heroVideo?' hero--video':'')+'"><div class="hero-bg">'+heroBg(s.heroVideo)+'</div><div class="hero-overlay"></div><div class="hero-content"><div class="container"><span class="eyebrow"><span class="dot"></span>'+esc(s.heroEyebrow)+'</span><h1 class="hero-title">'+esc(s.heroTitle)+'</h1><p class="hero-sub">'+esc(s.heroText)+'</p><div class="hero-cta"><a class="btn btn-primary" href="#karya">\u25B6\uFE0F Lihat Karya</a><a class="btn btn-ghost" href="#kontak">Ajak Kolaborasi</a></div></div></div></header>';
+  var ids=["#layanan","#kelas","#karya","#kenapa","#testimoni","#kontak"];
+  var navLinks=U.nav.map(function(label,i){return '<a href="'+ids[i]+'">'+esc(label)+'</a>';}).join("");
+  var langBtn='<button class="lang-toggle" type="button" aria-label="Switch language">'+esc(U.langLabel)+'</button>';
+  var nav='<nav class="nav"><div class="nav-inner">'+brand+'<div class="nav-right"><div class="nav-links">'+navLinks+'</div>'+langBtn+'</div></div></nav>';
+  var hero='<header class="hero hero--video"><div class="hero-bg">'+heroBg(s.heroVideo)+'</div><div class="hero-overlay"></div><div class="container hero-content"><span class="eyebrow"><span class="dot"></span>'+esc(s.heroEyebrow)+'</span><h1 class="hero-title">'+esc(s.heroTitle)+'</h1><p class="hero-sub">'+esc(s.heroText)+'</p><div class="hero-cta"><a class="btn btn-primary" href="#karya">'+esc(U.heroBtnWork)+'</a><a class="btn btn-ghost" href="#kontak">'+esc(U.heroBtnCollab)+'</a></div></div></header>';
   var chips=TOOLS.concat(TOOLS).map(function(t){return '<span class="chip">'+esc(t)+'</span>';}).join("");
   var marquee='<div class="marquee"><div class="marquee-track">'+chips+'</div></div>';
   var statsHtml='<div class="stats">'+(s.stats||[]).map(function(st){return '<div class="stat"><div class="stat-value" data-val="'+esc(st.value)+'">'+esc(st.value)+'</div><div class="stat-label">'+esc(st.label)+'</div><div class="stat-caption">'+esc(st.caption)+'</div></div>';}).join("")+'</div>';
   var statsSec='<section class="section section--first reveal" style="padding-top:56px;"><div class="container">'+statsHtml+'</div></section>';
-  var aboutSec=sec("tentang","Profil",s.aboutTitle,"",'<div class="about-text">'+nl2p(s.aboutText)+'</div>');
+  var aboutSec=sec("tentang",U.aboutKicker,s.aboutTitle,"",'<div class="about-text">'+nl2p(s.aboutText)+'</div>');
   var whyArr=(s.whyItems&&s.whyItems.length)?s.whyItems:DEFAULT_DATA.whyItems;
   var whyHtml='<div class="why-grid">'+whyArr.map(function(w){return '<article class="why-card"><div class="why-ico">'+esc(w.icon)+'</div><h3>'+esc(w.title)+'</h3><p>'+esc(w.desc)+'</p></article>';}).join("")+'</div>';
-  var whySec='<section id="kenapa" class="section why reveal"><div class="container"><p class="kicker">Why Seru Digital</p><h2 class="section-title">'+esc(s.whyTitle||DEFAULT_DATA.whyTitle)+'</h2><p class="section-sub">'+esc(s.whyText||DEFAULT_DATA.whyText)+'</p>'+whyHtml+'</div></section>';
+  var whySec='<section id="kenapa" class="section why reveal"><div class="container"><p class="kicker">'+esc(U.whyKicker)+'</p><h2 class="section-title">'+esc(s.whyTitle||DEFAULT_DATA.whyTitle)+'</h2><p class="section-sub">'+esc(s.whyText||DEFAULT_DATA.whyText)+'</p>'+whyHtml+'</div></section>';
   var videoHtml='<div class="video-grid">'+(s.videos||[]).map(function(v){var id=ytId(v.youtube);var media=id?'<iframe class="video-frame" src="https://www.youtube.com/embed/'+esc(id)+'" title="'+esc(v.title)+'" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>':'<div class="video-ph"><div class="play">\u25B6\uFE0F</div></div>';return '<article class="video-card">'+media+'<div class="video-info"><h3>'+esc(v.title)+'</h3><p>'+esc(v.desc)+'</p></div></article>';}).join("")+'</div>';
-  var videoSec=sec("karya","Portofolio","Karya pilihan","Beberapa video yang sudah saya produksi \u2014 dari sinematik sampai konten iklan.",videoHtml);
+  var videoSec=sec("karya",U.videoKicker,U.videoTitle,U.videoSub,videoHtml);
   var svcArr=(s.services&&s.services.length)?s.services:DEFAULT_DATA.services;
   var serviceHtml='<div class="services-grid">'+svcArr.map(function(sv){return '<article class="service-card"><div class="service-icon">'+esc(sv.icon)+'</div><h3>'+esc(sv.title)+'</h3><p>'+esc(sv.desc)+'</p></article>';}).join("")+'</div>';
-  var serviceSec=sec("layanan","Layanan","Apa yang bisa saya bantu","Solusi konten video & animasi untuk brand dan kreator.",serviceHtml);
-  var classHtml='<div class="class-list">'+(s.classItems||[]).map(function(c,i){return '<div class="class-item"><div class="class-num">'+(i+1)+'</div><div><h3>'+esc(c.title)+'</h3><p>'+esc(c.desc)+'</p></div></div>';}).join("")+'</div><div class="callout"><div class="ico">\uD83C\uDF93</div><div><strong>SERU DIGITAL LABS</strong><p>Ekosistem belajar berisi materi, tools SERA, dan komunitas untuk membantu kamu menguasai produksi video animasi AI.</p></div></div><div class="class-cta"><a class="btn btn-primary" href="'+esc(s.whatsapp||"#kontak")+'"'+(s.whatsapp?' target="_blank" rel="noopener"':'')+'>🚀 Gabung Sekarang</a></div>';
-  var classSec=sec("kelas","Belajar",s.classTitle,s.classText,classHtml);
+  var serviceSec=sec("layanan",U.serviceKicker,U.serviceTitle,U.serviceSub,serviceHtml);
+  var classHtml='<div class="class-list">'+(s.classItems||[]).map(function(c,i){return '<div class="class-item"><div class="class-num">'+(i+1)+'</div><div><h3>'+esc(c.title)+'</h3><p>'+esc(c.desc)+'</p></div></div>';}).join("")+'</div><div class="callout"><div class="ico">\uD83C\uDF93</div><div><strong>'+esc(U.calloutTitle)+'</strong><p>'+esc(U.calloutText)+'</p></div></div><div class="class-cta"><a class="btn btn-primary" href="'+esc(s.whatsapp||"#kontak")+'"'+(s.whatsapp?' target="_blank" rel="noopener"':'')+'>'+esc(U.joinBtn)+'</a></div>';
+  var classSec=sec("kelas",U.classKicker,s.classTitle,s.classText,classHtml);
   var testiHtml='<div class="testi-grid">'+(s.testimonials||[]).map(function(t){return '<div class="testi-card"><p class="testi-quote">'+esc(t.quote)+'</p><div class="testi-name">'+esc(t.name)+'</div><div class="testi-meta">'+esc(t.meta)+'</div></div>';}).join("")+'</div>';
-  var testiSec=sec("testimoni","Testimoni","Apa kata klien & murid","",testiHtml);
-  var contactBtns='<a class="btn btn-primary" href="mailto:'+esc(s.email)+'">\u2709\uFE0F Email Saya</a>';
-  if(s.whatsapp)contactBtns+='<a class="btn btn-ghost" href="'+esc(s.whatsapp)+'" target="_blank" rel="noopener">\uD83D\uDCAC WhatsApp</a>';
+  var testiSec=sec("testimoni",U.testiKicker,U.testiTitle,"",testiHtml);
+  var contactBtns='<a class="btn btn-primary" href="mailto:'+esc(s.email)+'">'+esc(U.emailBtn)+'</a>';
+  if(s.whatsapp)contactBtns+='<a class="btn btn-ghost" href="'+esc(s.whatsapp)+'" target="_blank" rel="noopener">'+esc(U.waBtn)+'</a>';
   if(s.instagram)contactBtns+='<a class="btn btn-ghost" href="'+esc(s.instagram)+'" target="_blank" rel="noopener">Instagram</a>';
   if(s.tiktok)contactBtns+='<a class="btn btn-ghost" href="'+esc(s.tiktok)+'" target="_blank" rel="noopener">TikTok</a>';
   var contactSec='<section id="kontak" class="section reveal"><div class="container"><div class="contact-card"><h2>'+esc(s.contactTitle)+'</h2><p>'+esc(s.contactText)+'</p><div class="contact-cta">'+contactBtns+'</div></div></div></section>';
-  var footer='<footer class="footer"><div class="container">\u00A9 2026 '+esc(s.brand)+' \u2014 SERU DIGITAL LABS. Menampilkan karya & berbagi ilmu video animasi AI.</div></footer>';
+  var footer='<footer class="footer"><div class="container">\u00A9 2026 '+esc(s.brand)+' \u2014 SERU DIGITAL LABS. '+esc(U.footerTag)+'</div></footer>';
   document.getElementById("app").innerHTML=nav+hero+marquee+statsSec+aboutSec+serviceSec+classSec+videoSec+whySec+testiSec+contactSec+footer;
+  document.documentElement.lang=lang;
   initReveal();
   playHeroVideo();
 }
@@ -262,9 +326,21 @@ function initReveal(){
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");if(e.target.querySelector){[].forEach.call(e.target.querySelectorAll(".stat-value"),function(sv){if(!sv.__done){sv.__done=1;countUp(sv);}});}io.unobserve(e.target);}});},{threshold:.14});
   [].forEach.call(document.querySelectorAll(".reveal"),function(e){io.observe(e);});
 }
-function boot(d){if(d){data=Object.assign({},DEFAULT_DATA,d);}render();}
+function setupLangToggle(){
+  document.addEventListener("click",function(e){
+    var el=e.target;
+    while(el&&el!==document){
+      if(el.classList&&el.classList.contains("lang-toggle")){
+        lang=(lang==="en")?"id":"en";
+        try{localStorage.setItem("sd_lang",lang);}catch(_){}
+        render();
+        return;
+      }
+      el=el.parentNode;
+    }
+  });
+}
+function boot(d){if(d){data=Object.assign({},DEFAULT_DATA,d);}render();setupLangToggle();}
 if(window.fetch){fetch("data/content.json",{cache:"no-store"}).then(function(r){return r.ok?r.json():null;}).then(function(j){boot(j);}).catch(function(){boot(null);});}else{boot(null);}
 })();
-</script>
-</body>
-</html>
+</script></body></html>
