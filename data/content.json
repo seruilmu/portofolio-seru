@@ -24,9 +24,12 @@
     { "title": "Talking Character", "desc": "Education — konten edukasi dengan karakter berbicara (talking character).", "youtube": "https://youtube.com/shorts/IHA5FdGnPmQ" }
   ],
   "services": [
-    { "icon": "🎬", "title": "Produksi Video AI", "desc": "Video sinematik & animasi cerita end-to-end, dari konsep hingga hasil jadi." },
-    { "icon": "📣", "title": "Konten Iklan & Campaign", "desc": "Konsep dan eksekusi video iklan untuk brand yang ingin tampil beda." },
-    { "icon": "🎨", "title": "Storyboard & Desain", "desc": "Mengubah ide jadi storyboard dan aset visual yang siap diproduksi." }
+    { "icon": "🤝", "title": "Kerjasama Project AI", "desc": "Kolaborasi project kreatif berbasis AI bareng brand & kreator — dari konsep sampai eksekusi." },
+    { "icon": "🎬", "title": "Video Animasi AI", "desc": "Produksi video animasi & karakter bercerita dengan workflow AI terkini." },
+    { "icon": "📣", "title": "Video Iklan AI", "desc": "Konten iklan yang menjual — visual menarik untuk produk & campaign brand." },
+    { "icon": "🎥", "title": "Video Cinematic AI", "desc": "Video sinematik beratmosfer untuk branding, opening, atau storytelling." },
+    { "icon": "🎯", "title": "Mentoring Private 1:1", "desc": "Bimbingan personal intensif yang disesuaikan dengan goal & level kamu." },
+    { "icon": "👑", "title": "Komunitas VIP", "desc": "Akses komunitas eksklusif yang sudah termasuk Edukasi AI — kelas & materi produksi video animasi AI dari nol sampai mahir, plus akses semua tools SERA." }
   ],
   "classTitle": "Belajar bareng Seru Digital",
   "classText": "Kami mengajarkan orang membuat video animasi AI dari nol — lewat kelas, materi terstruktur, dan live session rutin di SERU DIGITAL LABS.",
