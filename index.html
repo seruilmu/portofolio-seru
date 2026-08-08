@@ -174,10 +174,17 @@ function render(){
   let D=window.SD||{};
   let brand=D.brand||"Seru Digital";
   let hvid=D.heroVideo||"/mascot.mp4";
-  let cats=[...new Set((D.videos||[]).map(v=>v.title.split(' — ')[0]||''))];if(cats.length<3)cats=['Commercial','Public Service','Social Content','Educational'];
-  let videoCatMap={};
-  (D.videos||[]).forEach(v=>{let c=v.title.includes('—')?v.title.split('—')[0].trim():'Lainnya';videoCatMap[c]=1;v._cat=c;});
-  let catList=[...new Set((D.videos||[]).map(v=>v._cat||'Lainnya'))];
+  let cats=['Commercial','Public Service','Social Content','Educational'];
+  let catAssign={};
+  (D.videos||[]).forEach((v,i)=>{
+    let t=v.title||'';let d=v.desc||'';
+    if(/beauty|product|fashion|klinik|iklan|komersil/i.test(t+' '+d))catAssign[i]='Commercial';
+    else if(/layanan|masyarakat|paspor|public|ilm/i.test(t+' '+d))catAssign[i]='Public Service';
+    else if(/social|met gala|transform/i.test(t+' '+d))catAssign[i]='Social Content';
+    else if(/edukasi|sejarah|pendidikan|education|talking/i.test(t+' '+d))catAssign[i]='Educational';
+    else catAssign[i]='Commercial';
+  });
+  let usedCats=[...new Set(Object.values(catAssign))];
 
   let nav=`<nav class="nav" id="topNav"><span class="nav-brand">${E(brand)}</span><div class="nav-links"><a href="#layanan">Layanan</a><a href="#kelas">Kelas</a><a href="#karya">Karya</a><a href="#testimoni">Testimoni</a><a href="#kontak" class="nav-cta">Mulai Project</a></div></nav>`;
 
@@ -204,12 +211,13 @@ function render(){
   let classSec=sec('kelas','Belajar',D.classTitle||'Belajar bareng Seru Digital',D.classText||'',classHtml);
 
   let filterBtns='<div class="cat-filters"><button class="cat-chip active" data-cat="all">Semua</button>';
-  catList.forEach(c=>{filterBtns+=`<button class="cat-chip" data-cat="${E(c)}">${E(c)}</button>`;});
+  usedCats.forEach(c=>{filterBtns+=`<button class="cat-chip" data-cat="${E(c)}">${E(c)}</button>`;});
   filterBtns+='</div>';
 
-  let vidHtml='<div class="video-grid">'+(D.videos||[]).map(v=>{
+  let vidHtml='<div class="video-grid">'+(D.videos||[]).map((v,i)=>{
     let id=ytId(v.youtube),img=id?thumb(id):'';
-    return `<article class="v-card" data-cat="${E(v._cat||'Lainnya')}" data-video="${E(v.youtube)}"><div class="v-thumb">${img?`<img src="${E(img)}" alt="${E(v.title)}" loading="lazy">`:''}<div class="v-play"><div class="v-play-icon"></div></div></div><div class="v-meta"><div class="v-cat">${E(v._cat||'Lainnya')}</div><h3>${E(v.title)}</h3><div class="v-desc">${E(v.desc)}</div></div></article>`;
+    let cat=catAssign[i]||'Commercial';
+    return `<article class="v-card" data-cat="${E(cat)}" data-video="${E(v.youtube)}"><div class="v-thumb">${img?`<img src="${E(img)}" alt="${E(v.title)}" loading="lazy">`:''}<div class="v-play"><div class="v-play-icon"></div></div></div><div class="v-meta"><div class="v-cat">${E(cat)}</div><h3>${E(v.title)}</h3><div class="v-desc">${E(v.desc)}</div></div></article>`;
   }).join('')+'</div>';
   let vidSec=sec('karya','Portfolio','Karya pilihan','Beberapa video yang sudah saya produksi — dari sinematik sampai konten iklan.',filterBtns+vidHtml);
 
