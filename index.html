@@ -39,6 +39,7 @@ a{color:inherit;text-decoration:none;}
 .hero-bg{position:absolute;inset:0;}
 .hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,12,.3),rgba(10,10,12,.8) 65%,var(--bg));}
 .hero-bg video,.hero-bg iframe{position:absolute;top:50%;left:50%;width:177.78vh;height:56.25vw;min-width:100%;min-height:100%;transform:translate(-50%,-50%);object-fit:cover;pointer-events:none;border:0;}
+.hero-video-el{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
 .hero-content{position:relative;z-index:2;max-width:var(--maxw);margin:0 auto;padding:0 32px;width:100%;}
 .hero-tag{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:24px;}
 .hero-tag .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent);}
@@ -142,7 +143,7 @@ var D={
   heroEyebrow:"AI VIDEO PRODUCTION STUDIO",
   heroTitle:"Membuat cerita yang <i>mustahil</i> jadi <i>terlihat</i>.",
   heroText:"Studio produksi video animasi & konten sinematik berbasis AI. Dari konsep, produksi, sampai post — semua dalam satu pipeline.",
-  heroVideo:"https://youtu.be/3WrXGJdL8mU",
+  heroVideo:"/mascot.mp4",
   whyTitle:"Kenapa <i>Seru Digital</i>",
   whyText:"Lebih dari sekadar bikin video — kamu dapat partner kreatif yang ngerti hasil, proses, dan ilmunya.",
   whyItems:[
@@ -179,8 +180,12 @@ function render(){
 
   var heroBg='';
   if(D.heroVideo){
-    var id=ytId(D.heroVideo);
-    heroBg=id?'<div class="hero-bg"><iframe src="https://www.youtube.com/embed/'+id+'?autoplay=1&mute=1&loop=1&playlist='+id+'&controls=0&showinfo=0&modestbranding=1&rel=0&playsinline=1" allow="autoplay;encrypted-media" allowfullscreen></iframe></div>':'<div class="hero-bg"></div>';
+    if(/\.(mp4|webm|ogg)(\?|$)/i.test(D.heroVideo)){
+      heroBg='<div class="hero-bg"><video class="hero-video-el" autoplay muted loop playsinline preload="auto" src="'+esc(D.heroVideo)+'"></video></div>';
+    }else{
+      var id=ytId(D.heroVideo);
+      heroBg=id?'<div class="hero-bg"><iframe src="https://www.youtube.com/embed/'+id+'?autoplay=1&mute=1&loop=1&playlist='+id+'&controls=0&showinfo=0&modestbranding=1&rel=0&playsinline=1" allow="autoplay;encrypted-media" allowfullscreen></iframe></div>':'<div class="hero-bg"></div>';
+    }
   }
 
   var hero='<section class="hero">'+heroBg+
