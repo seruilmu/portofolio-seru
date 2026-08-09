@@ -89,9 +89,6 @@ body::before{content:"";
     <p id="dash-desc" class="text-gray-400 text-lg max-w-xl mb-10" data-edit="heroDesc">Pusat resmi tools AI kreatif, materi panduan, dan rekaman pelatihan.</p>
     <button onclick="showPage('tools')" id="dash-btn" class="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-secondary to-blue-600 rounded-xl text-white font-bold shadow-lg shadow-blue-500/20 hover:-translate-y-1 transition" data-edit="heroBtn">⚡ Jelajahi Tools AI</button>
     <script>document.getElementById('dash-btn').addEventListener('click',function(e){e.stopPropagation();showPage('tools');});</script>
-    <div class="mt-14 bg-pink-500/5 border border-pink-500/20 rounded-2xl p-6">
-      <div class="flex items-start gap-3"><span class="text-2xl">🎬</span><div><h3 id="pr-title" class="text-lg font-bold text-white" data-edit="prTitle">📝 PR AKTIF: SHORT MOVIE CHALLENGE</h3><p id="pr-desc" class="text-gray-300 text-sm mt-1" data-edit="prDesc">Buat video <strong>short movie minimal 30 detik</strong>, tema <strong>bebas</strong>.</p><p id="pr-meta" class="text-gray-500 text-xs mt-3" data-edit="prMeta">⏰ 25 Juli 2026 · 🏆 Hadiah: akun Leonardo 8.500 token</p></div></div>
-    </div>
     <div class="mt-12 grid md:grid-cols-3 gap-4">
       <div onclick="showPage('materi')" class="bg-cardbg rounded-2xl p-6 border border-gray-800 cursor-pointer hover:border-blue-500/30 hover-float group relative overflow-hidden">
         <div class="absolute -top-20 -right-20 w-40 h-40 bg-blue-500/5 rounded-full blur-3xl group-hover:bg-blue-500/15 transition"></div>
@@ -443,9 +440,6 @@ function renderDashboard(){
   set('dash-title',CONTENT.heroTitle||'Selamat Datang di<br><span class="text-gradient">Ruang Kerja Kreatif</span>');
   set('dash-desc',CONTENT.heroDesc||'Pusat resmi tools AI kreatif, materi panduan, dan rekaman pelatihan.');
   set('dash-btn',CONTENT.heroBtn||'⚡ Jelajahi Tools AI');
-  set('pr-title',CONTENT.prTitle||'📝 PR AKTIF: SHORT MOVIE CHALLENGE');
-  set('pr-desc',CONTENT.prDesc||'Buat video <strong>short movie minimal 30 detik</strong>, tema <strong>bebas</strong>.');
-  set('pr-meta',CONTENT.prMeta||'⏰ 25 Juli 2026 · 🏆 Hadiah: akun Leonardo 8.500 token');
   set('qm-title',CONTENT.dashQuickMat);set('qm-sub',CONTENT.dashQuickMatSub);
   set('qt-title',CONTENT.dashQuickTools);set('qt-sub',CONTENT.dashQuickToolsSub);
   set('qr-title',CONTENT.dashQuickRek);set('qr-sub',CONTENT.dashQuickRekSub);
