@@ -218,11 +218,16 @@ function renderToolsGrid(){
 function renderRekamanGrid(){
   var grid = document.getElementById('rekamanGrid');
   grid.innerHTML = REKAMAN.map((r,i)=>`
-    <div onclick="${r.yt ? "showVideo('"+r.yt+"','"+r.title+"','"+r.date+"')" : ''}" class="bg-cardbg rounded-2xl p-5 border border-gray-800 ${r.yt?'hover:border-green-500/30 hover-float cursor-pointer':'opacity-50'} group">
-      <div class="w-10 h-10 bg-green-500/10 border border-green-500/20 rounded-xl grid place-items-center mb-4 group-hover:scale-110 transition text-lg">${r.yt?'📺':'🔒'}</div>
-      <h3 class="text-white font-bold">${r.title}</h3>
-      <p class="text-gray-500 text-xs mt-1">${r.date}</p>
-      ${!r.yt ? '<p class="text-gray-600 text-[10px] mt-1">Link segera tersedia</p>' : ''}
+    <div class="bg-cardbg rounded-2xl p-6 border border-gray-800 ${r.yt?'':'opacity-50'}">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-9 h-9 rounded-lg bg-green-500/10 grid place-items-center text-green-400 font-bold text-sm">${String(i+1).padStart(2,'0')}</div>
+        <h3 class="text-lg font-bold text-white">${r.title}</h3>
+      </div>
+      <div class="bg-darkbg rounded-xl aspect-video mb-4 grid place-items-center text-gray-600 hover:text-green-500 transition cursor-pointer border border-gray-800" onclick="${r.yt ? "showVideo('"+r.yt+"','"+r.title+"','"+r.date+"')" : "showVideo('','"+r.title+"','')"}">
+        <i data-lucide="${r.yt?'play':'lock'}" class="w-12 h-12"></i>
+      </div>
+      <p class="text-gray-500 text-xs">${r.date}</p>
+      ${!r.yt ? '<p class="text-gray-600 text-[10px] mt-1">Video segera tersedia</p>' : ''}
     </div>`).join('');
 }
 
