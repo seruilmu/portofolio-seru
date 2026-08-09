@@ -51,7 +51,7 @@ body::before{content:"";position:fixed;inset:-30%;z-index:-1;pointer-events:none
     <div class="flex items-center gap-1">
       <button data-p="dashboard" class="nav-btn flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-white bg-white/10 transition"><i data-lucide="layout-grid" class="w-4 h-4"></i> Dashboard</button>
       <button data-p="tools" class="nav-btn flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-gray-400 hover:text-white hover:bg-white/5 transition"><i data-lucide="wand-2" class="w-4 h-4"></i> Tools AI</button>
-      <button data-p="materi" class="nav-btn flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-gray-400 hover:text-white hover:bg-white/5 transition"><i data-lucide="play-square" class="w-4 h-4"></i> Materi</button>
+      <button data-p="materi" class="nav-btn flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-gray-400 hover:text-white hover:bg-white/5 transition"><i data-lucide="play-square" class="w-4 h-4"></i> Materi Kelas</button>
       <button data-p="rekaman" class="nav-btn flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-gray-400 hover:text-white hover:bg-white/5 transition"><i data-lucide="radio" class="w-4 h-4"></i> Rekaman</button>
       <button onclick="doLogout()" class="ml-2 px-3 py-2 rounded-lg text-xs font-semibold text-gray-500 hover:text-red-400 border border-white/5 hover:border-red-400/20 transition">Keluar</button>
     </div>
@@ -71,9 +71,18 @@ body::before{content:"";position:fixed;inset:-30%;z-index:-1;pointer-events:none
       <div class="flex items-start gap-3"><span class="text-2xl">🎬</span><div><h3 class="text-lg font-bold text-white">📝 PR AKTIF: SHORT MOVIE CHALLENGE</h3><p class="text-gray-300 text-sm mt-1">Buat video <strong>short movie minimal 30 detik</strong>, tema <strong>bebas</strong>.</p><p class="text-gray-500 text-xs mt-3">⏰ 25 Juli 2026 · 🏆 Hadiah: akun Leonardo 8.500 token</p></div></div>
     </div>
     <div class="mt-12 grid md:grid-cols-3 gap-4">
-      <div onclick="showPage('materi')" class="bg-cardbg rounded-2xl p-6 border border-gray-800 cursor-pointer hover:border-blue-500/30 hover-float text-center"><span class="text-3xl">📚</span><h3 class="text-white font-bold mt-3">MATERI</h3><p class="text-gray-400 text-xs mt-1">Panduan akses & tutorial</p></div>
-      <div onclick="showPage('tools')" class="bg-cardbg rounded-2xl p-6 border border-gray-800 cursor-pointer hover:border-purple-500/30 hover-float text-center"><span class="text-3xl">🛠️</span><h3 class="text-white font-bold mt-3">SERA AI TOOLS</h3><p class="text-gray-400 text-xs mt-1">9 tools eksklusif</p></div>
-      <div onclick="showPage('rekaman')" class="bg-cardbg rounded-2xl p-6 border border-gray-800 cursor-pointer hover:border-green-500/30 hover-float text-center"><span class="text-3xl">📺</span><h3 class="text-white font-bold mt-3">REKAMAN LIVE</h3><p class="text-gray-400 text-xs mt-1">Arsip sesi pelatihan</p></div>
+      <div onclick="showPage('materi')" class="bg-cardbg rounded-2xl p-6 border border-gray-800 cursor-pointer hover:border-blue-500/30 hover-float group relative overflow-hidden">
+        <div class="absolute -top-20 -right-20 w-40 h-40 bg-blue-500/5 rounded-full blur-3xl group-hover:bg-blue-500/15 transition"></div>
+        <div class="relative z-10 text-center"><div class="w-14 h-14 mx-auto mb-4 bg-blue-500/10 border border-blue-500/20 rounded-2xl grid place-items-center text-2xl group-hover:scale-110 transition">📚</div><h3 class="text-white font-bold">MATERI</h3><p class="text-gray-400 text-xs mt-1">Panduan akses & tutorial</p></div>
+      </div>
+      <div onclick="showPage('tools')" class="bg-cardbg rounded-2xl p-6 border border-gray-800 cursor-pointer hover:border-purple-500/30 hover-float group relative overflow-hidden">
+        <div class="absolute -top-20 -right-20 w-40 h-40 bg-purple-500/5 rounded-full blur-3xl group-hover:bg-purple-500/15 transition"></div>
+        <div class="relative z-10 text-center"><div class="w-14 h-14 mx-auto mb-4 bg-purple-500/10 border border-purple-500/20 rounded-2xl grid place-items-center text-2xl group-hover:scale-110 transition">🛠️</div><h3 class="text-white font-bold">SERA AI TOOLS</h3><p class="text-gray-400 text-xs mt-1">9 tools eksklusif</p></div>
+      </div>
+      <div onclick="showPage('rekaman')" class="bg-cardbg rounded-2xl p-6 border border-gray-800 cursor-pointer hover:border-green-500/30 hover-float group relative overflow-hidden">
+        <div class="absolute -top-20 -right-20 w-40 h-40 bg-green-500/5 rounded-full blur-3xl group-hover:bg-green-500/15 transition"></div>
+        <div class="relative z-10 text-center"><div class="w-14 h-14 mx-auto mb-4 bg-green-500/10 border border-green-500/20 rounded-2xl grid place-items-center text-2xl group-hover:scale-110 transition">📺</div><h3 class="text-white font-bold">REKAMAN LIVE</h3><p class="text-gray-400 text-xs mt-1">Arsip sesi pelatihan</p></div>
+      </div>
     </div>
   </div>
 
