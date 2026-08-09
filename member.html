@@ -75,6 +75,12 @@ body::before{content:"";
   <button onclick="showPage('tools');toggleMobileMenu()" class="nav-btn-mobile w-full flex items-center gap-3 px-4 py-3 rounded-lg text-gray-300 hover:text-white hover:bg-white/5 font-medium text-sm"><i data-lucide="wand-2" class="w-4 h-4"></i> Tools AI</button>
   <button onclick="showPage('materi');toggleMobileMenu()" class="nav-btn-mobile w-full flex items-center gap-3 px-4 py-3 rounded-lg text-gray-300 hover:text-white hover:bg-white/5 font-medium text-sm"><i data-lucide="play-square" class="w-4 h-4"></i> Materi Kelas</button>
   <button onclick="showPage('rekaman');toggleMobileMenu()" class="nav-btn-mobile w-full flex items-center gap-3 px-4 py-3 rounded-lg text-gray-300 hover:text-white hover:bg-white/5 font-medium text-sm"><i data-lucide="radio" class="w-4 h-4"></i> Rekaman</button>
+  <div id="mobileEditToggle" class="hidden px-4 py-2 flex items-center gap-3" onclick="toggleEdit()">
+    <span class="text-gray-300 text-sm font-medium">Edit Mode</span>
+    <span class="relative inline-block w-9 h-5 rounded-full border border-gray-600 transition" id="toggleBgM">
+      <span class="absolute top-0.5 left-0.5 w-3.5 h-3.5 rounded-full bg-gray-500 transition" id="toggleDotM"></span>
+    </span>
+  </div>
   <button onclick="doLogout()" class="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-gray-400 hover:text-red-400 font-medium text-sm"><i data-lucide="log-out" class="w-4 h-4"></i> Keluar</button>
 </div>
 
@@ -359,23 +365,24 @@ var isAdmin = false;
 var editMode = false;
 
 function showEditToggle(){
-  var t = document.getElementById('editToggle');
-  if(t){t.classList.remove('hidden');}
-  var m = document.getElementById('adminMemberBtn');
-  if(m){m.classList.remove('hidden');}
+  document.getElementById('editToggle').classList.remove('hidden');
+  document.getElementById('adminMemberBtn').classList.remove('hidden');
+  document.getElementById('mobileEditToggle').classList.remove('hidden');
 }
 
 function toggleEdit(){
   editMode = !editMode;
-  var dot = document.getElementById('toggleDot');
-  var bg = document.getElementById('toggleBg');
-  if(editMode){
-    bg.className = bg.className.replace('border-gray-600','border-emerald-500 bg-emerald-500/20');
-    dot.className = dot.className.replace('left-0.5','left-[18px]').replace('bg-gray-500','bg-emerald-400');
-  }else{
-    bg.className = bg.className.replace('border-emerald-500 bg-emerald-500/20','border-gray-600');
-    dot.className = dot.className.replace('left-[18px]','left-0.5').replace('bg-emerald-400','bg-gray-500');
-  }
+  ['Dot','Bg','DotM','BgM'].forEach(function(id){
+    var el = document.getElementById('toggle'+id);
+    if(!el)return;
+    if(editMode){
+      if(id.includes('Bg')) el.className = el.className.replace('border-gray-600','border-emerald-500 bg-emerald-500/20');
+      if(id.includes('Dot')) el.className = el.className.replace('left-0.5','left-[18px]').replace('bg-gray-500','bg-emerald-400');
+    }else{
+      if(id.includes('Bg')) el.className = el.className.replace('border-emerald-500 bg-emerald-500/20','border-gray-600');
+      if(id.includes('Dot')) el.className = el.className.replace('left-[18px]','left-0.5').replace('bg-emerald-400','bg-gray-500');
+    }
+  });
   renderDashboard(); renderAllSections(); renderToolsGrid(); renderRekamanGrid();
 }
 
