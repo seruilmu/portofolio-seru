@@ -404,6 +404,11 @@ function editContent(key){
   if(val!==null && val!==old){ CONTENT[key]=val; saveAll(); renderDashboard(); }
 }
 
+function showEditToggle(){
+  document.getElementById('editToggle').classList.remove('hidden');
+  document.getElementById('adminMemberBtn').classList.remove('hidden');
+}
+
 function renderDashboard(){
   var set=function(id,val){var el=document.getElementById(id);if(el)el.innerHTML=val;};
   set('dash-badge',CONTENT.heroBadge);set('dash-title',CONTENT.heroTitle);
@@ -412,6 +417,7 @@ function renderDashboard(){
   set('qm-title',CONTENT.dashQuickMat);set('qm-sub',CONTENT.dashQuickMatSub);
   set('qt-title',CONTENT.dashQuickTools);set('qt-sub',CONTENT.dashQuickToolsSub);
   set('qr-title',CONTENT.dashQuickRek);set('qr-sub',CONTENT.dashQuickRekSub);
+  if(isAdmin) document.getElementById('adminMemberBtn').classList.remove('hidden');
   refreshAdminClicks();
 }
 
