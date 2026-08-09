@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Member Area — Seru Digital</title>
+<style>
+:root{
+  --bg:#08080e;--card:#0f1018;--card2:#14161f;
+  --t1:#f0f0f5;--t2:#9090a8;--t3:#555568;
+  --b1:rgba(255,255,255,.06);--b2:rgba(255,255,255,.10);
+  --cyan:#00d2ff;--blue:#3a7bd5;--purple:#8b5cf6;
+  --radius:16px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+body{background:var(--bg);color:var(--t1);font-family:'Inter',system-ui,sans-serif;line-height:1.6;min-height:100vh;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:-20%;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 60% 0%,rgba(0,210,255,.05),transparent 50%),radial-gradient(ellipse at 30% 80%,rgba(58,123,213,.04),transparent 50%)}
+
+/* LOGIN SCREEN */
+#loginScreen{position:fixed;inset:0;z-index:999;background:var(--bg);display:flex;align-items:center;justify-content:center}
+.login-box{background:rgba(255,255,255,.03);border:1px solid var(--b2);border-radius:24px;padding:48px 36px;width:min(420px,92vw);position:relative;text-align:center}
+.login-box::before{content:"";position:absolute;top:-1px;left:20%;right:20%;height:1px;background:linear-gradient(90deg,transparent,rgba(0,210,255,.4),transparent)}
+.logo-icon{width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,var(--cyan),var(--blue));display:grid;place-items:center;font-size:22px;font-weight:800;color:#fff;margin:0 auto 16px}
+.login-box h1{font-size:22px;font-weight:700;margin-bottom:6px}
+.login-box .sub{color:var(--t2);font-size:13px;margin-bottom:28px}
+.login-box input{width:100%;padding:14px 16px;border:1px solid var(--b1);border-radius:12px;background:rgba(255,255,255,.04);color:#fff;font-size:14px;font-family:inherit;margin-bottom:14px;outline:none;text-align:center}
+.login-box input:focus{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(0,210,255,.1)}
+.login-btn{width:100%;padding:14px;border:none;border-radius:12px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;background:linear-gradient(135deg,var(--blue),var(--cyan));color:#fff;box-shadow:0 8px 30px rgba(0,210,255,.2)}
+.login-btn:hover{transform:translateY(-1px);box-shadow:0 12px 36px rgba(0,210,255,.3)}
+.login-err{color:#ff6b7a;font-size:12px;margin-top:10px;display:none}
+.login-hint{color:var(--t3);font-size:11px;margin-top:20px}
+
+/* MAIN CONTENT */
+.nav{position:fixed;top:0;z-index:50;width:100%;background:rgba(8,8,14,.8);backdrop-filter:blur(16px);border-bottom:1px solid var(--b1);padding:0 20px}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:64px}
+.nav-brand{display:flex;align-items:center;gap:8px;font-weight:700;font-size:15px;cursor:pointer}
+.nav-logo{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--cyan),var(--blue));display:grid;place-items:center;font-size:16px;font-weight:800}
+.nav-brand span{color:var(--cyan)}
+.nav-menu{display:flex;gap:4px;align-items:center}
+.nav-btn{padding:8px 16px;border-radius:8px;font-size:12.5px;font-weight:500;cursor:pointer;border:none;background:transparent;color:var(--t2);font-family:inherit;transition:all .2s}
+.nav-btn:hover{color:var(--t1);background:rgba(255,255,255,.05)}
+.nav-btn.active{color:#fff;background:rgba(255,255,255,.1)}
+.nav-logout{padding:8px 14px;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;border:1px solid rgba(255,255,255,.1);background:transparent;color:var(--t2);font-family:inherit;margin-left:8px}
+.nav-logout:hover{color:#ff6b7a;border-color:rgba(255,107,122,.3)}
+@media(max-width:700px){.nav-menu .nav-btn:not(.active){display:none}}
+
+main{max-width:1200px;margin:0 auto;padding:100px 20px 60px;display:none}
+main.show{display:block}
+.page{display:none;animation:fadeUp .35s ease-out}
+.page.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+
+.badge{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border:1px solid rgba(0,210,255,.2);border-radius:100px;font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--cyan);margin-bottom:20px}
+.badge::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--cyan)}
+h1{font-size:clamp(34px,5vw,58px);font-weight:800;letter-spacing:-.03em;line-height:1.06;margin-bottom:14px}
+h1 em{font-style:normal;background:linear-gradient(135deg,var(--cyan),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.sub{color:var(--t2);font-size:15px;max-width:44ch;margin-bottom:36px;line-height:1.65}
+.btn-fill{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;border:none;font-family:inherit;background:linear-gradient(135deg,var(--blue),var(--cyan));color:#fff;box-shadow:0 6px 24px rgba(0,210,255,.15);transition:all .25s}
+.btn-fill:hover{transform:translateY(-2px);box-shadow:0 12px 36px rgba(0,210,255,.25)}
+.card{background:var(--card);border:1px solid var(--b1);border-radius:var(--radius);padding:28px;transition:all .3s}
+.card:hover{transform:translateY(-4px);border-color:var(--b2);box-shadow:0 16px 48px rgba(0,0,0,.4)}
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+@media(max-width:750px){.grid2{grid-template-columns:1fr}}
+.section-head{display:flex;align-items:center;gap:10px;margin-bottom:20px}
+.section-head h2{font-size:20px;margin:0;font-weight:700}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:100px;font-size:11px;font-weight:600;border:1px solid rgba(255,255,255,.08);color:var(--t2)}
+.pill.cyan{background:rgba(0,210,255,.08);border-color:rgba(0,210,255,.15);color:var(--cyan)}
+.pill.purple{background:rgba(139,92,246,.08);border-color:rgba(139,92,246,.15);color:var(--purple)}
+
+.video-ph{aspect-ratio:16/9;background:rgba(255,255,255,.02);border:1px solid var(--b1);border-radius:12px;display:grid;place-items:center;color:var(--t3);font-size:40px}
+.step{display:flex;gap:16px;margin-bottom:18px}
+.step-num{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:14px;flex-shrink:0;background:rgba(0,210,255,.1);border:1px solid rgba(0,210,255,.2);color:var(--cyan)}
+.step h4{font-size:15px;font-weight:600;margin-bottom:4px}
+.step p{color:var(--t2);font-size:13px;line-height:1.5}
+.back-link{display:inline-flex;align-items:center;gap:6px;color:var(--t3);cursor:pointer;font-size:13px;margin-bottom:24px}.back-link:hover{color:var(--t1)}
+.tool-header{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.tool-icon{width:56px;height:56px;border-radius:14px;display:grid;place-items:center;font-size:26px;flex-shrink:0;background:rgba(0,210,255,.1);border:1px solid rgba(0,210,255,.15)}
+.tool-header h2{font-size:26px;margin:0;font-weight:700}.tool-header p{color:var(--t2);font-size:13px}
+.callout{border-left:3px solid var(--cyan);background:rgba(0,210,255,.04);padding:14px 18px;border-radius:0 10px 10px 0;color:var(--t2);font-size:14px;margin-bottom:20px}
+.link-card{text-align:center;padding:24px;background:linear-gradient(135deg,rgba(0,210,255,.06),rgba(58,123,213,.04));border:1px solid rgba(0,210,255,.12);border-radius:var(--radius);margin-top:20px}
+.link-card a{display:inline-block;padding:14px 32px;border-radius:10px;background:linear-gradient(135deg,var(--blue),var(--cyan));color:#fff;font-weight:700;text-decoration:none;font-size:14px;box-shadow:0 6px 24px rgba(0,210,255,.2)}
+.flow-box{background:var(--card2);border:1px solid var(--b1);border-radius:var(--radius);padding:22px;margin-bottom:14px}
+.flow-box h4{font-size:15px;font-weight:600;margin-bottom:10px}
+.flow-box li{color:var(--t2);font-size:13px;margin-bottom:6px;padding-left:12px;position:relative}
+.flow-box li::before{content:"•";position:absolute;left:0;color:var(--cyan)}
+.porto-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:750px){.porto-grid{grid-template-columns:1fr}}
+.contact-card{text-align:center;padding:48px 24px;background:var(--card);border:1px solid var(--b1);border-radius:var(--radius);margin-top:40px}
+.contact-card h2{font-size:24px;margin-bottom:8px}.contact-card p{color:var(--t2);margin-bottom:20px}
+.contact-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.btn-ghost{padding:13px 28px;border-radius:10px;font-size:13px;font-weight:600;border:1px solid var(--b2);background:transparent;color:var(--t1);cursor:pointer;font-family:inherit;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="loginScreen">
+  <div class="login-box">
+    <div class="logo-icon">∞</div>
+    <h1>Member Area</h1>
+    <p class="sub">Masukkan password untuk mengakses</p>
+    <input type="password" id="passInput" placeholder="••••••••" autofocus>
+    <button class="login-btn" onclick="doLogin()">Masuk</button>
+    <p class="login-err" id="loginErr">Password salah</p>
+    <p class="login-hint">Hubungi mentor untuk password</p>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-brand" onclick="show('dashboard')">
+      <div class="nav-logo">∞</div>Seru<span>Digital</span>
+    </div>
+    <div class="nav-menu">
+      <button class="nav-btn active" data-p="dashboard">Dashboard</button>
+      <button class="nav-btn" data-p="tools">Tools AI</button>
+      <button class="nav-btn" data-p="materi">Materi</button>
+      <button class="nav-btn" data-p="porto">Portofolio</button>
+      <button class="nav-logout" onclick="doLogout()">Keluar</button>
+    </div>
+  </div>
+</nav>
+
+<!-- CONTENT -->
+<main id="mainArea">
+  <!-- Dashboard -->
+  <div id="dashboard" class="page active">
+    <span class="badge">Member Area</span>
+    <h1>Selamat Datang di <em>Ruang Kerja Kreatif</em></h1>
+    <p class="sub">Tools eksklusif & materi pembelajaran terstruktur untuk produksi video AI.</p>
+    <button class="btn-fill" onclick="show('tools')">Mulai Gunakan Tools</button>
+    <div style="margin-top:48px">
+      <div class="section-head"><h2>Tools Generator</h2></div>
+      <div class="grid2">
+        <div class="card" onclick="show('cinema')" style="cursor:pointer"><div style="font-size:32px;margin-bottom:12px">🎬</div><h3 style="font-size:18px;margin-bottom:6px">SERA CINEMA</h3><p style="color:var(--t2);font-size:13px;margin-bottom:16px">AI workflow builder untuk konten cerita sinematik.</p><span class="pill cyan">Buka →</span></div>
+        <div class="card" onclick="show('design')" style="cursor:pointer"><div style="font-size:32px;margin-bottom:12px">🎨</div><h3 style="font-size:18px;margin-bottom:6px">SERA DESIGN</h3><p style="color:var(--t2);font-size:13px;margin-bottom:16px">Prompt generator desain statis berkualitas tinggi.</p><span class="pill purple">Buka →</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tools AI -->
+  <div id="tools" class="page">
+    <h2>Koleksi Tools AI</h2>
+    <p class="sub">Pilih generator AI yang ingin Anda gunakan.</p>
+    <div class="grid2">
+      <div class="card" onclick="show('cinema')" style="cursor:pointer;display:flex;gap:16px"><div style="font-size:36px">🎬</div><div><h3 style="font-size:18px;margin-bottom:4px">SERA CINEMA</h3><p style="color:var(--t2);font-size:13px">Generator script animasi & film.</p><span class="pill cyan">Buka →</span></div></div>
+      <div class="card" onclick="show('design')" style="cursor:pointer;display:flex;gap:16px"><div style="font-size:36px">🎨</div><div><h3 style="font-size:18px;margin-bottom:4px">SERA DESIGN</h3><p style="color:var(--t2);font-size:13px">Generator desain grafis & brosur.</p><span class="pill purple">Buka →</span></div></div>
+    </div>
+  </div>
+
+  <!-- SERA CINEMA -->
+  <div id="cinema" class="page">
+    <span class="back-link" onclick="show('tools')">← Kembali</span>
+    <div class="tool-header"><div class="tool-icon">🎬</div><div><h2>SERA CINEMA</h2><p>AI Prompt Generator untuk Animasi & Film</p></div></div>
+    <div class="callout">AI workflow builder untuk menyusun konten cerita secara bertahap, rapi, dan sinematik.</div>
+    <div class="video-ph" style="margin-bottom:24px">▶</div>
+    <div class="card" style="margin-bottom:20px">
+      <h3 style="font-size:16px;margin-bottom:14px">Fitur Utama</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:8px"><span class="pill cyan">Brief Builder</span><span class="pill cyan">Theme Selector</span><span class="pill cyan">Visual Style</span><span class="pill cyan">Mode Suara</span><span class="pill cyan">Story Flow</span><span class="pill cyan">Character Set</span></div>
+    </div>
+    <div class="card">
+      <h3 style="font-size:16px;margin-bottom:14px">Cara Menggunakan</h3>
+      <div class="step"><div class="step-num">1</div><div><h4>Mulai dari ide</h4><p>Gunakan ide sendiri atau minta SERA CINEMA bantu arah cerita.</p></div></div>
+      <div class="step"><div class="step-num">2</div><div><h4>Ikuti alur</h4><p>SERA CINEMA memandu step by step.</p></div></div>
+      <div class="step"><div class="step-num">3</div><div><h4>Revisi</h4><p>Sesuaikan hasil di setiap tahap.</p></div></div>
+      <div class="flow-box"><h4>Eksekusi Final</h4><ul><li>Copy narasi → voice over</li><li>Generate gambar per scene → Leonardo</li><li>Generate video per scene</li><li>Gabung di editor</li></ul></div>
+    </div>
+    <div class="link-card"><a href="https://chatgpt.com/g/g-69d68a2dc8e88191846179e10a8077eb-sera-cinema" target="_blank">Buka SERA CINEMA di ChatGPT</a></div>
+  </div>
+
+  <!-- SERA DESIGN -->
+  <div id="design" class="page">
+    <span class="back-link" onclick="show('tools')">← Kembali</span>
+    <div class="tool-header"><div class="tool-icon">🎨</div><div><h2>SERA DESIGN</h2><p>AI Prompt Generator untuk Infografis & Brosur</p></div></div>
+    <div class="callout">Membantu membuat desain terarah, rapi, dan siap diproduksi.</div>
+    <div class="video-ph" style="margin-bottom:24px">▶</div>
+    <div class="card" style="margin-bottom:20px">
+      <h3 style="font-size:16px;margin-bottom:14px">Jenis Desain</h3>
+      <div class="grid2"><div class="flow-box"><h4>Infografis</h4><p style="font-size:12px;color:var(--t2)">Penyampaian informasi visual. Cocok: edukasi, tips.</p></div><div class="flow-box"><h4>Brosur</h4><p style="font-size:12px;color:var(--t2)">Fokus promosi. Cocok: iklan, flyer.</p></div></div>
+    </div>
+    <div class="link-card"><a href="https://chatgpt.com/g/g-69d7af0523848191a8b9dc088d9eda50-sera-design-v2" target="_blank">Buka SERA DESIGN di ChatGPT</a></div>
+  </div>
+
+  <!-- Materi -->
+  <div id="materi" class="page">
+    <h2>Modul Pembelajaran</h2>
+    <p class="sub">Video panduan untuk memaksimalkan hasil karya.</p>
+    <div class="card" style="margin-bottom:20px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px"><div style="width:32px;height:32px;border-radius:8px;background:rgba(0,210,255,.1);display:grid;place-items:center;font-weight:700;font-size:12px;color:var(--cyan)">01</div><h3 style="font-size:16px;margin:0">Cara Dasar Mengakses Tools GPT</h3></div>
+      <div class="video-ph" style="margin-bottom:14px">▶</div>
+      <div class="flow-box"><h4>Syarat:</h4><ul><li>Akun OpenAI (gratis ok)</li><li>Browser Chrome/Safari</li></ul></div>
+    </div>
+    <div class="card">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px"><div style="width:32px;height:32px;border-radius:8px;background:rgba(139,92,246,.1);display:grid;place-items:center;font-weight:700;font-size:12px;color:var(--purple)">02</div><h3 style="font-size:16px;margin:0">Trik Leonardo AI</h3><span class="pill purple" style="margin-left:auto">Rahasia</span></div>
+      <div class="video-ph" style="margin-bottom:14px">▶</div>
+      <p style="color:var(--t2);font-size:13px">Hemat token, daily reset, manajemen workflow efisien.</p>
+    </div>
+  </div>
+
+  <!-- Portofolio -->
+  <div id="porto" class="page">
+    <h2>Galeri & Portofolio</h2>
+    <p class="sub">Koleksi karya dari ekosistem Seru Digital.</p>
+    <div class="section-head" style="margin-top:30px"><h2>Karya Animasi</h2></div>
+    <div class="porto-grid">
+      <div class="card" style="padding:0;overflow:hidden"><div style="aspect-ratio:9/16;background:rgba(255,255,255,.02);display:grid;place-items:center;color:var(--t3)">🎬</div><div style="padding:14px"><h4 style="font-size:14px">KISAH NABI MUSA</h4><span class="pill" style="font-size:10px">SERA CINEMA</span></div></div>
+      <div class="card" style="padding:0;overflow:hidden"><div style="aspect-ratio:9/16;background:rgba(255,255,255,.02);display:grid;place-items:center;color:var(--t3)">🎬</div><div style="padding:14px"><h4 style="font-size:14px">KEMERDEKAAN RI</h4><span class="pill" style="font-size:10px">SERA CINEMA</span></div></div>
+      <div class="card" style="padding:0;overflow:hidden"><div style="aspect-ratio:9/16;background:rgba(255,255,255,.02);display:grid;place-items:center;color:var(--t3)">🎬</div><div style="padding:14px"><h4 style="font-size:14px">MALIN KUNDANG</h4><span class="pill" style="font-size:10px">SERA CINEMA</span></div></div>
+    </div>
+    <div class="contact-card">
+      <h2>Punya pertanyaan?</h2>
+      <p>Hubungi mentor kamu.</p>
+      <div class="contact-btns"><a class="btn-fill" href="https://wa.me/6285757305799" target="_blank">WhatsApp</a><a class="btn-ghost" href="mailto:seru.ilmu@gmail.com">Email</a></div>
+    </div>
+  </div>
+</main>
+
+<script>
+// Simple password (ganti di sini)
+var PASSWORD = 'serudigital2026';
+
+function doLogin(){
+  var p = document.getElementById('passInput').value;
+  if(p === PASSWORD){
+    sessionStorage.setItem('sd_auth','1');
+    document.getElementById('loginScreen').style.display='none';
+    document.getElementById('mainArea').classList.add('show');
+    show('dashboard');
+  }else{
+    document.getElementById('loginErr').style.display='block';
+  }
+}
+
+function doLogout(){
+  sessionStorage.removeItem('sd_auth');
+  location.reload();
+}
+
+function show(name){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  var el=document.getElementById(name);if(el)el.classList.add('active');
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  var btn=document.querySelector('[data-p="'+name+'"]');
+  if(btn)btn.classList.add('active');
+  else document.querySelector('[data-p="dashboard"]').classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// Auto login if already authed
+if(sessionStorage.getItem('sd_auth')==='1'){
+  document.getElementById('loginScreen').style.display='none';
+  document.getElementById('mainArea').classList.add('show');
+}
+
+// Enter key to login
+document.getElementById('passInput').addEventListener('keydown',function(e){if(e.key==='Enter')doLogin();});
+</script>
+</body>
+</html>
