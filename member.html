@@ -85,13 +85,13 @@ body{background:#08080e;font-family:'Inter',system-ui,sans-serif}
     <div class="grid md:grid-cols-2 gap-6">
       <div class="bg-cardbg rounded-2xl p-6 border border-gray-800">
         <div class="flex items-center gap-3 mb-4"><div class="w-9 h-9 rounded-lg bg-blue-500/10 grid place-items-center text-blue-400 font-bold text-sm">01</div><h3 class="text-lg font-bold text-white">Cara Akses Tools GPT</h3></div>
-        <div class="bg-darkbg rounded-xl aspect-video mb-4 grid place-items-center text-gray-600 border border-gray-800"><i data-lucide="play" class="w-12 h-12"></i></div>
+        <div class="bg-darkbg rounded-xl aspect-video mb-4 grid place-items-center text-gray-600 hover:text-red-500 transition cursor-pointer border border-gray-800" onclick="showVideo('','Cara Akses Tools GPT','')"><i data-lucide="play" class="w-12 h-12"></i></div>
         <ul class="text-gray-400 text-sm space-y-2"><li class="flex items-start gap-2"><span class="text-green-400 mt-1">✓</span> Akun OpenAI (gratis)</li><li class="flex items-start gap-2"><span class="text-green-400 mt-1">✓</span> Browser Chrome/Safari</li></ul>
       </div>
       <div class="bg-cardbg rounded-2xl p-6 border border-gray-800 relative overflow-hidden">
         <div class="absolute top-0 right-0 w-56 h-56 bg-purple-500/5 rounded-full blur-3xl"></div>
         <div class="flex items-center justify-between mb-4 relative z-10"><div class="flex items-center gap-3"><div class="w-9 h-9 rounded-lg bg-purple-500/10 grid place-items-center text-purple-400 font-bold text-sm">02</div><h3 class="text-lg font-bold text-white">Trik Leonardo AI</h3></div><span class="px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-300 text-xs font-bold">🔒 Rahasia</span></div>
-        <div class="bg-darkbg rounded-xl aspect-video mb-4 grid place-items-center text-gray-600 border border-gray-800 relative z-10"><i data-lucide="play" class="w-12 h-12"></i></div>
+        <div class="bg-darkbg rounded-xl aspect-video mb-4 grid place-items-center text-gray-600 hover:text-purple-500 transition cursor-pointer border border-gray-800 relative z-10" onclick="showVideo('','Trik Leonardo AI','')"><i data-lucide="play" class="w-12 h-12"></i></div>
         <p class="text-gray-400 text-sm relative z-10">Hemat token, daily reset, manajemen workflow efisien.</p>
       </div>
     </div>
@@ -237,7 +237,7 @@ function showTool(id){
       <div><h2 class="text-3xl font-bold text-white">${t.title}</h2><p class="text-gray-400">AI Prompt Generator</p></div>
     </div>
     <div class="border-l-4 border-${t.color}-500 bg-${t.color}-500/5 pl-5 py-3 rounded-r-lg text-gray-300 text-sm mb-8">${t.desc}</div>
-    <div class="bg-black rounded-2xl aspect-video mb-8 border border-gray-800 grid place-items-center text-gray-600"><i data-lucide="play" class="w-16 h-16"></i></div>
+    <div class="bg-black rounded-2xl aspect-video mb-8 border border-gray-800 grid place-items-center text-gray-600 hover:text-${t.color}-500 transition cursor-pointer" onclick="showVideo('','${t.title}','')"><i data-lucide="play" class="w-16 h-16"></i></div>
     <div class="bg-cardbg rounded-2xl p-8 border border-gray-800 mb-6">
       <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2"><i data-lucide="list-checks" class="text-${t.color}-400 w-5 h-5"></i> Fitur & Alur Utama</h3>
       <div class="flex flex-wrap gap-2">${t.pills.map(p=>`<span class="px-4 py-2 bg-${t.color}-500/10 border border-${t.color}-500/20 text-${t.color}-300 text-xs font-semibold rounded-xl flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5"></i> ${p}</span>`).join('')}</div>
@@ -308,8 +308,9 @@ function showPage(name){
 
 // ── VIDEO MODAL ──────────────────────────────────────────────────────────
 function showVideo(ytId, title, date){
+  if(!ytId){alert('Video akan segera tersedia.');return;}
   var modal = document.getElementById('videoModal');
-  document.getElementById('videoTitle').textContent = title + ' — ' + date;
+  document.getElementById('videoTitle').textContent = (title||'') + (date?' — '+date:'');
   document.getElementById('videoFrame').src = 'https://www.youtube.com/embed/' + ytId + '?autoplay=1&rel=0';
   modal.classList.remove('hidden');
   document.body.style.overflow = 'hidden';
