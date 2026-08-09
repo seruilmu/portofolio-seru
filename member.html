@@ -9,11 +9,12 @@
 <script>tailwind.config={theme:{extend:{colors:{darkbg:'#08080e',cardbg:'#0f1018',primary:'#00d2ff',secondary:'#3a7bd5',accent:'#8b5cf6'},fontFamily:{sans:['Inter','system-ui','sans-serif']}}}}</script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-body{background:#08080e;font-family:'Inter',system-ui,sans-serif}
-body::before{content:"";position:fixed;inset:-30%;z-index:-1;pointer-events:none;
-  background:radial-gradient(ellipse at 60% 10%,rgba(0,210,255,.04),transparent 50%),
-    radial-gradient(ellipse at 30% 70%,rgba(139,92,246,.03),transparent 50%),
-    radial-gradient(ellipse at 80% 50%,rgba(58,123,213,.03),transparent 40%);
+body::before{content:"";
+  position:fixed;inset:-30%;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(ellipse at 30% 20%,rgba(0,180,216,.05),transparent 50%),
+    radial-gradient(ellipse at 70% 60%,rgba(0,119,182,.04),transparent 50%),
+    radial-gradient(ellipse at 50% 80%,rgba(2,62,138,.03),transparent 40%);
   animation:drift 25s ease-in-out infinite alternate}
 @keyframes drift{0%{transform:translate(0,0) scale(1)}100%{transform:translate(30px,-20px) scale(1.06)}}
 .fade-in{animation:fadeUp .35s ease-out}
@@ -54,7 +55,12 @@ body::before{content:"";position:fixed;inset:-30%;z-index:-1;pointer-events:none
       <button data-p="materi" class="nav-btn flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-gray-400 hover:text-white hover:bg-white/5 transition"><i data-lucide="play-square" class="w-4 h-4"></i> Materi Kelas</button>
       <button data-p="rekaman" class="nav-btn flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-gray-400 hover:text-white hover:bg-white/5 transition"><i data-lucide="radio" class="w-4 h-4"></i> Rekaman</button>
       <button onclick="doLogout()" class="ml-2 px-3 py-2 rounded-lg text-xs font-semibold text-gray-500 hover:text-red-400 border border-white/5 hover:border-red-400/20 transition">Keluar</button>
-      <button id="editToggle" class="hidden ml-2 px-3 py-2 rounded-lg text-xs font-semibold border transition" onclick="toggleEdit()">✏️ Edit Mode: OFF</button>
+      <button id="editToggle" class="hidden ml-2 flex items-center gap-2 text-xs font-semibold text-gray-400" onclick="toggleEdit()">
+        <span>Edit</span>
+        <span class="relative inline-block w-9 h-5 rounded-full border border-gray-600 transition" id="toggleBg">
+          <span class="absolute top-0.5 left-0.5 w-3.5 h-3.5 rounded-full bg-gray-500 transition" id="toggleDot"></span>
+        </span>
+      </button>
     </div>
   </div>
 </nav>
@@ -330,13 +336,14 @@ function showEditToggle(){
 
 function toggleEdit(){
   editMode = !editMode;
-  var t = document.getElementById('editToggle');
+  var dot = document.getElementById('toggleDot');
+  var bg = document.getElementById('toggleBg');
   if(editMode){
-    t.className = t.className.replace('border','bg-green-500/20 border-green-500/50');
-    t.innerHTML = '✏️ Edit Mode: ON';
+    bg.className = bg.className.replace('border-gray-600','border-emerald-500 bg-emerald-500/20');
+    dot.className = dot.className.replace('left-0.5','left-[18px]').replace('bg-gray-500','bg-emerald-400');
   }else{
-    t.className = t.className.replace('bg-green-500/20 border-green-500/50','border-gray-500/30');
-    t.innerHTML = '✏️ Edit Mode: OFF';
+    bg.className = bg.className.replace('border-emerald-500 bg-emerald-500/20','border-gray-600');
+    dot.className = dot.className.replace('left-[18px]','left-0.5').replace('bg-emerald-400','bg-gray-500');
   }
   renderDashboard(); renderAllSections(); renderToolsGrid(); renderRekamanGrid();
 }
@@ -408,6 +415,9 @@ function renderAllSections(){
 }
 
 function refreshAdminClicks(){
+  document.querySelectorAll('[data-edit]').forEach(el=>{
+    el.style.cursor='';el.style.outline='';el.title='';el.onclick=null;
+  });
   if(!isAdmin || !editMode)return;
   document.querySelectorAll('[data-edit]').forEach(el=>{
     el.style.cursor='pointer';el.style.outline='1px dashed rgba(255,255,255,.15)';el.title='Klik untuk edit';
