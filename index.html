@@ -189,7 +189,7 @@ function render(){
   let heroBg=`<div class="hero-bg"><video autoplay muted loop playsinline preload="auto" src="${E(hvid)}"></video></div>`;
   let hero=`<section class="hero">${heroBg}<div class="hero-content">
     <span class="hero-chip">${E(D.heroEyebrow||'Kreator & Mentor Video Animasi AI')}</span>
-    <h1>${E((D.heroTitle||'Mengubah ide jadi cerita visual yang hidup.').replace('cerita visual','<em>cerita visual</em>'))}</h1>
+    <h1>${(D.heroTitle||'Mengubah ide jadi cerita visual yang hidup.').replace('cerita visual','<em>cerita visual</em>')}</h1>
     <p class="hero-sub">${E(D.heroText||'Seru Digital membuat video animasi dan konten sinematik berbasis AI, sekaligus mengajarkan orang cara memproduksinya sendiri lewat ekosistem SERU DIGITAL LABS.')}</p>
     <div class="hero-btns"><a class="btn btn-fill" href="#karya">Lihat Karya</a><a class="btn btn-line" href="#kontak">Ajak Kolaborasi</a></div>
   </div></section>`;
