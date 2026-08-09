@@ -59,85 +59,24 @@ body{background:#08080e;font-family:'Inter',system-ui,sans-serif}
   <div id="dashboard" class="page fade-in">
     <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-300 text-xs font-semibold mb-6">🚀 Terima Kasih Telah Bergabung!</div>
     <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-4 leading-tight">Selamat Datang di<br><span class="text-gradient">Ruang Kerja Kreatif</span></h1>
-    <p class="text-gray-400 text-lg max-w-xl mb-10">Pusat resmi tools AI kreatif, materi panduan, dan rekaman pelatihan untuk seluruh keluarga Seru Digital Community.</p>
-    <button onclick="showPage('tools')" class="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-secondary to-blue-600 rounded-xl text-white font-bold shadow-lg shadow-blue-500/20 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/30 transition">⚡ Jelajahi Tools AI</button>
-
-    <!-- PR Box -->
+    <p class="text-gray-400 text-lg max-w-xl mb-10">Pusat resmi tools AI kreatif, materi panduan, dan rekaman pelatihan.</p>
+    <button onclick="showPage('tools')" class="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-secondary to-blue-600 rounded-xl text-white font-bold shadow-lg shadow-blue-500/20 hover:-translate-y-1 transition">⚡ Jelajahi Tools AI</button>
     <div class="mt-14 bg-pink-500/5 border border-pink-500/20 rounded-2xl p-6">
-      <div class="flex items-start gap-3"><span class="text-2xl">🎬</span><div><h3 class="text-lg font-bold text-white">📝 PR AKTIF: SHORT MOVIE CHALLENGE</h3><p class="text-gray-300 text-sm mt-1">Buat video <strong>short movie minimal 30 detik</strong>, tema <strong>bebas</strong>. Kriteria: Visual, Alur cerita, Konsistensi karakter, Audio.</p><p class="text-gray-500 text-xs mt-3">⏰ Batas: Sabtu, 25 Juli 2026 · 🏆 Hadiah: akun Leonardo 8.500 token</p></div></div>
+      <div class="flex items-start gap-3"><span class="text-2xl">🎬</span><div><h3 class="text-lg font-bold text-white">📝 PR AKTIF: SHORT MOVIE CHALLENGE</h3><p class="text-gray-300 text-sm mt-1">Buat video <strong>short movie minimal 30 detik</strong>, tema <strong>bebas</strong>.</p><p class="text-gray-500 text-xs mt-3">⏰ 25 Juli 2026 · 🏆 Hadiah: akun Leonardo 8.500 token</p></div></div>
     </div>
-
-    <!-- Quick Links -->
     <div class="mt-12 grid md:grid-cols-3 gap-4">
-      <div onclick="showPage('materi')" class="bg-cardbg rounded-2xl p-6 border border-gray-800 cursor-pointer hover:border-blue-500/30 hover-float text-center">
-        <span class="text-3xl">📚</span><h3 class="text-white font-bold mt-3">MATERI</h3><p class="text-gray-400 text-xs mt-1">Panduan akses & tutorial</p>
-      </div>
-      <div onclick="showPage('tools')" class="bg-cardbg rounded-2xl p-6 border border-gray-800 cursor-pointer hover:border-purple-500/30 hover-float text-center">
-        <span class="text-3xl">🛠️</span><h3 class="text-white font-bold mt-3">SERA AI TOOLS</h3><p class="text-gray-400 text-xs mt-1">8 tools eksklusif</p>
-      </div>
-      <div onclick="showPage('rekaman')" class="bg-cardbg rounded-2xl p-6 border border-gray-800 cursor-pointer hover:border-green-500/30 hover-float text-center">
-        <span class="text-3xl">📺</span><h3 class="text-white font-bold mt-3">REKAMAN LIVE</h3><p class="text-gray-400 text-xs mt-1">Arsip sesi pelatihan</p>
-      </div>
+      <div onclick="showPage('materi')" class="bg-cardbg rounded-2xl p-6 border border-gray-800 cursor-pointer hover:border-blue-500/30 hover-float text-center"><span class="text-3xl">📚</span><h3 class="text-white font-bold mt-3">MATERI</h3><p class="text-gray-400 text-xs mt-1">Panduan akses & tutorial</p></div>
+      <div onclick="showPage('tools')" class="bg-cardbg rounded-2xl p-6 border border-gray-800 cursor-pointer hover:border-purple-500/30 hover-float text-center"><span class="text-3xl">🛠️</span><h3 class="text-white font-bold mt-3">SERA AI TOOLS</h3><p class="text-gray-400 text-xs mt-1">9 tools eksklusif</p></div>
+      <div onclick="showPage('rekaman')" class="bg-cardbg rounded-2xl p-6 border border-gray-800 cursor-pointer hover:border-green-500/30 hover-float text-center"><span class="text-3xl">📺</span><h3 class="text-white font-bold mt-3">REKAMAN LIVE</h3><p class="text-gray-400 text-xs mt-1">Arsip sesi pelatihan</p></div>
     </div>
   </div>
 
-  <!-- TOOLS AI -->
+  <!-- TOOLS AI LIST -->
   <div id="tools" class="page fade-in hidden">
     <h2 class="text-3xl font-bold text-white mb-2">SERA AI TOOLS</h2>
-    <p class="text-gray-400 mb-3">Kumpulan AI tools eksklusif SERU DIGITAL LABS. Klik kartu untuk detail & akses.</p>
-    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-300 text-xs font-semibold mb-8">🔒 Akses eksklusif untuk VIP Member</div>
-    <div class="grid md:grid-cols-2 gap-5">
-      <div onclick="showPage('cinema')" class="bg-cardbg rounded-2xl p-6 border border-gray-800 cursor-pointer hover-float hover:border-blue-500/30 group relative overflow-hidden">
-        <div class="absolute -top-16 -right-16 w-32 h-32 bg-blue-500/5 rounded-full blur-3xl group-hover:bg-blue-500/10 transition"></div>
-        <div class="flex gap-4 relative z-10"><div class="w-14 h-14 bg-blue-500/10 border border-blue-500/20 rounded-2xl grid place-items-center shrink-0 group-hover:scale-110 transition text-2xl">🎬</div><div class="flex-1"><div class="flex items-center justify-between"><h3 class="text-lg font-bold text-white group-hover:text-blue-400 transition">SERA CINEMA</h3><span class="px-2 py-0.5 rounded-full bg-rose-500/10 border border-rose-500/20 text-rose-400 text-[10px] font-bold">Video</span></div><p class="text-gray-400 text-xs mt-2">Workflow pembuatan video AI sinematik: kisah nabi, cerita inspiratif, film pendek.</p></div></div>
-      </div>
-      <div onclick="showPage('storyboard')" class="bg-cardbg rounded-2xl p-6 border border-gray-800 cursor-pointer hover-float hover:border-orange-500/30 group relative overflow-hidden">
-        <div class="absolute -top-16 -right-16 w-32 h-32 bg-orange-500/5 rounded-full blur-3xl group-hover:bg-orange-500/10 transition"></div>
-        <div class="flex gap-4 relative z-10"><div class="w-14 h-14 bg-orange-500/10 border border-orange-500/20 rounded-2xl grid place-items-center shrink-0 group-hover:scale-110 transition text-2xl">🖼️</div><div class="flex-1"><div class="flex items-center justify-between"><h3 class="text-lg font-bold text-white group-hover:text-orange-400 transition">SERA STORYBOARD</h3><span class="px-2 py-0.5 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-[10px] font-bold">Gambar</span></div><p class="text-gray-400 text-xs mt-2">Ubah ide/cerita jadi storyboard visual terstruktur sebelum produksi.</p></div></div>
-      </div>
-      <div onclick="showPage('affiliate')" class="bg-cardbg rounded-2xl p-6 border border-gray-800 cursor-pointer hover-float hover:border-yellow-500/30 group relative overflow-hidden">
-        <div class="absolute -top-16 -right-16 w-32 h-32 bg-yellow-500/5 rounded-full blur-3xl group-hover:bg-yellow-500/10 transition"></div>
-        <div class="flex gap-4 relative z-10"><div class="w-14 h-14 bg-yellow-500/10 border border-yellow-500/20 rounded-2xl grid place-items-center shrink-0 group-hover:scale-110 transition text-2xl">🛍️</div><div class="flex-1"><div class="flex items-center justify-between"><h3 class="text-lg font-bold text-white group-hover:text-yellow-400 transition">SERA AFFILIATE</h3><span class="px-2 py-0.5 rounded-full bg-green-500/10 border border-green-500/20 text-green-400 text-[10px] font-bold">Affiliate</span></div><p class="text-gray-400 text-xs mt-2">Bikin konten affiliate AI dengan gabungan produk + model untuk promosi.</p></div></div>
-      </div>
-      <div onclick="showPage('karaktersheet')" class="bg-cardbg rounded-2xl p-6 border border-gray-800 cursor-pointer hover-float hover:border-cyan-500/30 group relative overflow-hidden">
-        <div class="absolute -top-16 -right-16 w-32 h-32 bg-cyan-500/5 rounded-full blur-3xl group-hover:bg-cyan-500/10 transition"></div>
-        <div class="flex gap-4 relative z-10"><div class="w-14 h-14 bg-cyan-500/10 border border-cyan-500/20 rounded-2xl grid place-items-center shrink-0 group-hover:scale-110 transition text-2xl">✨</div><div class="flex-1"><div class="flex items-center justify-between"><h3 class="text-lg font-bold text-white group-hover:text-cyan-400 transition">SERA KARAKTERSHEET</h3><span class="px-2 py-0.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[10px] font-bold">Karakter</span></div><p class="text-gray-400 text-xs mt-2">Bikin character sheet berbasis AI dengan tampilan konsisten dari berbagai angle.</p></div></div>
-      </div>
-      <div onclick="showPage('campaign')" class="bg-cardbg rounded-2xl p-6 border border-gray-800 cursor-pointer hover-float hover:border-red-500/30 group relative overflow-hidden">
-        <div class="absolute -top-16 -right-16 w-32 h-32 bg-red-500/5 rounded-full blur-3xl group-hover:bg-red-500/10 transition"></div>
-        <div class="flex gap-4 relative z-10"><div class="w-14 h-14 bg-red-500/10 border border-red-500/20 rounded-2xl grid place-items-center shrink-0 group-hover:scale-110 transition text-2xl">📣</div><div class="flex-1"><div class="flex items-center justify-between"><h3 class="text-lg font-bold text-white group-hover:text-red-400 transition">SERA CAMPAIGN</h3><span class="px-2 py-0.5 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-400 text-[10px] font-bold">Iklan</span></div><p class="text-gray-400 text-xs mt-2">Ubah gambar produk jadi konsep iklan video komersial berbasis AI.</p></div></div>
-      </div>
-      <div onclick="showPage('design-detail')" class="bg-cardbg rounded-2xl p-6 border border-gray-800 cursor-pointer hover-float hover:border-pink-500/30 group relative overflow-hidden">
-        <div class="absolute -top-16 -right-16 w-32 h-32 bg-pink-500/5 rounded-full blur-3xl group-hover:bg-pink-500/10 transition"></div>
-        <div class="flex gap-4 relative z-10"><div class="w-14 h-14 bg-pink-500/10 border border-pink-500/20 rounded-2xl grid place-items-center shrink-0 group-hover:scale-110 transition text-2xl">🎨</div><div class="flex-1"><div class="flex items-center justify-between"><h3 class="text-lg font-bold text-white group-hover:text-pink-400 transition">SERA DESIGN</h3><span class="px-2 py-0.5 rounded-full bg-pink-500/10 border border-pink-500/20 text-pink-400 text-[10px] font-bold">Desain</span></div><p class="text-gray-400 text-xs mt-2">Bikin brosur, infografis, dan aset desain grafis dengan AI — cepat & rapi.</p></div></div>
-      </div>
-      <div onclick="showPage('tts')" class="bg-cardbg rounded-2xl p-6 border border-gray-800 cursor-pointer hover-float hover:border-amber-500/30 group relative overflow-hidden">
-        <div class="absolute -top-16 -right-16 w-32 h-32 bg-amber-500/5 rounded-full blur-3xl group-hover:bg-amber-500/10 transition"></div>
-        <div class="flex gap-4 relative z-10"><div class="w-14 h-14 bg-amber-500/10 border border-amber-500/20 rounded-2xl grid place-items-center shrink-0 group-hover:scale-110 transition text-2xl">🔊</div><div class="flex-1"><div class="flex items-center justify-between"><h3 class="text-lg font-bold text-white group-hover:text-amber-400 transition">TEXT TO SPEECH</h3><span class="px-2 py-0.5 rounded-full bg-yellow-500/10 border border-yellow-500/20 text-yellow-400 text-[10px] font-bold">Audio</span></div><p class="text-gray-400 text-xs mt-2">Mengubah teks jadi suara menggunakan Google AI Studio.</p></div></div>
-      </div>
-      <div onclick="showPage('googleflow')" class="bg-cardbg rounded-2xl p-6 border border-gray-800 cursor-pointer hover-float hover:border-indigo-500/30 group relative overflow-hidden">
-        <div class="absolute -top-16 -right-16 w-32 h-32 bg-indigo-500/5 rounded-full blur-3xl group-hover:bg-indigo-500/10 transition"></div>
-        <div class="flex gap-4 relative z-10"><div class="w-14 h-14 bg-indigo-500/10 border border-indigo-500/20 rounded-2xl grid place-items-center shrink-0 group-hover:scale-110 transition text-2xl">🎥</div><div class="flex-1"><div class="flex items-center justify-between"><h3 class="text-lg font-bold text-white group-hover:text-indigo-400 transition">GOOGLE FLOW</h3><span class="px-2 py-0.5 rounded-full bg-rose-500/10 border border-rose-500/20 text-rose-400 text-[10px] font-bold">Video</span></div><p class="text-gray-400 text-xs mt-2">Tool resmi Google untuk generate video & gambar AI dengan kualitas tinggi.</p></div></div>
-      </div>
-    </div>
+    <p class="text-gray-400 mb-8">Kumpulan AI tools eksklusif. Klik kartu untuk detail & akses.</p>
+    <div class="grid md:grid-cols-2 gap-5" id="toolsGrid"></div>
   </div>
-
-  <!-- TOOL DETAIL PAGES (di luar tools div, supaya gak ke-hidden) -->
-  <div id="cinema" class="page fade-in hidden">
-    <button onclick="showPage('tools')" class="text-gray-500 hover:text-white flex items-center gap-2 mb-8 transition text-sm font-medium">← Kembali ke Tools</button>
-    <div class="flex items-center gap-5 mb-6"><div class="w-16 h-16 bg-blue-500/10 border border-blue-500/20 rounded-2xl grid place-items-center text-2xl">🎬</div><div><h2 class="text-3xl font-bold text-white">SERA CINEMA</h2><p class="text-gray-400">AI Workflow Builder untuk Animasi & Film</p></div></div>
-    <p class="border-l-4 border-blue-500 bg-blue-500/5 pl-5 py-3 rounded-r-lg text-gray-300 text-sm mb-8">Workflow pembuatan video AI sinematik untuk kisah nabi, cerita inspiratif, film pendek, dan konten storytelling.</p>
-    <div class="bg-cardbg rounded-2xl p-6 border border-gray-800 mb-4"><h3 class="text-lg font-bold text-white mb-3">Fitur</h3><div class="flex flex-wrap gap-2"><span class="px-3 py-1.5 bg-blue-500/10 border border-blue-500/20 text-blue-300 text-xs rounded-xl">Brief Builder</span><span class="px-3 py-1.5 bg-blue-500/10 border border-blue-500/20 text-blue-300 text-xs rounded-xl">Theme Selector</span><span class="px-3 py-1.5 bg-blue-500/10 border border-blue-500/20 text-blue-300 text-xs rounded-xl">Visual Style</span><span class="px-3 py-1.5 bg-blue-500/10 border border-blue-500/20 text-blue-300 text-xs rounded-xl">Story Flow</span></div></div>
-    <div class="text-center p-6 bg-gradient-to-br from-blue-500/5 to-secondary/5 border border-blue-500/10 rounded-2xl"><a href="https://chatgpt.com/g/g-69d68a2dc8e88191846179e10a8077eb-sera-cinema" target="_blank" class="inline-flex items-center gap-2 px-8 py-3.5 bg-blue-600 hover:bg-blue-500 rounded-xl text-white font-bold shadow-lg shadow-blue-500/20 hover:-translate-y-1 transition">Buka SERA CINEMA →</a></div>
-  </div>
-
-  <div id="storyboard" class="page fade-in hidden pt-4 text-center"><button onclick="showPage('tools')" class="text-gray-500 hover:text-white mb-8 inline-block text-sm">← Kembali</button><div class="text-6xl mb-4">🖼️</div><h2 class="text-2xl font-bold text-white mb-2">SERA STORYBOARD</h2><p class="text-gray-400 mb-6">Detail & link akses akan ditambahkan segera.</p></div>
-  <div id="affiliate" class="page fade-in hidden pt-4 text-center"><button onclick="showPage('tools')" class="text-gray-500 hover:text-white mb-8 inline-block text-sm">← Kembali</button><div class="text-6xl mb-4">🛍️</div><h2 class="text-2xl font-bold text-white mb-2">SERA AFFILIATE</h2><p class="text-gray-400 mb-6">Detail & link akses akan ditambahkan segera.</p></div>
-  <div id="karaktersheet" class="page fade-in hidden pt-4 text-center"><button onclick="showPage('tools')" class="text-gray-500 hover:text-white mb-8 inline-block text-sm">← Kembali</button><div class="text-6xl mb-4">✨</div><h2 class="text-2xl font-bold text-white mb-2">SERA KARAKTERSHEET</h2><p class="text-gray-400 mb-6">Detail & link akses akan ditambahkan segera.</p></div>
-  <div id="campaign" class="page fade-in hidden pt-4 text-center"><button onclick="showPage('tools')" class="text-gray-500 hover:text-white mb-8 inline-block text-sm">← Kembali</button><div class="text-6xl mb-4">📣</div><h2 class="text-2xl font-bold text-white mb-2">SERA CAMPAIGN</h2><p class="text-gray-400 mb-6">Detail & link akses akan ditambahkan segera.</p></div>
-  <div id="design-detail" class="page fade-in hidden pt-4 text-center"><button onclick="showPage('tools')" class="text-gray-500 hover:text-white mb-8 inline-block text-sm">← Kembali</button><div class="text-6xl mb-4">🎨</div><h2 class="text-2xl font-bold text-white mb-2">SERA DESIGN</h2><p class="text-gray-400 mb-6">Detail & link akses akan ditambahkan segera.</p></div>
-  <div id="tts" class="page fade-in hidden pt-4 text-center"><button onclick="showPage('tools')" class="text-gray-500 hover:text-white mb-8 inline-block text-sm">← Kembali</button><div class="text-6xl mb-4">🔊</div><h2 class="text-2xl font-bold text-white mb-2">TEXT TO SPEECH</h2><p class="text-gray-400 mb-6">Detail & link akses akan ditambahkan segera.</p></div>
-  <div id="googleflow" class="page fade-in hidden pt-4 text-center"><button onclick="showPage('tools')" class="text-gray-500 hover:text-white mb-8 inline-block text-sm">← Kembali</button><div class="text-6xl mb-4">🎥</div><h2 class="text-2xl font-bold text-white mb-2">GOOGLE FLOW</h2><p class="text-gray-400 mb-6">Detail & link akses akan ditambahkan segera.</p></div>
 
   <!-- MATERI -->
   <div id="materi" class="page fade-in hidden">
@@ -146,62 +85,35 @@ body{background:#08080e;font-family:'Inter',system-ui,sans-serif}
     <div class="grid md:grid-cols-2 gap-6">
       <div class="bg-cardbg rounded-2xl p-6 border border-gray-800">
         <div class="flex items-center gap-3 mb-4"><div class="w-9 h-9 rounded-lg bg-blue-500/10 grid place-items-center text-blue-400 font-bold text-sm">01</div><h3 class="text-lg font-bold text-white">Cara Akses Tools GPT</h3></div>
-        <div class="bg-darkbg rounded-xl aspect-video mb-4 grid place-items-center text-gray-600 hover:text-red-500 transition cursor-pointer border border-gray-800"><i data-lucide="play" class="w-12 h-12"></i></div>
+        <div class="bg-darkbg rounded-xl aspect-video mb-4 grid place-items-center text-gray-600 border border-gray-800"><i data-lucide="play" class="w-12 h-12"></i></div>
         <ul class="text-gray-400 text-sm space-y-2"><li class="flex items-start gap-2"><span class="text-green-400 mt-1">✓</span> Akun OpenAI (gratis)</li><li class="flex items-start gap-2"><span class="text-green-400 mt-1">✓</span> Browser Chrome/Safari</li></ul>
       </div>
       <div class="bg-cardbg rounded-2xl p-6 border border-gray-800 relative overflow-hidden">
         <div class="absolute top-0 right-0 w-56 h-56 bg-purple-500/5 rounded-full blur-3xl"></div>
         <div class="flex items-center justify-between mb-4 relative z-10"><div class="flex items-center gap-3"><div class="w-9 h-9 rounded-lg bg-purple-500/10 grid place-items-center text-purple-400 font-bold text-sm">02</div><h3 class="text-lg font-bold text-white">Trik Leonardo AI</h3></div><span class="px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-300 text-xs font-bold">🔒 Rahasia</span></div>
-        <div class="bg-darkbg rounded-xl aspect-video mb-4 grid place-items-center text-gray-600 hover:text-purple-500 transition cursor-pointer border border-gray-800 relative z-10"><i data-lucide="play" class="w-12 h-12"></i></div>
+        <div class="bg-darkbg rounded-xl aspect-video mb-4 grid place-items-center text-gray-600 border border-gray-800 relative z-10"><i data-lucide="play" class="w-12 h-12"></i></div>
         <p class="text-gray-400 text-sm relative z-10">Hemat token, daily reset, manajemen workflow efisien.</p>
       </div>
     </div>
     <div class="mt-8 bg-blue-500/5 border border-blue-500/10 rounded-2xl p-6 text-center">
       <p class="text-white font-bold">🔗 LINK AKSES LEONARDO via CANVA PRO</p>
-      <p class="text-gray-400 text-sm mt-2">Member VIP bisa akses Leonardo Essentials + 8.500 token GRATIS. Panduan lengkap di materi.</p>
+      <p class="text-gray-400 text-sm mt-2">Member VIP bisa akses Leonardo Essentials + 8.500 token GRATIS.</p>
     </div>
   </div>
 
   <!-- REKAMAN LIVE -->
   <div id="rekaman" class="page fade-in hidden">
     <h2 class="text-3xl font-bold text-white mb-3">REKAMAN LIVE</h2>
-    <p class="text-gray-400 mb-10">Arsip lengkap sesi live training beserta tanggal dan materi pendukung.</p>
-    <div class="grid md:grid-cols-2 gap-4">
-      <div class="bg-cardbg rounded-2xl p-5 border border-gray-800 hover:border-green-500/30 hover-float cursor-pointer group">
-        <div class="w-10 h-10 bg-green-500/10 border border-green-500/20 rounded-xl grid place-items-center mb-4 group-hover:scale-110 transition text-lg">📺</div>
-        <h3 class="text-white font-bold">LIVE VIP SESSION</h3>
-        <p class="text-gray-500 text-xs mt-1">17 Juli 2026</p>
-      </div>
-      <div class="bg-cardbg rounded-2xl p-5 border border-gray-800 hover:border-green-500/30 hover-float cursor-pointer group">
-        <div class="w-10 h-10 bg-green-500/10 border border-green-500/20 rounded-xl grid place-items-center mb-4 group-hover:scale-110 transition text-lg">📺</div>
-        <h3 class="text-white font-bold">LIVE VIP SESSION</h3>
-        <p class="text-gray-500 text-xs mt-1">8 Juli 2026</p>
-      </div>
-      <div class="bg-cardbg rounded-2xl p-5 border border-gray-800 hover:border-green-500/30 hover-float cursor-pointer group">
-        <div class="w-10 h-10 bg-pink-500/10 border border-pink-500/20 rounded-xl grid place-items-center mb-4 group-hover:scale-110 transition text-lg">⭐</div>
-        <h3 class="text-white font-bold">LIVE VIP SESSION</h3>
-        <p class="text-gray-500 text-xs mt-1">18 Juni 2026</p>
-      </div>
-      <div class="bg-cardbg rounded-2xl p-5 border border-gray-800 hover:border-green-500/30 hover-float cursor-pointer group">
-        <div class="w-10 h-10 bg-green-500/10 border border-green-500/20 rounded-xl grid place-items-center mb-4 group-hover:scale-110 transition text-lg">📺</div>
-        <h3 class="text-white font-bold">LIVE — Flow Unlimited Veo 3.1 Lite</h3>
-        <p class="text-gray-500 text-xs mt-1">8 Juni 2026</p>
-      </div>
-      <div class="bg-cardbg rounded-2xl p-5 border border-gray-800 hover:border-green-500/30 hover-float cursor-pointer group">
-        <div class="w-10 h-10 bg-white/5 border border-white/10 rounded-xl grid place-items-center mb-4 group-hover:scale-110 transition text-lg">📄</div>
-        <h3 class="text-white font-bold">LIVE FREE SESSION</h3>
-        <p class="text-gray-500 text-xs mt-1">3 Juni 2026</p>
-      </div>
-      <div class="bg-cardbg rounded-2xl p-5 border border-gray-800 hover:border-green-500/30 hover-float cursor-pointer group">
-        <div class="w-10 h-10 bg-green-500/10 border border-green-500/20 rounded-xl grid place-items-center mb-4 group-hover:scale-110 transition text-lg">📺</div>
-        <h3 class="text-white font-bold">REKAMAN LIVE</h3>
-        <p class="text-gray-500 text-xs mt-1">31 Mei 2026</p>
-      </div>
-      <div class="bg-cardbg rounded-2xl p-5 border border-gray-800 hover:border-green-500/30 hover-float cursor-pointer group">
-        <div class="w-10 h-10 bg-green-500/10 border border-green-500/20 rounded-xl grid place-items-center mb-4 group-hover:scale-110 transition text-lg">📺</div>
-        <h3 class="text-white font-bold">REKAMAN</h3>
-        <p class="text-gray-500 text-xs mt-1">25 Mei 2026</p>
-      </div>
+    <p class="text-gray-400 mb-10">Arsip lengkap sesi live training. Klik untuk menonton ulang.</p>
+    <div class="grid md:grid-cols-2 gap-4" id="rekamanGrid"></div>
+  </div>
+
+  <!-- TOOL DETAIL PAGES (generated dynamically) -->
+  <div id="toolDetail" class="page fade-in hidden">
+    <button onclick="showPage('tools')" class="text-gray-500 hover:text-white flex items-center gap-2 mb-8 transition text-sm font-medium">← Kembali ke Tools</button>
+    <div class="flex flex-col md:flex-row gap-10">
+      <div class="flex-1 space-y-6" id="toolContent"></div>
+      <div class="w-full md:w-80 shrink-0 space-y-4" id="toolSidebar"></div>
     </div>
   </div>
 
@@ -216,6 +128,145 @@ body{background:#08080e;font-family:'Inter',system-ui,sans-serif}
 <script>
 var PASSWORD = 'serudigital2026';
 
+// ── DATA ────────────────────────────────────────────────────────────────
+var TOOLS = [
+  {id:'cinema',emoji:'🎬',title:'SERA CINEMA',cat:'Video',catColor:'rose',color:'blue',colorHex:'#3b82f6',
+   desc:'AI workflow builder untuk menyusun konten cerita secara bertahap, rapi, dan sinematik. Cocok untuk storytelling pendek, fun fact, edukasi, religi, motivasi, dan konten sinematik singkat.',
+   pills:['Brief Builder','Theme Selector','Visual Style','Mode Suara','Story Flow','Character Set','Scene Final Generator'],
+   steps:['Mulai dari ide — gunakan ide sendiri atau minta SERA CINEMA bantu arah cerita.','Ikuti alur yang disediakan — SERA CINEMA memandu step by step dari brief, tema, visual style, mode suara, alur scene, hingga scene final.','Cek dan revisi jika perlu — sesuaikan hasil di setiap tahap agar sesuai kebutuhan konten.'],
+   link:'https://chatgpt.com/g/g-6a01b4e2ba588191a226baa971bb694a-sera-cinema'},
+  {id:'storyboard',emoji:'🖼️',title:'SERA STORYBOARD',cat:'Gambar',catColor:'purple',color:'orange',colorHex:'#f97316',
+   desc:'Ubah ide/cerita jadi storyboard visual terstruktur sebelum produksi video. Menghasilkan panel visual per scene lengkap dengan metadata durasi, tone, dan palet warna.',
+   pills:['Storyboard Builder','Scene Panel Generator','Metadata Otomatis','Palet Warna','Durasi Estimasi'],
+   steps:['Masukkan ide cerita atau naskah — AI akan membaca dan menganalisis struktur naratif.','Tentukan jumlah panel dan gaya visual — SERA STORYBOARD menghasilkan panel per scene.','Review dan sesuaikan — cek konsistensi visual antar panel sebelum lanjut ke produksi video.'],
+   link:'https://chatgpt.com/g/g-6a12bda6fdb08191bbbe2ecdf247d1cf-sera-storyboard'},
+  {id:'affiliate',emoji:'🛍️',title:'SERA AFFILIATE',cat:'Affiliate',catColor:'green',color:'yellow',colorHex:'#eab308',
+   desc:'Bikin konten affiliate AI dengan gabungan produk + model untuk promosi. Cocok untuk konten review produk, unboxing, dan promosi affiliate di sosial media.',
+   pills:['Product-Model Merger','Scene Builder','Multi-Platform Export','Brand Overlay','CTA Generator'],
+   steps:['Upload foto produk — AI akan menganalisis dan menyiapkan template konten affiliate.','Pilih model/style — gabungkan produk dengan visual yang sesuai untuk promosi.','Generate & export — hasil siap diposting ke berbagai platform sosial media.'],
+   link:'https://ai.studio/apps/fbbd8710-5dec-428a-94b7-5d3c58f934a2?fullscreenApplet=true'},
+  {id:'karaktersheet',emoji:'✨',title:'SERA KARAKTERSHEET',cat:'Karakter',catColor:'blue',color:'cyan',colorHex:'#06b6d4',
+   desc:'Bikin character sheet berbasis AI dengan tampilan konsisten dari berbagai angle. Cocok untuk desain karakter film, animasi, game, dan konten storytelling.',
+   pills:['Multi-Angle Generator','Expression Set','Outfit Variants','Consistency Lock','Export Sheet'],
+   steps:['Deskripsikan karakter — fisik, outfit, personality, dan referensi visual.','Generate multi-angle — depan, samping, belakang, dan ekspresi wajah.','Finalisasi — dapatkan character sheet lengkap siap digunakan untuk produksi.'],
+   link:'https://chatgpt.com/g/g-6a1d5c56c15481918f26795cecd10a58-sera-karakter-sheet'},
+  {id:'campaign',emoji:'📣',title:'SERA CAMPAIGN',cat:'Iklan',catColor:'orange',color:'red',colorHex:'#ef4444',
+   desc:'Ubah gambar produk jadi konsep iklan video komersial berbasis AI. Dari satu foto produk, hasilkan storyboard iklan lengkap dengan copywriting dan visual direction.',
+   pills:['Product-to-Ad','Storyboard Generator','Copywriting AI','Visual Direction','Multi-Format'],
+   steps:['Upload foto produk — AI menganalisis dan menyusun konsep iklan.','Pilih angle campaign — tentukan tone, target audiens, dan format iklan.','Generate & review — dapatkan storyboard iklan + copy siap produksi.'],
+   link:'https://gemini.google.com/share/0d71286d5bf9'},
+  {id:'design',emoji:'🎨',title:'SERA DESIGN',cat:'Desain',catColor:'pink',color:'pink',colorHex:'#ec4899',
+   desc:'Bikin brosur, infografis, dan aset desain grafis dengan AI — cepat, rapi, dan siap produksi. Mendukung Infografis dan Brosur.',
+   pills:['Type Selector','Brief Reader','Visual Direction','Structure Organizer','JSON Prompt','Revision Support'],
+   steps:['Pilih jenis desain — Infografis atau Brosur sesuai kebutuhan.','Kirim data yang diperlukan — AI akan meminta data spesifik.','Ikuti alur — AI memandu step by step hingga desain final siap generate.'],
+   link:'https://chatgpt.com/g/g-69d7af0523848191a8b9dc088d9eda50-sera-design'},
+  {id:'tts',emoji:'🔊',title:'TEXT TO SPEECH',cat:'Audio',catColor:'yellow',color:'amber',colorHex:'#f59e0b',
+   desc:'Mengubah teks jadi suara menggunakan Google AI Studio. Cocok untuk voice over konten, audiobook, dan narasi video.',
+   pills:['Multi-Voice','Bahasa Indonesia','Speed Control','Pitch Adjust','Export MP3'],
+   steps:['Buka Google AI Studio — akses tool Text-to-Speech gratis.','Masukkan teks — paste naskah atau ketik langsung.','Pilih suara & settings — atur voice, speed, pitch, lalu generate & download.'],
+   link:'https://aistudio.google.com/generate-speech'},
+  {id:'googleflow',emoji:'🎥',title:'GOOGLE FLOW',cat:'Video',catColor:'rose',color:'indigo',colorHex:'#6366f1',
+   desc:'Tool resmi Google untuk generate video & gambar AI dengan kualitas tinggi. Cepat, gratis, dan terintegrasi dengan ekosistem Google.',
+   pills:['Text-to-Video','Image-to-Video','Cinematic Mode','Quick Render','Google Integration'],
+   steps:['Buka Google Flow — akses dari browser, tidak perlu install.','Masukkan prompt atau upload gambar — AI akan memproses secara real-time.','Generate & download — hasil video/gambar siap digunakan untuk konten.'],
+   link:'https://labs.google/fx/tools/flow'},
+  {id:'promptdetect',emoji:'🔍',title:'SERA PROMPT DETECTED',cat:'Tools',catColor:'teal',color:'emerald',colorHex:'#10b981',
+   desc:'Tool pendeteksi dan analisis prompt AI. Membantu mengidentifikasi struktur prompt, mengoptimalkan kata kunci, dan meningkatkan kualitas output AI.',
+   pills:['Prompt Analyzer','Keyword Optimizer','Style Detector','Quality Score','Export Report'],
+   steps:['Paste prompt yang ingin dianalisis — AI akan membaca strukturnya.','Lihat hasil analisis — dapatkan skor kualitas dan saran optimasi.','Terapkan improvement — gunakan prompt yang sudah dioptimalkan untuk hasil lebih baik.'],
+   link:'https://gemini.google.com/share/77ad9260b4e0'}
+];
+
+var REKAMAN = [
+  {title:'LIVE VIP SESSION',date:'17 Juli 2026',link:'#'},
+  {title:'LIVE VIP SESSION',date:'8 Juli 2026',link:'#'},
+  {title:'LIVE VIP SESSION',date:'18 Juni 2026',link:'#'},
+  {title:'LIVE — Flow Unlimited Veo 3.1 Lite',date:'8 Juni 2026',link:'#'},
+  {title:'LIVE FREE SESSION',date:'3 Juni 2026',link:'#'},
+  {title:'REKAMAN LIVE',date:'31 Mei 2026',link:'#'},
+  {title:'REKAMAN',date:'25 Mei 2026',link:'#'}
+];
+
+// ── RENDER ──────────────────────────────────────────────────────────────
+function renderToolsGrid(){
+  var grid = document.getElementById('toolsGrid');
+  grid.innerHTML = TOOLS.map(t=>`
+    <div onclick="showTool('${t.id}')" class="bg-cardbg rounded-2xl p-6 border border-gray-800 cursor-pointer hover-float hover:border-${t.color}-500/30 group relative overflow-hidden">
+      <div class="absolute -top-16 -right-16 w-32 h-32 bg-${t.color}-500/5 rounded-full blur-3xl group-hover:bg-${t.color}-500/10 transition"></div>
+      <div class="flex gap-4 relative z-10">
+        <div class="w-14 h-14 bg-${t.color}-500/10 border border-${t.color}-500/20 rounded-2xl grid place-items-center shrink-0 group-hover:scale-110 transition text-2xl">${t.emoji}</div>
+        <div class="flex-1">
+          <div class="flex items-center justify-between">
+            <h3 class="text-lg font-bold text-white group-hover:text-${t.color}-400 transition">${t.title}</h3>
+            <span class="px-2 py-0.5 rounded-full bg-${t.catColor}-500/10 border border-${t.catColor}-500/20 text-${t.catColor}-400 text-[10px] font-bold">${t.cat}</span>
+          </div>
+          <p class="text-gray-400 text-xs mt-2">${t.desc.substring(0,100)}...</p>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+function renderRekamanGrid(){
+  var grid = document.getElementById('rekamanGrid');
+  grid.innerHTML = REKAMAN.map(r=>`
+    <a href="${r.link}" target="_blank" class="bg-cardbg rounded-2xl p-5 border border-gray-800 hover:border-green-500/30 hover-float cursor-pointer group block">
+      <div class="w-10 h-10 bg-green-500/10 border border-green-500/20 rounded-xl grid place-items-center mb-4 group-hover:scale-110 transition text-lg">📺</div>
+      <h3 class="text-white font-bold">${r.title}</h3>
+      <p class="text-gray-500 text-xs mt-1">${r.date}</p>
+    </a>`).join('');
+}
+
+function showTool(id){
+  var t = TOOLS.find(x=>x.id===id); if(!t)return;
+  var content = document.getElementById('toolContent');
+  var sidebar = document.getElementById('toolSidebar');
+
+  content.innerHTML = `
+    <div class="flex items-center gap-5 mb-6">
+      <div class="w-16 h-16 bg-${t.color}-500/10 border border-${t.color}-500/20 rounded-2xl grid place-items-center text-2xl shadow-[0_0_20px_rgba(${parseInt(t.colorHex.slice(1,3),16)},${parseInt(t.colorHex.slice(3,5),16)},${parseInt(t.colorHex.slice(5,7),16)},.1)]">${t.emoji}</div>
+      <div><h2 class="text-3xl font-bold text-white">${t.title}</h2><p class="text-gray-400">AI Prompt Generator</p></div>
+    </div>
+    <div class="border-l-4 border-${t.color}-500 bg-${t.color}-500/5 pl-5 py-3 rounded-r-lg text-gray-300 text-sm mb-8">${t.desc}</div>
+    <div class="bg-black rounded-2xl aspect-video mb-8 border border-gray-800 grid place-items-center text-gray-600"><i data-lucide="play" class="w-16 h-16"></i></div>
+    <div class="bg-cardbg rounded-2xl p-8 border border-gray-800 mb-6">
+      <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2"><i data-lucide="list-checks" class="text-${t.color}-400 w-5 h-5"></i> Fitur & Alur Utama</h3>
+      <div class="flex flex-wrap gap-2">${t.pills.map(p=>`<span class="px-4 py-2 bg-${t.color}-500/10 border border-${t.color}-500/20 text-${t.color}-300 text-xs font-semibold rounded-xl flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5"></i> ${p}</span>`).join('')}</div>
+    </div>
+    <div class="bg-cardbg rounded-2xl p-8 border border-gray-800">
+      <h3 class="text-lg font-bold text-white mb-6 flex items-center gap-2"><i data-lucide="file-text" class="text-${t.color}-400 w-5 h-5"></i> Dokumen Panduan Resmi</h3>
+      <h4 class="text-lg font-bold text-white mb-4 border-b border-gray-800 pb-2">Tahap 1: Cara Menggunakan</h4>
+      <div class="space-y-5">${t.steps.map((s,i)=>`
+        <div class="flex gap-4 items-start">
+          <div class="w-9 h-9 rounded-full bg-${t.color}-500/20 border border-${t.color}-500/30 text-${t.color}-400 flex items-center justify-center font-bold text-sm shrink-0">${i+1}</div>
+          <div><h5 class="text-white font-semibold text-sm">${s.split(' — ')[0]}</h5><p class="text-gray-400 text-xs mt-1">${s.split(' — ')[1]||''}</p></div>
+        </div>`).join('')}</div>
+      <h4 class="text-lg font-bold text-white mt-8 mb-4 border-b border-gray-800 pb-2">Tahap 2: Eksekusi Output Final</h4>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-darkbg p-5 rounded-xl border border-gray-800"><h5 class="text-white font-semibold text-sm mb-2">Mode Standar</h5><ul class="text-gray-400 text-xs space-y-2"><li>Copy prompt final dari hasil generator</li><li>Paste ke AI tool yang sesuai (Leonardo/Midjourney/Veo)</li><li>Generate & download hasil</li></ul></div>
+        <div class="bg-darkbg p-5 rounded-xl border border-gray-800"><h5 class="text-white font-semibold text-sm mb-2">Mode Dialog (jika ada)</h5><ul class="text-gray-400 text-xs space-y-2"><li>Copy prompt langsung dari generator</li><li>Gunakan tools yang mendukung dialog/lip sync</li><li>Gabungkan scene jadi satu video final</li></ul></div>
+      </div>
+    </div>`;
+
+  sidebar.innerHTML = `
+    <div class="bg-gradient-to-b from-cardbg to-darkbg rounded-3xl p-8 border border-${t.color}-500/20 shadow-[0_0_40px_rgba(${parseInt(t.colorHex.slice(1,3),16)},${parseInt(t.colorHex.slice(3,5),16)},${parseInt(t.colorHex.slice(5,7),16)},.1)] sticky top-28">
+      <div class="text-center mb-6">
+        <span class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-green-500/10 border border-green-500/30 text-green-400 text-xs font-bold mb-4"><i data-lucide="check-circle" class="w-3 h-3"></i> SISTEM AKTIF</span>
+        <h3 class="text-white font-bold text-xl mb-2">Akses Tool Sekarang</h3>
+        <p class="text-gray-400 text-sm">Klik tombol di bawah untuk membuka tool.</p>
+      </div>
+      <a href="${t.link}" target="_blank" class="block w-full text-center py-3.5 bg-${t.color}-600 hover:bg-${t.color}-500 rounded-xl text-white font-bold shadow-lg shadow-${t.color}-500/20 hover:-translate-y-1 transition mb-4">Buka ${t.title} →</a>
+      <p class="text-gray-500 text-xs text-center">*Dibutuhkan akun yang sesuai</p>
+    </div>
+    <div class="bg-cardbg rounded-3xl p-6 border border-gray-800 mt-4">
+      <h4 class="text-white font-bold flex items-center gap-2 mb-3"><i data-lucide="lightbulb" class="text-yellow-500 w-4 h-4"></i> Tips Pro</h4>
+      <p class="text-gray-400 text-xs leading-relaxed">Selesaikan satu project sampai final sebelum memulai yang baru agar konteks AI tidak tercampur.</p>
+    </div>`;
+
+  showPage('toolDetail');
+  lucide.createIcons();
+}
+
+// ── AUTH & NAV ──────────────────────────────────────────────────────────
 function doLogin(){
   if(document.getElementById('passInput').value === PASSWORD){
     sessionStorage.setItem('sd_auth','1');
@@ -244,6 +295,10 @@ function showPage(name){
   window.scrollTo({top:0,behavior:'smooth'});
   lucide.createIcons();
 }
+
+// ── INIT ────────────────────────────────────────────────────────────────
+renderToolsGrid();
+renderRekamanGrid();
 
 if(sessionStorage.getItem('sd_auth')==='1'){
   document.getElementById('loginScreen').style.display='none';
