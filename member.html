@@ -92,6 +92,7 @@ body::before{content:"";
         <div class="relative z-10 text-center"><div class="w-14 h-14 mx-auto mb-4 bg-green-500/10 border border-green-500/20 rounded-2xl grid place-items-center text-2xl group-hover:scale-110 transition">📺</div><h3 id="qr-title" class="text-white font-bold" data-edit="dashQuickRek">REKAMAN LIVE</h3><p id="qr-sub" class="text-gray-400 text-xs mt-1" data-edit="dashQuickRekSub">Arsip sesi pelatihan</p></div>
       </div>
     </div>
+    <div id="adminMemberBtn" class="hidden mt-4 text-center"><button onclick="showMemberManager()" class="px-6 py-3 bg-emerald-600 hover:bg-emerald-500 rounded-xl text-white font-bold text-sm transition">👥 Kelola Member</button></div>
   </div>
 
   <!-- TOOLS AI LIST -->
@@ -159,6 +160,14 @@ body::before{content:"";
 
 <script>
 var PASSWORD = 'serudigital2026';
+var ADMIN_PW = 'seruadmin2026';
+var MEMBERS = []; // [{name:'',pw:''}]
+
+function loadMembers(){
+  var saved = localStorage.getItem('sd_members');
+  if(saved) try{ MEMBERS = JSON.parse(saved); }catch(e){}
+  if(!MEMBERS.length) MEMBERS = [{name:'Member 1',pw:'serudigital2026'}];
+}
 
 // ── DATA ────────────────────────────────────────────────────────────────
 var TOOLS = [
@@ -274,17 +283,19 @@ function showTool(id){
 // ── AUTH & NAV ──────────────────────────────────────────────────────────
 function doLogin(){
   var p = document.getElementById('passInput').value;
-  if(p === PASSWORD || p === ADMIN_PW){
-    isAdmin = (p === ADMIN_PW);
-    sessionStorage.setItem('sd_auth','1');
-    if(isAdmin) sessionStorage.setItem('sd_admin','1');
-    if(isAdmin) showEditToggle();
-    document.getElementById('loginScreen').style.display='none';
-    document.getElementById('mainArea').classList.remove('hidden');
-    bindNav(); renderDashboard(); renderToolsGrid(); renderRekamanGrid(); 
-    if(isAdmin) renderAllSections();
-    lucide.createIcons(); showPage('dashboard');
-  }else{document.getElementById('loginErr').style.display='block';}
+  if(p === ADMIN_PW){
+    isAdmin = true; sessionStorage.setItem('sd_auth','1'); sessionStorage.setItem('sd_admin','1');
+    showEditToggle();
+  } else {
+    var found = MEMBERS.find(m=>m.pw===p);
+    if(!found){ document.getElementById('loginErr').style.display='block'; return; }
+    isAdmin = false; sessionStorage.setItem('sd_auth','1');
+  }
+  document.getElementById('loginScreen').style.display='none';
+  document.getElementById('mainArea').classList.remove('hidden');
+  bindNav(); renderDashboard(); renderToolsGrid(); renderRekamanGrid();
+  if(isAdmin) renderAllSections();
+  lucide.createIcons(); showPage('dashboard');
 }
 
 function doLogout(){sessionStorage.removeItem('sd_auth');location.reload();}
@@ -332,7 +343,9 @@ var editMode = false;
 
 function showEditToggle(){
   var t = document.getElementById('editToggle');
-  if(t){t.classList.remove('hidden'); t.className = t.className.replace(/bg-\w+-\d+\/\d+|border-\w+-\d+\/\d+/, '');}
+  if(t){t.classList.remove('hidden');}
+  var m = document.getElementById('adminMemberBtn');
+  if(m){m.classList.remove('hidden');}
 }
 
 function toggleEdit(){
@@ -466,6 +479,41 @@ function adminDeleteRekaman(idx){
   REKAMAN.splice(idx,1); saveAll(); renderRekamanGrid();
 }
 
+function showMemberManager(){
+  var list = MEMBERS.map((m,i)=>`${i+1}. ${m.name} — ${m.pw}  <button onclick="deleteMember(${i})" style="color:#ff6b7a;margin-left:8px;cursor:pointer">✕</button>`).join('<br>');
+  var html = '<div style="background:#0f1018;border:1px solid #1e293b;border-radius:16px;padding:24px;max-width:500px;margin:0 auto">'+
+    '<h3 style="color:#fff;font-size:18px;margin-bottom:16px">👥 Kelola Member</h3>'+
+    '<div style="color:#9090a8;font-size:13px;margin-bottom:16px;line-height:2">'+list+'</div>'+
+    '<button onclick="addMember()" style="background:#10b981;color:#fff;border:none;padding:10px 20px;border-radius:8px;font-weight:700;cursor:pointer">+ Tambah Member</button>'+
+    '<button onclick="closeMemberManager()" style="background:transparent;color:#9090a8;border:1px solid #333;padding:10px 20px;border-radius:8px;margin-left:8px;cursor:pointer">Tutup</button></div>';
+  var modal = document.createElement('div');
+  modal.id = 'memberModal';
+  modal.style.cssText = 'position:fixed;inset:0;z-index:400;background:rgba(0,0,0,.9);display:flex;align-items:center;justify-content:center';
+  modal.innerHTML = html;
+  modal.onclick = function(e){if(e.target===modal)closeMemberManager();};
+  document.body.appendChild(modal);
+}
+
+function closeMemberManager(){
+  var m = document.getElementById('memberModal'); if(m)m.remove();
+}
+
+function addMember(){
+  var name = prompt('Nama member:'); if(!name)return;
+  var pw = prompt('Password:'); if(!pw)return;
+  MEMBERS.push({name:name,pw:pw});
+  localStorage.setItem('sd_members',JSON.stringify(MEMBERS));
+  closeMemberManager(); showMemberManager();
+}
+
+function deleteMember(idx){
+  if(!confirm('Hapus member '+MEMBERS[idx].name+'?'))return;
+  MEMBERS.splice(idx,1);
+  if(!MEMBERS.length) MEMBERS = [{name:'Default',pw:'serudigital2026'}];
+  localStorage.setItem('sd_members',JSON.stringify(MEMBERS));
+  closeMemberManager(); showMemberManager();
+}
+
 // Update render functions to show admin buttons
 function renderToolsGrid(){
   var grid = document.getElementById('toolsGrid');
@@ -511,6 +559,7 @@ function renderRekamanGrid(){
 
 // ── INIT ────────────────────────────────────────────────────────────────
 loadAll();
+loadMembers();
 
 if(sessionStorage.getItem('sd_auth')==='1'){
   if(sessionStorage.getItem('sd_admin')==='1') isAdmin = true;
