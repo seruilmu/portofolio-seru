@@ -54,6 +54,7 @@ body::before{content:"";position:fixed;inset:-30%;z-index:-1;pointer-events:none
       <button data-p="materi" class="nav-btn flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-gray-400 hover:text-white hover:bg-white/5 transition"><i data-lucide="play-square" class="w-4 h-4"></i> Materi Kelas</button>
       <button data-p="rekaman" class="nav-btn flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-gray-400 hover:text-white hover:bg-white/5 transition"><i data-lucide="radio" class="w-4 h-4"></i> Rekaman</button>
       <button onclick="doLogout()" class="ml-2 px-3 py-2 rounded-lg text-xs font-semibold text-gray-500 hover:text-red-400 border border-white/5 hover:border-red-400/20 transition">Keluar</button>
+      <button id="editToggle" class="hidden ml-2 px-3 py-2 rounded-lg text-xs font-semibold border transition" onclick="toggleEdit()">✏️ Edit Mode: OFF</button>
     </div>
   </div>
 </nav>
@@ -270,6 +271,7 @@ function doLogin(){
     isAdmin = (p === ADMIN_PW);
     sessionStorage.setItem('sd_auth','1');
     if(isAdmin) sessionStorage.setItem('sd_admin','1');
+    if(isAdmin) showEditToggle();
     document.getElementById('loginScreen').style.display='none';
     document.getElementById('mainArea').classList.remove('hidden');
     bindNav(); renderDashboard(); renderToolsGrid(); renderRekamanGrid(); 
@@ -319,6 +321,25 @@ function closeVideo(){
 // ── ADMIN PANEL ──────────────────────────────────────────────────────
 var ADMIN_PW = 'seruadmin2026';
 var isAdmin = false;
+var editMode = false;
+
+function showEditToggle(){
+  var t = document.getElementById('editToggle');
+  if(t){t.classList.remove('hidden'); t.className = t.className.replace(/bg-\w+-\d+\/\d+|border-\w+-\d+\/\d+/, '');}
+}
+
+function toggleEdit(){
+  editMode = !editMode;
+  var t = document.getElementById('editToggle');
+  if(editMode){
+    t.className = t.className.replace('border','bg-green-500/20 border-green-500/50');
+    t.innerHTML = '✏️ Edit Mode: ON';
+  }else{
+    t.className = t.className.replace('bg-green-500/20 border-green-500/50','border-gray-500/30');
+    t.innerHTML = '✏️ Edit Mode: OFF';
+  }
+  renderDashboard(); renderAllSections(); renderToolsGrid(); renderRekamanGrid();
+}
 
 var CONTENT = {
   heroBadge:'🚀 Terima Kasih Telah Bergabung!',
@@ -387,7 +408,7 @@ function renderAllSections(){
 }
 
 function refreshAdminClicks(){
-  if(!isAdmin)return;
+  if(!isAdmin || !editMode)return;
   document.querySelectorAll('[data-edit]').forEach(el=>{
     el.style.cursor='pointer';el.style.outline='1px dashed rgba(255,255,255,.15)';el.title='Klik untuk edit';
     el.onclick=function(e){e.stopPropagation();editContent(this.dataset.edit);};
@@ -440,7 +461,7 @@ function renderToolsGrid(){
   if(!grid)return;
   grid.innerHTML = TOOLS.map((t,i)=>`
     <div class="relative group/card">
-      ${isAdmin?`<div class="absolute top-3 right-3 z-20 flex gap-1">
+      ${(isAdmin&&editMode)?`<div class="absolute top-3 right-3 z-20 flex gap-1">
         <button onclick="event.stopPropagation();adminEditTool(${i})" class="w-6 h-6 bg-yellow-500/80 rounded text-xs font-bold text-black">✎</button>
         <button onclick="event.stopPropagation();adminDeleteTool(${i})" class="w-6 h-6 bg-red-500/80 rounded text-xs font-bold text-white">✕</button>
       </div>`:''}
@@ -454,7 +475,7 @@ function renderToolsGrid(){
           </div>
         </div>
       </div></div>`).join('');
-  if(isAdmin) grid.insertAdjacentHTML('beforeend','<div onclick="adminAddTool()" class="bg-cardbg rounded-2xl p-6 border border-dashed border-gray-600 cursor-pointer hover:border-green-500/50 grid place-items-center min-h-[100px]"><span class="text-3xl text-gray-600 hover:text-green-400">+ Tambah Tool</span></div>');
+  if(isAdmin&&editMode) grid.insertAdjacentHTML('beforeend','<div onclick="adminAddTool()" class="bg-cardbg rounded-2xl p-6 border border-dashed border-gray-600 cursor-pointer hover:border-green-500/50 grid place-items-center min-h-[100px]"><span class="text-3xl text-gray-600 hover:text-green-400">+ Tambah Tool</span></div>');
 }
 
 function renderRekamanGrid(){
@@ -462,7 +483,7 @@ function renderRekamanGrid(){
   if(!grid)return;
   grid.innerHTML = REKAMAN.map((r,i)=>`
     <div class="relative group/card">
-      ${isAdmin?`<div class="absolute top-3 right-3 z-20 flex gap-1">
+      ${(isAdmin&&editMode)?`<div class="absolute top-3 right-3 z-20 flex gap-1">
         <button onclick="event.stopPropagation();adminEditRekaman(${i})" class="w-6 h-6 bg-yellow-500/80 rounded text-xs font-bold text-black">✎</button>
         <button onclick="event.stopPropagation();adminDeleteRekaman(${i})" class="w-6 h-6 bg-red-500/80 rounded text-xs font-bold text-white">✕</button>
       </div>`:''}
@@ -474,7 +495,7 @@ function renderRekamanGrid(){
         </div>
         <p class="text-gray-500 text-xs">${r.date}</p>${!r.yt ? '<p class="text-gray-600 text-[10px] mt-1">Video segera tersedia</p>' : ''}
       </div></div>`).join('');
-  if(isAdmin) grid.insertAdjacentHTML('beforeend','<div onclick="adminAddRekaman()" class="bg-cardbg rounded-2xl p-6 border border-dashed border-gray-600 cursor-pointer hover:border-green-500/50 grid place-items-center min-h-[200px]"><span class="text-3xl text-gray-600 hover:text-green-400">+ Tambah Rekaman</span></div>');
+  if(isAdmin&&editMode) grid.insertAdjacentHTML('beforeend','<div onclick="adminAddRekaman()" class="bg-cardbg rounded-2xl p-6 border border-dashed border-gray-600 cursor-pointer hover:border-green-500/50 grid place-items-center min-h-[200px]"><span class="text-3xl text-gray-600 hover:text-green-400">+ Tambah Rekaman</span></div>');
 }
 
 // ── INIT ────────────────────────────────────────────────────────────────
@@ -482,6 +503,7 @@ loadAll();
 
 if(sessionStorage.getItem('sd_auth')==='1'){
   if(sessionStorage.getItem('sd_admin')==='1') isAdmin = true;
+  if(isAdmin) showEditToggle();
   document.getElementById('loginScreen').style.display='none';
   document.getElementById('mainArea').classList.remove('hidden');
   renderDashboard(); renderToolsGrid(); renderRekamanGrid(); bindNav(); lucide.createIcons();
