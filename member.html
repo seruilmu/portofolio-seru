@@ -73,53 +73,53 @@ body::before{content:"";position:fixed;inset:-30%;z-index:-1;pointer-events:none
     <div class="mt-12 grid md:grid-cols-3 gap-4">
       <div onclick="showPage('materi')" class="bg-cardbg rounded-2xl p-6 border border-gray-800 cursor-pointer hover:border-blue-500/30 hover-float group relative overflow-hidden">
         <div class="absolute -top-20 -right-20 w-40 h-40 bg-blue-500/5 rounded-full blur-3xl group-hover:bg-blue-500/15 transition"></div>
-        <div class="relative z-10 text-center"><div class="w-14 h-14 mx-auto mb-4 bg-blue-500/10 border border-blue-500/20 rounded-2xl grid place-items-center text-2xl group-hover:scale-110 transition">📚</div><h3 class="text-white font-bold">MATERI</h3><p class="text-gray-400 text-xs mt-1">Panduan akses & tutorial</p></div>
+        <div class="relative z-10 text-center"><div class="w-14 h-14 mx-auto mb-4 bg-blue-500/10 border border-blue-500/20 rounded-2xl grid place-items-center text-2xl group-hover:scale-110 transition">📚</div><h3 id="qm-title" class="text-white font-bold" data-edit="dashQuickMat">MATERI</h3><p id="qm-sub" class="text-gray-400 text-xs mt-1" data-edit="dashQuickMatSub">Panduan akses & tutorial</p></div>
       </div>
       <div onclick="showPage('tools')" class="bg-cardbg rounded-2xl p-6 border border-gray-800 cursor-pointer hover:border-purple-500/30 hover-float group relative overflow-hidden">
         <div class="absolute -top-20 -right-20 w-40 h-40 bg-purple-500/5 rounded-full blur-3xl group-hover:bg-purple-500/15 transition"></div>
-        <div class="relative z-10 text-center"><div class="w-14 h-14 mx-auto mb-4 bg-purple-500/10 border border-purple-500/20 rounded-2xl grid place-items-center text-2xl group-hover:scale-110 transition">🛠️</div><h3 class="text-white font-bold">SERA AI TOOLS</h3><p class="text-gray-400 text-xs mt-1">9 tools eksklusif</p></div>
+        <div class="relative z-10 text-center"><div class="w-14 h-14 mx-auto mb-4 bg-purple-500/10 border border-purple-500/20 rounded-2xl grid place-items-center text-2xl group-hover:scale-110 transition">🛠️</div><h3 id="qt-title" class="text-white font-bold" data-edit="dashQuickTools">SERA AI TOOLS</h3><p id="qt-sub" class="text-gray-400 text-xs mt-1" data-edit="dashQuickToolsSub">9 tools eksklusif</p></div>
       </div>
       <div onclick="showPage('rekaman')" class="bg-cardbg rounded-2xl p-6 border border-gray-800 cursor-pointer hover:border-green-500/30 hover-float group relative overflow-hidden">
         <div class="absolute -top-20 -right-20 w-40 h-40 bg-green-500/5 rounded-full blur-3xl group-hover:bg-green-500/15 transition"></div>
-        <div class="relative z-10 text-center"><div class="w-14 h-14 mx-auto mb-4 bg-green-500/10 border border-green-500/20 rounded-2xl grid place-items-center text-2xl group-hover:scale-110 transition">📺</div><h3 class="text-white font-bold">REKAMAN LIVE</h3><p class="text-gray-400 text-xs mt-1">Arsip sesi pelatihan</p></div>
+        <div class="relative z-10 text-center"><div class="w-14 h-14 mx-auto mb-4 bg-green-500/10 border border-green-500/20 rounded-2xl grid place-items-center text-2xl group-hover:scale-110 transition">📺</div><h3 id="qr-title" class="text-white font-bold" data-edit="dashQuickRek">REKAMAN LIVE</h3><p id="qr-sub" class="text-gray-400 text-xs mt-1" data-edit="dashQuickRekSub">Arsip sesi pelatihan</p></div>
       </div>
     </div>
   </div>
 
   <!-- TOOLS AI LIST -->
   <div id="tools" class="page fade-in hidden">
-    <h2 class="text-3xl font-bold text-white mb-2">SERA AI TOOLS</h2>
-    <p class="text-gray-400 mb-8">Kumpulan AI tools eksklusif. Klik kartu untuk detail & akses.</p>
+    <h2 id="tools-title" class="text-3xl font-bold text-white mb-2" data-edit="toolsTitle">SERA AI TOOLS</h2>
+    <p id="tools-desc" class="text-gray-400 mb-8" data-edit="toolsDesc">Kumpulan AI tools eksklusif. Klik kartu untuk detail & akses.</p>
     <div class="grid md:grid-cols-2 gap-5" id="toolsGrid"></div>
   </div>
 
   <!-- MATERI -->
   <div id="materi" class="page fade-in hidden">
-    <h2 class="text-3xl font-bold text-white mb-3">MATERI</h2>
-    <p class="text-gray-400 mb-10">Panduan resmi penggunaan tools dan akses platform.</p>
+    <h2 id="materi-title" class="text-3xl font-bold text-white mb-3" data-edit="materiTitle">MATERI</h2>
+    <p id="materi-desc" class="text-gray-400 mb-10" data-edit="materiDesc">Panduan resmi penggunaan tools dan akses platform.</p>
     <div class="grid md:grid-cols-2 gap-6">
       <div class="bg-cardbg rounded-2xl p-6 border border-gray-800">
-        <div class="flex items-center gap-3 mb-4"><div class="w-9 h-9 rounded-lg bg-blue-500/10 grid place-items-center text-blue-400 font-bold text-sm">01</div><h3 class="text-lg font-bold text-white">Cara Akses Tools GPT</h3></div>
+        <div class="flex items-center gap-3 mb-4"><div class="w-9 h-9 rounded-lg bg-blue-500/10 grid place-items-center text-blue-400 font-bold text-sm">01</div><h3 id="m1-title" class="text-lg font-bold text-white" data-edit="materi1Title">Cara Akses Tools GPT</h3></div>
         <div class="bg-darkbg rounded-xl aspect-video mb-4 grid place-items-center text-gray-600 hover:text-red-500 transition cursor-pointer border border-gray-800" onclick="showVideo('','Cara Akses Tools GPT','')"><i data-lucide="play" class="w-12 h-12"></i></div>
-        <ul class="text-gray-400 text-sm space-y-2"><li class="flex items-start gap-2"><span class="text-green-400 mt-1">✓</span> Akun OpenAI (gratis)</li><li class="flex items-start gap-2"><span class="text-green-400 mt-1">✓</span> Browser Chrome/Safari</li></ul>
+        <ul id="m1-items" class="text-gray-400 text-sm space-y-2"><li class="flex items-start gap-2"><span class="text-green-400 mt-1">✓</span> Akun OpenAI (gratis)</li><li class="flex items-start gap-2"><span class="text-green-400 mt-1">✓</span> Browser Chrome/Safari</li></ul>
       </div>
       <div class="bg-cardbg rounded-2xl p-6 border border-gray-800 relative overflow-hidden">
         <div class="absolute top-0 right-0 w-56 h-56 bg-purple-500/5 rounded-full blur-3xl"></div>
-        <div class="flex items-center justify-between mb-4 relative z-10"><div class="flex items-center gap-3"><div class="w-9 h-9 rounded-lg bg-purple-500/10 grid place-items-center text-purple-400 font-bold text-sm">02</div><h3 class="text-lg font-bold text-white">Trik Leonardo AI</h3></div><span class="px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-300 text-xs font-bold">🔒 Rahasia</span></div>
+        <div class="flex items-center justify-between mb-4 relative z-10"><div class="flex items-center gap-3"><div class="w-9 h-9 rounded-lg bg-purple-500/10 grid place-items-center text-purple-400 font-bold text-sm">02</div><h3 id="m2-title" class="text-lg font-bold text-white" data-edit="materi2Title">Trik Leonardo AI</h3></div><span class="px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-300 text-xs font-bold">🔒 Rahasia</span></div>
         <div class="bg-darkbg rounded-xl aspect-video mb-4 grid place-items-center text-gray-600 hover:text-purple-500 transition cursor-pointer border border-gray-800 relative z-10" onclick="showVideo('','Trik Leonardo AI','')"><i data-lucide="play" class="w-12 h-12"></i></div>
-        <p class="text-gray-400 text-sm relative z-10">Hemat token, daily reset, manajemen workflow efisien.</p>
+        <p id="m2-desc" class="text-gray-400 text-sm relative z-10" data-edit="materi2Desc">Hemat token, daily reset, manajemen workflow efisien.</p>
       </div>
     </div>
     <div class="mt-8 bg-blue-500/5 border border-blue-500/10 rounded-2xl p-6 text-center">
-      <p class="text-white font-bold">🔗 LINK AKSES LEONARDO via CANVA PRO</p>
-      <p class="text-gray-400 text-sm mt-2">Member VIP bisa akses Leonardo Essentials + 8.500 token GRATIS.</p>
+      <p id="leo-title" class="text-white font-bold" data-edit="leonardoTitle">🔗 LINK AKSES LEONARDO via CANVA PRO</p>
+      <p id="leo-desc" class="text-gray-400 text-sm mt-2" data-edit="leonardoDesc">Member VIP bisa akses Leonardo Essentials + 8.500 token GRATIS.</p>
     </div>
   </div>
 
   <!-- REKAMAN LIVE -->
   <div id="rekaman" class="page fade-in hidden">
-    <h2 class="text-3xl font-bold text-white mb-3">REKAMAN LIVE</h2>
-    <p class="text-gray-400 mb-10">Arsip lengkap sesi live training. Klik untuk menonton ulang.</p>
+    <h2 id="rekaman-title" class="text-3xl font-bold text-white mb-3" data-edit="rekamanTitle">REKAMAN LIVE</h2>
+    <p id="rekaman-desc" class="text-gray-400 mb-10" data-edit="rekamanDesc">Arsip lengkap sesi live training. Klik untuk menonton ulang.</p>
     <div class="grid md:grid-cols-2 gap-4" id="rekamanGrid"></div>
   </div>
 
@@ -134,9 +134,9 @@ body::before{content:"";position:fixed;inset:-30%;z-index:-1;pointer-events:none
 
   <!-- CONTACT -->
   <div class="text-center p-10 bg-cardbg rounded-3xl border border-gray-800 mt-12">
-    <h2 class="text-2xl font-bold text-white mb-3">Butuh Bantuan?</h2>
-    <p class="text-gray-400 mb-6">Kendala akses, pertanyaan materi, atau saran? Hubungi admin.</p>
-    <a href="https://wa.me/6285757305799" target="_blank" class="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-secondary to-primary rounded-xl text-white font-bold shadow-lg shadow-blue-500/20 hover:-translate-y-1 transition">💬 Chat Admin via WhatsApp</a>
+    <h2 id="help-title" class="text-2xl font-bold text-white mb-3" data-edit="helpTitle">Butuh Bantuan?</h2>
+    <p id="help-desc" class="text-gray-400 mb-6" data-edit="helpDesc">Kendala akses, pertanyaan materi, atau saran? Hubungi admin.</p>
+    <a href="https://wa.me/6285757305799" target="_blank" class="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-secondary to-primary rounded-xl text-white font-bold shadow-lg shadow-blue-500/20 hover:-translate-y-1 transition"><span id="help-btn" data-edit="helpBtn">💬 Chat Admin via WhatsApp</span></a>
   </div>
 
   <!-- Video Modal -->
@@ -272,7 +272,9 @@ function doLogin(){
     if(isAdmin) sessionStorage.setItem('sd_admin','1');
     document.getElementById('loginScreen').style.display='none';
     document.getElementById('mainArea').classList.remove('hidden');
-    bindNav(); renderDashboard(); renderToolsGrid(); renderRekamanGrid(); lucide.createIcons(); showPage('dashboard');
+    bindNav(); renderDashboard(); renderToolsGrid(); renderRekamanGrid(); 
+    if(isAdmin) renderAllSections();
+    lucide.createIcons(); showPage('dashboard');
   }else{document.getElementById('loginErr').style.display='block';}
 }
 
@@ -293,6 +295,7 @@ function showPage(name){
   var el = document.getElementById(name);
   if(el){el.classList.remove('hidden');el.classList.add('fade-in');}
   if(name==='dashboard')renderDashboard();
+  else if(isAdmin)renderAllSections();
   window.scrollTo({top:0,behavior:'smooth'});
   lucide.createIcons();
 }
@@ -325,6 +328,8 @@ var CONTENT = {
   prTitle:'📝 PR AKTIF: SHORT MOVIE CHALLENGE',
   prDesc:'Buat video <strong>short movie minimal 30 detik</strong>, tema <strong>bebas</strong>.',
   prMeta:'⏰ 25 Juli 2026 · 🏆 Hadiah: akun Leonardo 8.500 token',
+  toolsTitle:'SERA AI TOOLS',
+  toolsDesc:'Kumpulan AI tools eksklusif SERU DIGITAL LABS. Klik kartu untuk detail & akses.',
   materiTitle:'MATERI',
   materiDesc:'Panduan resmi penggunaan tools dan akses platform.',
   materi1Title:'Cara Akses Tools GPT',
@@ -337,7 +342,10 @@ var CONTENT = {
   rekamanDesc:'Arsip lengkap sesi live training. Klik untuk menonton ulang.',
   helpTitle:'Butuh Bantuan?',
   helpDesc:'Kendala akses, pertanyaan materi, atau saran? Hubungi admin.',
-  helpBtn:'💬 Chat Admin via WhatsApp'
+  helpBtn:'💬 Chat Admin via WhatsApp',
+  dashQuickMat:'MATERI', dashQuickMatSub:'Panduan akses & tutorial',
+  dashQuickTools:'SERA AI TOOLS', dashQuickToolsSub:'9 tools eksklusif',
+  dashQuickRek:'REKAMAN LIVE', dashQuickRekSub:'Arsip sesi pelatihan'
 };
 
 function loadAll(){
@@ -355,19 +363,35 @@ function editContent(key){
 }
 
 function renderDashboard(){
-  document.getElementById('dash-badge').innerHTML = CONTENT.heroBadge;
-  document.getElementById('dash-title').innerHTML = CONTENT.heroTitle;
-  document.getElementById('dash-desc').textContent = CONTENT.heroDesc;
-  document.getElementById('dash-btn').innerHTML = CONTENT.heroBtn;
-  document.getElementById('pr-title').innerHTML = CONTENT.prTitle;
-  document.getElementById('pr-desc').innerHTML = CONTENT.prDesc;
-  document.getElementById('pr-meta').textContent = CONTENT.prMeta;
-  if(isAdmin){
-    document.querySelectorAll('[data-edit]').forEach(el=>{
-      el.style.cursor='pointer'; el.title='Klik untuk edit';
-      el.onclick=function(e){e.stopPropagation();editContent(this.dataset.edit);};
-    });
-  }
+  var set=function(id,val){var el=document.getElementById(id);if(el)el.innerHTML=val;};
+  set('dash-badge',CONTENT.heroBadge);set('dash-title',CONTENT.heroTitle);
+  set('dash-desc',CONTENT.heroDesc);set('dash-btn',CONTENT.heroBtn);
+  set('pr-title',CONTENT.prTitle);set('pr-desc',CONTENT.prDesc);set('pr-meta',CONTENT.prMeta);
+  set('qm-title',CONTENT.dashQuickMat);set('qm-sub',CONTENT.dashQuickMatSub);
+  set('qt-title',CONTENT.dashQuickTools);set('qt-sub',CONTENT.dashQuickToolsSub);
+  set('qr-title',CONTENT.dashQuickRek);set('qr-sub',CONTENT.dashQuickRekSub);
+  refreshAdminClicks();
+}
+
+function renderAllSections(){
+  var set=function(id,val){var el=document.getElementById(id);if(el)el.innerHTML=val;};
+  set('tools-title',CONTENT.toolsTitle);set('tools-desc',CONTENT.toolsDesc);
+  set('materi-title',CONTENT.materiTitle);set('materi-desc',CONTENT.materiDesc);
+  set('m1-title',CONTENT.materi1Title);set('m2-title',CONTENT.materi2Title);
+  set('m2-desc',CONTENT.materi2Desc);
+  set('m1-items',CONTENT.materi1Items.split('|').map(s=>'<li class="flex items-start gap-2"><span class="text-green-400 mt-1">✓</span> '+s+'</li>').join(''));
+  set('leo-title',CONTENT.leonardoTitle);set('leo-desc',CONTENT.leonardoDesc);
+  set('rekaman-title',CONTENT.rekamanTitle);set('rekaman-desc',CONTENT.rekamanDesc);
+  set('help-title',CONTENT.helpTitle);set('help-desc',CONTENT.helpDesc);set('help-btn',CONTENT.helpBtn);
+  refreshAdminClicks();
+}
+
+function refreshAdminClicks(){
+  if(!isAdmin)return;
+  document.querySelectorAll('[data-edit]').forEach(el=>{
+    el.style.cursor='pointer';el.style.outline='1px dashed rgba(255,255,255,.15)';el.title='Klik untuk edit';
+    el.onclick=function(e){e.stopPropagation();editContent(this.dataset.edit);};
+  });
 }
 
 function adminAddTool(){
@@ -461,6 +485,7 @@ if(sessionStorage.getItem('sd_auth')==='1'){
   document.getElementById('loginScreen').style.display='none';
   document.getElementById('mainArea').classList.remove('hidden');
   renderDashboard(); renderToolsGrid(); renderRekamanGrid(); bindNav(); lucide.createIcons();
+  if(isAdmin) renderAllSections();
 } else {
   renderToolsGrid(); renderRekamanGrid();
 }
