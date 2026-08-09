@@ -184,7 +184,7 @@ footer em{font-style:normal;color:var(--accent);}
 (function(){
 let E=s=>{let d=document.createElement('span');d.textContent=s??"";return d.innerHTML;};
 let ytId=u=>{let m=String(u??"").match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([\w-]{11})/);return m?m[1]:u;};
-let thumb=id=>'https://img.youtube.com/vi/'+id+'/hqdefault.jpg';
+let thumb=id=>'https://img.youtube.com/vi/'+id+'/maxresdefault.jpg';
 let nl2p=t=>String(t??"").split(/\n{2,}|\n/).filter(x=>x.trim()).map(p=>'<p>'+E(p)+'</p>').join('');
 
 function sec(id,label,title,desc,body){
