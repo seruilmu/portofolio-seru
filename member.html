@@ -50,7 +50,7 @@ body::before{content:"";
       <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-primary to-secondary grid place-items-center text-lg font-extrabold text-white shadow-lg shadow-blue-500/20">∞</div>
       <span class="text-white text-lg tracking-tight">Seru<span class="text-primary">Digital</span></span>
     </div>
-    <div class="flex items-center gap-1">
+    <div class="flex items-center gap-1 max-md:hidden" id="desktopNav">
       <button data-p="dashboard" class="nav-btn flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-white bg-white/10 transition"><i data-lucide="layout-grid" class="w-4 h-4"></i> Dashboard</button>
       <button data-p="tools" class="nav-btn flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-gray-400 hover:text-white hover:bg-white/5 transition"><i data-lucide="wand-2" class="w-4 h-4"></i> Tools AI</button>
       <button data-p="materi" class="nav-btn flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-gray-400 hover:text-white hover:bg-white/5 transition"><i data-lucide="play-square" class="w-4 h-4"></i> Materi Kelas</button>
@@ -63,8 +63,20 @@ body::before{content:"";
         </span>
       </button>
     </div>
+    <button onclick="toggleMobileMenu()" class="md:hidden text-gray-400 hover:text-white p-2">
+      <i data-lucide="menu" class="w-6 h-6"></i>
+    </button>
   </div>
 </nav>
+
+<!-- Mobile Menu -->
+<div id="mobileMenu" class="hidden md:hidden fixed top-16 inset-x-0 bg-darkbg/95 backdrop-blur-xl border-b border-white/10 z-40 p-4 space-y-1">
+  <button onclick="showPage('dashboard');toggleMobileMenu()" class="nav-btn-mobile w-full flex items-center gap-3 px-4 py-3 rounded-lg text-white bg-white/10 font-medium text-sm"><i data-lucide="layout-grid" class="w-4 h-4"></i> Dashboard</button>
+  <button onclick="showPage('tools');toggleMobileMenu()" class="nav-btn-mobile w-full flex items-center gap-3 px-4 py-3 rounded-lg text-gray-300 hover:text-white hover:bg-white/5 font-medium text-sm"><i data-lucide="wand-2" class="w-4 h-4"></i> Tools AI</button>
+  <button onclick="showPage('materi');toggleMobileMenu()" class="nav-btn-mobile w-full flex items-center gap-3 px-4 py-3 rounded-lg text-gray-300 hover:text-white hover:bg-white/5 font-medium text-sm"><i data-lucide="play-square" class="w-4 h-4"></i> Materi Kelas</button>
+  <button onclick="showPage('rekaman');toggleMobileMenu()" class="nav-btn-mobile w-full flex items-center gap-3 px-4 py-3 rounded-lg text-gray-300 hover:text-white hover:bg-white/5 font-medium text-sm"><i data-lucide="radio" class="w-4 h-4"></i> Rekaman</button>
+  <button onclick="doLogout()" class="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-gray-400 hover:text-red-400 font-medium text-sm"><i data-lucide="log-out" class="w-4 h-4"></i> Keluar</button>
+</div>
 
 <!-- Main -->
 <main id="mainArea" class="hidden max-w-6xl mx-auto px-6 pt-28 pb-16">
@@ -299,6 +311,11 @@ function doLogin(){
 }
 
 function doLogout(){sessionStorage.removeItem('sd_auth');location.reload();}
+
+function toggleMobileMenu(){
+  var m = document.getElementById('mobileMenu');
+  m.classList.toggle('hidden');
+}
 
 function bindNav(){
   document.querySelectorAll('.nav-btn').forEach(b=>{
