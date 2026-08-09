@@ -303,11 +303,14 @@ function showTool(id){
 
 // ── AUTH & NAV ──────────────────────────────────────────────────────────
 function doLogin(){
-  if(document.getElementById('passInput').value === PASSWORD){
+  var p = document.getElementById('passInput').value;
+  if(p === PASSWORD || p === ADMIN_PW){
+    isAdmin = (p === ADMIN_PW);
     sessionStorage.setItem('sd_auth','1');
+    if(isAdmin) sessionStorage.setItem('sd_admin','1');
     document.getElementById('loginScreen').style.display='none';
     document.getElementById('mainArea').classList.remove('hidden');
-    bindNav(); lucide.createIcons(); showPage('dashboard');
+    bindNav(); renderToolsGrid(); renderRekamanGrid(); lucide.createIcons(); showPage('dashboard');
   }else{document.getElementById('loginErr').style.display='block';}
 }
 
@@ -347,14 +350,112 @@ function closeVideo(){
   document.body.style.overflow = '';
 }
 
+// ── ADMIN PANEL ──────────────────────────────────────────────────────
+var ADMIN_PW = 'seruadmin2026';
+var isAdmin = false;
+
+function loadData(){
+  var saved = localStorage.getItem('sd_data');
+  if(saved) try{ var d=JSON.parse(saved); if(d.tools)TOOLS=d.tools; if(d.rekaman)REKAMAN=d.rekaman; }catch(e){}
+}
+
+function saveData(){
+  localStorage.setItem('sd_data', JSON.stringify({tools:TOOLS, rekaman:REKAMAN}));
+}
+
+function adminAddTool(){
+  var id=prompt('ID (cinema/storyboard/...):'); if(!id)return;
+  var title=prompt('Nama tool:'); if(!title)return;
+  TOOLS.push({id:id,emoji:'🆕',title:title,cat:'Baru',catColor:'teal',color:'emerald',colorHex:'#10b981',
+    desc:'Deskripsi tool.', pills:['Fitur 1'], steps:['Step 1'], link:'#'});
+  saveData(); renderToolsGrid(); alert('Tool ditambahkan!');
+}
+
+function adminEditTool(idx){
+  var t=TOOLS[idx]; var title=prompt('Nama tool:',t.title); if(title)t.title=title;
+  var link=prompt('Link akses:',t.link); if(link)t.link=link;
+  var desc=prompt('Deskripsi:',t.desc); if(desc)t.desc=desc;
+  saveData(); renderToolsGrid(); alert('Tool diupdate!');
+}
+
+function adminDeleteTool(idx){
+  if(!confirm('Hapus '+TOOLS[idx].title+'?'))return;
+  TOOLS.splice(idx,1); saveData(); renderToolsGrid();
+}
+
+function adminAddRekaman(){
+  var title=prompt('Judul rekaman:'); if(!title)return;
+  var date=prompt('Tanggal (cth: 1 Agustus 2026):'); if(!date)return;
+  var yt=prompt('YouTube ID (dari https://youtu.be/XXXXX):'); if(!yt)yt='';
+  REKAMAN.push({title:title,date:date,yt:yt});
+  saveData(); renderRekamanGrid(); alert('Rekaman ditambahkan!');
+}
+
+function adminEditRekaman(idx){
+  var r=REKAMAN[idx]; var title=prompt('Judul:',r.title); if(title)r.title=title;
+  var date=prompt('Tanggal:',r.date); if(date)r.date=date;
+  var yt=prompt('YouTube ID:',r.yt); if(yt!==null)r.yt=yt;
+  saveData(); renderRekamanGrid(); alert('Rekaman diupdate!');
+}
+
+function adminDeleteRekaman(idx){
+  if(!confirm('Hapus rekaman '+REKAMAN[idx].title+'?'))return;
+  REKAMAN.splice(idx,1); saveData(); renderRekamanGrid();
+}
+
+// Update render functions to show admin buttons
+function renderToolsGrid(){
+  var grid = document.getElementById('toolsGrid');
+  if(!grid)return;
+  grid.innerHTML = TOOLS.map((t,i)=>`
+    <div class="relative group/card">
+      ${isAdmin?`<div class="absolute top-3 right-3 z-20 flex gap-1">
+        <button onclick="event.stopPropagation();adminEditTool(${i})" class="w-6 h-6 bg-yellow-500/80 rounded text-xs font-bold text-black">✎</button>
+        <button onclick="event.stopPropagation();adminDeleteTool(${i})" class="w-6 h-6 bg-red-500/80 rounded text-xs font-bold text-white">✕</button>
+      </div>`:''}
+      <div onclick="showTool('${t.id}')" class="bg-cardbg rounded-2xl p-6 border border-gray-800 cursor-pointer hover-float hover:border-${t.color}-500/30 group relative overflow-hidden">
+        <div class="absolute -top-16 -right-16 w-32 h-32 bg-${t.color}-500/5 rounded-full blur-3xl group-hover:bg-${t.color}-500/10 transition"></div>
+        <div class="flex gap-4 relative z-10">
+          <div class="w-14 h-14 bg-${t.color}-500/10 border border-${t.color}-500/20 rounded-2xl grid place-items-center shrink-0 group-hover:scale-110 transition text-2xl">${t.emoji}</div>
+          <div class="flex-1">
+            <div class="flex items-center justify-between"><h3 class="text-lg font-bold text-white group-hover:text-${t.color}-400 transition">${t.title}</h3><span class="px-2 py-0.5 rounded-full bg-${t.catColor}-500/10 border border-${t.catColor}-500/20 text-${t.catColor}-400 text-[10px] font-bold">${t.cat}</span></div>
+            <p class="text-gray-400 text-xs mt-2">${t.desc.substring(0,100)}...</p>
+          </div>
+        </div>
+      </div></div>`).join('');
+  if(isAdmin) grid.insertAdjacentHTML('beforeend','<div onclick="adminAddTool()" class="bg-cardbg rounded-2xl p-6 border border-dashed border-gray-600 cursor-pointer hover:border-green-500/50 grid place-items-center min-h-[100px]"><span class="text-3xl text-gray-600 hover:text-green-400">+ Tambah Tool</span></div>');
+}
+
+function renderRekamanGrid(){
+  var grid = document.getElementById('rekamanGrid');
+  if(!grid)return;
+  grid.innerHTML = REKAMAN.map((r,i)=>`
+    <div class="relative group/card">
+      ${isAdmin?`<div class="absolute top-3 right-3 z-20 flex gap-1">
+        <button onclick="event.stopPropagation();adminEditRekaman(${i})" class="w-6 h-6 bg-yellow-500/80 rounded text-xs font-bold text-black">✎</button>
+        <button onclick="event.stopPropagation();adminDeleteRekaman(${i})" class="w-6 h-6 bg-red-500/80 rounded text-xs font-bold text-white">✕</button>
+      </div>`:''}
+      <div class="bg-cardbg rounded-2xl p-6 border border-gray-800 ${r.yt?'':'opacity-50'}">
+        <div class="flex items-center gap-3 mb-4"><div class="w-9 h-9 rounded-lg bg-green-500/10 grid place-items-center text-green-400 font-bold text-sm">${String(i+1).padStart(2,'0')}</div><h3 class="text-lg font-bold text-white">${r.title}</h3></div>
+        <div class="bg-darkbg rounded-xl aspect-video mb-4 overflow-hidden relative group cursor-pointer border border-gray-800" onclick="${r.yt ? "showVideo('"+r.yt+"','"+r.title+"','"+r.date+"')" : "showVideo('','"+r.title+"','')"}">
+          ${r.yt ? '<img src="https://img.youtube.com/vi/'+r.yt+'/maxresdefault.jpg" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-80 group-hover:scale-105 transition" alt="">' : ''}
+          <div class="absolute inset-0 flex items-center justify-center z-10"><div class="w-14 h-14 rounded-full bg-black/40 backdrop-blur-sm border border-white/20 flex items-center justify-center group-hover:scale-110 group-hover:bg-black/60 transition"><i data-lucide="${r.yt?'play':'lock'}" class="w-6 h-6 text-white"></i></div></div>
+        </div>
+        <p class="text-gray-500 text-xs">${r.date}</p>${!r.yt ? '<p class="text-gray-600 text-[10px] mt-1">Video segera tersedia</p>' : ''}
+      </div></div>`).join('');
+  if(isAdmin) grid.insertAdjacentHTML('beforeend','<div onclick="adminAddRekaman()" class="bg-cardbg rounded-2xl p-6 border border-dashed border-gray-600 cursor-pointer hover:border-green-500/50 grid place-items-center min-h-[200px]"><span class="text-3xl text-gray-600 hover:text-green-400">+ Tambah Rekaman</span></div>');
+}
+
 // ── INIT ────────────────────────────────────────────────────────────────
+loadData();
 renderToolsGrid();
 renderRekamanGrid();
 
 if(sessionStorage.getItem('sd_auth')==='1'){
+  if(sessionStorage.getItem('sd_admin')==='1') isAdmin = true;
   document.getElementById('loginScreen').style.display='none';
   document.getElementById('mainArea').classList.remove('hidden');
-  bindNav(); lucide.createIcons();
+  bindNav(); renderToolsGrid(); renderRekamanGrid(); lucide.createIcons();
 }
 document.getElementById('passInput').addEventListener('keydown',function(e){if(e.key==='Enter')doLogin();});
 </script>
