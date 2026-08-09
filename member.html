@@ -75,7 +75,7 @@ body::before{content:"";
   <button onclick="showPage('tools');toggleMobileMenu()" class="nav-btn-mobile w-full flex items-center gap-3 px-4 py-3 rounded-lg text-gray-300 hover:text-white hover:bg-white/5 font-medium text-sm"><i data-lucide="wand-2" class="w-4 h-4"></i> Tools AI</button>
   <button onclick="showPage('materi');toggleMobileMenu()" class="nav-btn-mobile w-full flex items-center gap-3 px-4 py-3 rounded-lg text-gray-300 hover:text-white hover:bg-white/5 font-medium text-sm"><i data-lucide="play-square" class="w-4 h-4"></i> Materi Kelas</button>
   <button onclick="showPage('rekaman');toggleMobileMenu()" class="nav-btn-mobile w-full flex items-center gap-3 px-4 py-3 rounded-lg text-gray-300 hover:text-white hover:bg-white/5 font-medium text-sm"><i data-lucide="radio" class="w-4 h-4"></i> Rekaman</button>
-  <div id="mobileEditToggle" class="hidden px-4 py-2 flex items-center gap-3" onclick="toggleEdit()">
+  <div id="mobileEditToggle" style="display:none" class="px-4 py-2 flex items-center gap-3" onclick="toggleEdit()">
     <span class="text-gray-300 text-sm font-medium">Edit Mode</span>
     <span class="relative inline-block w-9 h-5 rounded-full border border-gray-600 transition" id="toggleBgM">
       <span class="absolute top-0.5 left-0.5 w-3.5 h-3.5 rounded-full bg-gray-500 transition" id="toggleDotM"></span>
@@ -367,7 +367,8 @@ var editMode = false;
 function showEditToggle(){
   document.getElementById('editToggle').classList.remove('hidden');
   document.getElementById('adminMemberBtn').classList.remove('hidden');
-  document.getElementById('mobileEditToggle').classList.remove('hidden');
+  var m = document.getElementById('mobileEditToggle');
+  if(m) m.style.display = 'flex';
 }
 
 function toggleEdit(){
