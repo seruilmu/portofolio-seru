@@ -137,8 +137,11 @@ a{color:inherit;text-decoration:none;}
 .v-card:hover .v-thumb img{transform:scale(1.04);}
 .v-thumb{aspect-ratio:16/9;position:relative;overflow:hidden;background:var(--s2);}
 .v-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .5s;}
-.v-short img{transform:scale(1.15);object-position:center 30%;}
-.v-card:hover .v-short img{transform:scale(1.22);}
+.v-short img{transform:scale(1.45);object-position:center 25%;}
+.v-card:hover .v-short img{transform:scale(1.55);}
+.v-thumb-bg{position:absolute;inset:0;background-size:cover!important;background-position:center!important;
+  background-repeat:no-repeat;transition:transform .5s;transform:scale(1.25);}
+.v-card:hover .v-thumb-bg{transform:scale(1.35);}
 .v-card:hover .v-thumb img{transform:scale(1.08);}
 .v-thumb::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(5,5,8,.7) 0%,transparent 35%,transparent 75%);}
 .v-play{position:absolute;inset:0;display:grid;place-items:center;z-index:2;opacity:.35;transition:all .3s;}
@@ -240,7 +243,15 @@ function render(){
   let vidHtml='<div class="v-grid">'+(D.videos||[]).map((v,i)=>{
     let id=ytId(v.youtube),img=id?thumb(id):'';
     let isShort=/shorts/.test(v.youtube||'');
-    return `<article class="v-card" data-cat="${E(catAssign[i]||'Commercial')}" data-video="${E(v.youtube)}"><div class="v-thumb${isShort?' v-short':''}">${img?`<img src="${E(img)}" alt="${E(v.title)}" loading="lazy" onerror="this.src='https://img.youtube.com/vi/${id}/sddefault.jpg'">`:''}<div class="v-play"><div class="v-play-ico"></div></div></div><div class="v-body"><div class="v-cat">${E(catAssign[i]||'Commercial')}</div><h3>${E(v.title)}</h3><div class="v-desc">${E(v.desc)}</div></div></article>`;
+    let thumbHtml='';
+    if(id){
+      if(isShort){
+        thumbHtml=`<div class="v-thumb-bg" style="background-image:url('${img}');background-size:cover;background-position:center"></div>`;
+      }else{
+        thumbHtml=`<img src="${E(img)}" alt="${E(v.title)}" loading="lazy" onerror="this.src='https://img.youtube.com/vi/${id}/sddefault.jpg'">`;
+      }
+    }
+    return `<article class="v-card" data-cat="${E(catAssign[i]||'Commercial')}" data-video="${E(v.youtube)}"><div class="v-thumb${isShort?' v-short':''}">${thumbHtml}<div class="v-play"><div class="v-play-ico"></div></div></div><div class="v-body"><div class="v-cat">${E(catAssign[i]||'Commercial')}</div><h3>${E(v.title)}</h3><div class="v-desc">${E(v.desc)}</div></div></article>`;
   }).join('')+'</div>';
   let vidSec=sec('karya','Portfolio','Karya pilihan','Beberapa video yang sudah saya produksi — dari sinematik sampai konten iklan.',filterBar+vidHtml);
 
