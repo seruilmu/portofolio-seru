@@ -212,44 +212,6 @@ var REKAMAN = [
 ];
 
 // ── RENDER ──────────────────────────────────────────────────────────────
-function renderToolsGrid(){
-  var grid = document.getElementById('toolsGrid');
-  grid.innerHTML = TOOLS.map(t=>`
-    <div onclick="showTool('${t.id}')" class="bg-cardbg rounded-2xl p-6 border border-gray-800 cursor-pointer hover-float hover:border-${t.color}-500/30 group relative overflow-hidden">
-      <div class="absolute -top-16 -right-16 w-32 h-32 bg-${t.color}-500/5 rounded-full blur-3xl group-hover:bg-${t.color}-500/10 transition"></div>
-      <div class="flex gap-4 relative z-10">
-        <div class="w-14 h-14 bg-${t.color}-500/10 border border-${t.color}-500/20 rounded-2xl grid place-items-center shrink-0 group-hover:scale-110 transition text-2xl">${t.emoji}</div>
-        <div class="flex-1">
-          <div class="flex items-center justify-between">
-            <h3 class="text-lg font-bold text-white group-hover:text-${t.color}-400 transition">${t.title}</h3>
-            <span class="px-2 py-0.5 rounded-full bg-${t.catColor}-500/10 border border-${t.catColor}-500/20 text-${t.catColor}-400 text-[10px] font-bold">${t.cat}</span>
-          </div>
-          <p class="text-gray-400 text-xs mt-2">${t.desc.substring(0,100)}...</p>
-        </div>
-      </div>
-    </div>`).join('');
-}
-
-function renderRekamanGrid(){
-  var grid = document.getElementById('rekamanGrid');
-  grid.innerHTML = REKAMAN.map((r,i)=>`
-    <div class="bg-cardbg rounded-2xl p-6 border border-gray-800 ${r.yt?'':'opacity-50'}">
-      <div class="flex items-center gap-3 mb-4">
-        <div class="w-9 h-9 rounded-lg bg-green-500/10 grid place-items-center text-green-400 font-bold text-sm">${String(i+1).padStart(2,'0')}</div>
-        <h3 class="text-lg font-bold text-white">${r.title}</h3>
-      </div>
-      <div class="bg-darkbg rounded-xl aspect-video mb-4 overflow-hidden relative group cursor-pointer border border-gray-800" onclick="${r.yt ? "showVideo('"+r.yt+"','"+r.title+"','"+r.date+"')" : "showVideo('','"+r.title+"','')"}">
-        ${r.yt ? '<img src="https://img.youtube.com/vi/'+r.yt+'/maxresdefault.jpg" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-80 group-hover:scale-105 transition" alt="">' : ''}
-        <div class="absolute inset-0 flex items-center justify-center z-10">
-          <div class="w-14 h-14 rounded-full bg-black/40 backdrop-blur-sm border border-white/20 flex items-center justify-center group-hover:scale-110 group-hover:bg-black/60 transition">
-            <i data-lucide="${r.yt?'play':'lock'}" class="w-6 h-6 text-white"></i>
-          </div>
-        </div>
-      </div>
-      <p class="text-gray-500 text-xs">${r.date}</p>
-      ${!r.yt ? '<p class="text-gray-600 text-[10px] mt-1">Video segera tersedia</p>' : ''}
-    </div>`).join('');
-}
 
 function showTool(id){
   var t = TOOLS.find(x=>x.id===id); if(!t)return;
@@ -448,14 +410,14 @@ function renderRekamanGrid(){
 
 // ── INIT ────────────────────────────────────────────────────────────────
 loadData();
-renderToolsGrid();
-renderRekamanGrid();
 
 if(sessionStorage.getItem('sd_auth')==='1'){
   if(sessionStorage.getItem('sd_admin')==='1') isAdmin = true;
   document.getElementById('loginScreen').style.display='none';
   document.getElementById('mainArea').classList.remove('hidden');
-  bindNav(); renderToolsGrid(); renderRekamanGrid(); lucide.createIcons();
+  renderToolsGrid(); renderRekamanGrid(); bindNav(); lucide.createIcons();
+} else {
+  renderToolsGrid(); renderRekamanGrid();
 }
 document.getElementById('passInput').addEventListener('keydown',function(e){if(e.key==='Enter')doLogin();});
 </script>
