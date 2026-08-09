@@ -20,6 +20,26 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;}
 html{scroll-behavior:smooth;}
 body{background:var(--bg);color:var(--t1);font-family:var(--font);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+body::before{content:"";position:fixed;inset:-30%;z-index:-1;pointer-events:none;
+  background:radial-gradient(ellipse at 30% 20%,rgba(79,172,254,.06),transparent 50%),
+    radial-gradient(ellipse at 70% 60%,rgba(0,212,255,.04),transparent 50%),
+    radial-gradient(ellipse at 50% 80%,rgba(79,172,254,.03),transparent 40%);
+  animation:aurora 20s ease-in-out infinite alternate;}
+@keyframes aurora{0%{transform:translate(0,0) scale(1)}100%{transform:translate(20px,-15px) scale(1.05)}}
+
+/* Subtle dot grid */
+.bg-grid{position:fixed;inset:0;pointer-events:none;z-index:-1;opacity:.03;
+  background-image:radial-gradient(rgba(255,255,255,.3) 1px,transparent 1px);
+  background-size:32px 32px;}
+
+/* Custom cursor */
+.cursor{position:fixed;width:24px;height:24px;border-radius:50%;pointer-events:none;z-index:9999;
+  border:1.5px solid rgba(79,172,254,.5);transform:translate(-50%,-50%);
+  transition:width .2s,height .2s,border-color .2s;mix-blend-mode:screen;}
+.cursor-dot{position:fixed;width:5px;height:5px;border-radius:50%;pointer-events:none;z-index:9999;
+  background:var(--accent);transform:translate(-50%,-50%);box-shadow:0 0 12px var(--accent);}
+.cursor.hover{width:48px;height:48px;border-color:var(--accent);background:rgba(79,172,254,.08);}
+@media(max-width:768px),(pointer:coarse){.cursor,.cursor-dot{display:none;}}
 img,svg,video{max-width:100%;display:block;}
 a{color:inherit;text-decoration:none;}
 ::selection{background:var(--accent);color:#fff;}
@@ -156,6 +176,9 @@ footer em{font-style:normal;color:var(--accent);}
 .reveal.in{opacity:1;transform:translateY(0);}
 @media(prefers-reduced-motion){.reveal{opacity:1;transform:none}}
 </style></head><body>
+<div class="bg-grid"></div>
+<div class="cursor"></div>
+<div class="cursor-dot"></div>
 <div id="app"></div>
 <script>
 (function(){
@@ -253,6 +276,13 @@ function init(){
   document.addEventListener("keydown",e=>{if(e.key==="Escape")close()});
   let obs=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");obs.unobserve(e.target);}})},{threshold:.06,rootMargin:"0px 0px -16px 0px"});
   document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
+  // Custom cursor
+  let cr=document.querySelector(".cursor"),cd=document.querySelector(".cursor-dot");
+  document.addEventListener("mousemove",e=>{let x=e.clientX,y=e.clientY;cr.style.left=x+"px";cr.style.top=y+"px";cd.style.left=x+"px";cd.style.top=y+"px";});
+  document.querySelectorAll("a,button,.v-card,.filter-chip,.btn").forEach(el=>{
+    el.addEventListener("mouseenter",()=>cr.classList.add("hover"));
+    el.addEventListener("mouseleave",()=>cr.classList.remove("hover"));
+  });
 }
 
 window.SD={};
