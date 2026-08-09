@@ -10,6 +10,12 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 body{background:#08080e;font-family:'Inter',system-ui,sans-serif}
+body::before{content:"";position:fixed;inset:-30%;z-index:-1;pointer-events:none;
+  background:radial-gradient(ellipse at 60% 10%,rgba(0,210,255,.04),transparent 50%),
+    radial-gradient(ellipse at 30% 70%,rgba(139,92,246,.03),transparent 50%),
+    radial-gradient(ellipse at 80% 50%,rgba(58,123,213,.03),transparent 40%);
+  animation:drift 25s ease-in-out infinite alternate}
+@keyframes drift{0%{transform:translate(0,0) scale(1)}100%{transform:translate(30px,-20px) scale(1.06)}}
 .fade-in{animation:fadeUp .35s ease-out}
 @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 .hover-float{transition:all .35s cubic-bezier(.4,0,.2,1)}
@@ -223,8 +229,13 @@ function renderRekamanGrid(){
         <div class="w-9 h-9 rounded-lg bg-green-500/10 grid place-items-center text-green-400 font-bold text-sm">${String(i+1).padStart(2,'0')}</div>
         <h3 class="text-lg font-bold text-white">${r.title}</h3>
       </div>
-      <div class="bg-darkbg rounded-xl aspect-video mb-4 grid place-items-center text-gray-600 hover:text-green-500 transition cursor-pointer border border-gray-800" onclick="${r.yt ? "showVideo('"+r.yt+"','"+r.title+"','"+r.date+"')" : "showVideo('','"+r.title+"','')"}">
-        <i data-lucide="${r.yt?'play':'lock'}" class="w-12 h-12"></i>
+      <div class="bg-darkbg rounded-xl aspect-video mb-4 overflow-hidden relative group cursor-pointer border border-gray-800" onclick="${r.yt ? "showVideo('"+r.yt+"','"+r.title+"','"+r.date+"')" : "showVideo('','"+r.title+"','')"}">
+        ${r.yt ? '<img src="https://img.youtube.com/vi/'+r.yt+'/maxresdefault.jpg" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-80 group-hover:scale-105 transition" alt="">' : ''}
+        <div class="absolute inset-0 flex items-center justify-center z-10">
+          <div class="w-14 h-14 rounded-full bg-black/40 backdrop-blur-sm border border-white/20 flex items-center justify-center group-hover:scale-110 group-hover:bg-black/60 transition">
+            <i data-lucide="${r.yt?'play':'lock'}" class="w-6 h-6 text-white"></i>
+          </div>
+        </div>
       </div>
       <p class="text-gray-500 text-xs">${r.date}</p>
       ${!r.yt ? '<p class="text-gray-600 text-[10px] mt-1">Video segera tersedia</p>' : ''}
