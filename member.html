@@ -63,12 +63,12 @@ body::before{content:"";position:fixed;inset:-30%;z-index:-1;pointer-events:none
 
   <!-- DASHBOARD -->
   <div id="dashboard" class="page fade-in">
-    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-300 text-xs font-semibold mb-6">🚀 Terima Kasih Telah Bergabung!</div>
-    <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-4 leading-tight">Selamat Datang di<br><span class="text-gradient">Ruang Kerja Kreatif</span></h1>
-    <p class="text-gray-400 text-lg max-w-xl mb-10">Pusat resmi tools AI kreatif, materi panduan, dan rekaman pelatihan.</p>
-    <button onclick="showPage('tools')" class="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-secondary to-blue-600 rounded-xl text-white font-bold shadow-lg shadow-blue-500/20 hover:-translate-y-1 transition">⚡ Jelajahi Tools AI</button>
+    <div id="dash-badge" class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-300 text-xs font-semibold mb-6" data-edit="heroBadge">🚀 Terima Kasih Telah Bergabung!</div>
+    <h1 id="dash-title" class="text-4xl md:text-6xl font-extrabold text-white mb-4 leading-tight" data-edit="heroTitle">Selamat Datang di<br><span class="text-gradient">Ruang Kerja Kreatif</span></h1>
+    <p id="dash-desc" class="text-gray-400 text-lg max-w-xl mb-10" data-edit="heroDesc">Pusat resmi tools AI kreatif, materi panduan, dan rekaman pelatihan.</p>
+    <button onclick="showPage('tools')" id="dash-btn" class="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-secondary to-blue-600 rounded-xl text-white font-bold shadow-lg shadow-blue-500/20 hover:-translate-y-1 transition" data-edit="heroBtn">⚡ Jelajahi Tools AI</button>
     <div class="mt-14 bg-pink-500/5 border border-pink-500/20 rounded-2xl p-6">
-      <div class="flex items-start gap-3"><span class="text-2xl">🎬</span><div><h3 class="text-lg font-bold text-white">📝 PR AKTIF: SHORT MOVIE CHALLENGE</h3><p class="text-gray-300 text-sm mt-1">Buat video <strong>short movie minimal 30 detik</strong>, tema <strong>bebas</strong>.</p><p class="text-gray-500 text-xs mt-3">⏰ 25 Juli 2026 · 🏆 Hadiah: akun Leonardo 8.500 token</p></div></div>
+      <div class="flex items-start gap-3"><span class="text-2xl">🎬</span><div><h3 id="pr-title" class="text-lg font-bold text-white" data-edit="prTitle">📝 PR AKTIF: SHORT MOVIE CHALLENGE</h3><p id="pr-desc" class="text-gray-300 text-sm mt-1" data-edit="prDesc">Buat video <strong>short movie minimal 30 detik</strong>, tema <strong>bebas</strong>.</p><p id="pr-meta" class="text-gray-500 text-xs mt-3" data-edit="prMeta">⏰ 25 Juli 2026 · 🏆 Hadiah: akun Leonardo 8.500 token</p></div></div>
     </div>
     <div class="mt-12 grid md:grid-cols-3 gap-4">
       <div onclick="showPage('materi')" class="bg-cardbg rounded-2xl p-6 border border-gray-800 cursor-pointer hover:border-blue-500/30 hover-float group relative overflow-hidden">
@@ -272,7 +272,7 @@ function doLogin(){
     if(isAdmin) sessionStorage.setItem('sd_admin','1');
     document.getElementById('loginScreen').style.display='none';
     document.getElementById('mainArea').classList.remove('hidden');
-    bindNav(); renderToolsGrid(); renderRekamanGrid(); lucide.createIcons(); showPage('dashboard');
+    bindNav(); renderDashboard(); renderToolsGrid(); renderRekamanGrid(); lucide.createIcons(); showPage('dashboard');
   }else{document.getElementById('loginErr').style.display='block';}
 }
 
@@ -292,6 +292,7 @@ function showPage(name){
   document.querySelectorAll('.page').forEach(p=>{p.classList.add('hidden');});
   var el = document.getElementById(name);
   if(el){el.classList.remove('hidden');el.classList.add('fade-in');}
+  if(name==='dashboard')renderDashboard();
   window.scrollTo({top:0,behavior:'smooth'});
   lucide.createIcons();
 }
@@ -316,13 +317,57 @@ function closeVideo(){
 var ADMIN_PW = 'seruadmin2026';
 var isAdmin = false;
 
-function loadData(){
+var CONTENT = {
+  heroBadge:'🚀 Terima Kasih Telah Bergabung!',
+  heroTitle:'Selamat Datang di<br><span class="text-gradient">Ruang Kerja Kreatif</span>',
+  heroDesc:'Pusat resmi tools AI kreatif, materi panduan, dan rekaman pelatihan.',
+  heroBtn:'⚡ Jelajahi Tools AI',
+  prTitle:'📝 PR AKTIF: SHORT MOVIE CHALLENGE',
+  prDesc:'Buat video <strong>short movie minimal 30 detik</strong>, tema <strong>bebas</strong>.',
+  prMeta:'⏰ 25 Juli 2026 · 🏆 Hadiah: akun Leonardo 8.500 token',
+  materiTitle:'MATERI',
+  materiDesc:'Panduan resmi penggunaan tools dan akses platform.',
+  materi1Title:'Cara Akses Tools GPT',
+  materi1Items:'Akun OpenAI (gratis)|Browser Chrome/Safari',
+  materi2Title:'Trik Leonardo AI',
+  materi2Desc:'Hemat token, daily reset, manajemen workflow efisien.',
+  leonardoTitle:'🔗 LINK AKSES LEONARDO via CANVA PRO',
+  leonardoDesc:'Member VIP bisa akses Leonardo Essentials + 8.500 token GRATIS.',
+  rekamanTitle:'REKAMAN LIVE',
+  rekamanDesc:'Arsip lengkap sesi live training. Klik untuk menonton ulang.',
+  helpTitle:'Butuh Bantuan?',
+  helpDesc:'Kendala akses, pertanyaan materi, atau saran? Hubungi admin.',
+  helpBtn:'💬 Chat Admin via WhatsApp'
+};
+
+function loadAll(){
   var saved = localStorage.getItem('sd_data');
-  if(saved) try{ var d=JSON.parse(saved); if(d.tools)TOOLS=d.tools; if(d.rekaman)REKAMAN=d.rekaman; }catch(e){}
+  if(saved) try{ var d=JSON.parse(saved); if(d.tools)TOOLS=d.tools; if(d.rekaman)REKAMAN=d.rekaman; if(d.content)CONTENT=d.content; }catch(e){}
 }
 
-function saveData(){
-  localStorage.setItem('sd_data', JSON.stringify({tools:TOOLS, rekaman:REKAMAN}));
+function saveAll(){
+  localStorage.setItem('sd_data', JSON.stringify({tools:TOOLS, rekaman:REKAMAN, content:CONTENT}));
+}
+
+function editContent(key){
+  var old = CONTENT[key]; var val = prompt('Edit:', old);
+  if(val!==null && val!==old){ CONTENT[key]=val; saveAll(); renderDashboard(); }
+}
+
+function renderDashboard(){
+  document.getElementById('dash-badge').innerHTML = CONTENT.heroBadge;
+  document.getElementById('dash-title').innerHTML = CONTENT.heroTitle;
+  document.getElementById('dash-desc').textContent = CONTENT.heroDesc;
+  document.getElementById('dash-btn').innerHTML = CONTENT.heroBtn;
+  document.getElementById('pr-title').innerHTML = CONTENT.prTitle;
+  document.getElementById('pr-desc').innerHTML = CONTENT.prDesc;
+  document.getElementById('pr-meta').textContent = CONTENT.prMeta;
+  if(isAdmin){
+    document.querySelectorAll('[data-edit]').forEach(el=>{
+      el.style.cursor='pointer'; el.title='Klik untuk edit';
+      el.onclick=function(e){e.stopPropagation();editContent(this.dataset.edit);};
+    });
+  }
 }
 
 function adminAddTool(){
@@ -330,19 +375,19 @@ function adminAddTool(){
   var title=prompt('Nama tool:'); if(!title)return;
   TOOLS.push({id:id,emoji:'🆕',title:title,cat:'Baru',catColor:'teal',color:'emerald',colorHex:'#10b981',
     desc:'Deskripsi tool.', pills:['Fitur 1'], steps:['Step 1'], link:'#'});
-  saveData(); renderToolsGrid(); alert('Tool ditambahkan!');
+  saveAll(); renderToolsGrid(); alert('Tool ditambahkan!');
 }
 
 function adminEditTool(idx){
   var t=TOOLS[idx]; var title=prompt('Nama tool:',t.title); if(title)t.title=title;
   var link=prompt('Link akses:',t.link); if(link)t.link=link;
   var desc=prompt('Deskripsi:',t.desc); if(desc)t.desc=desc;
-  saveData(); renderToolsGrid(); alert('Tool diupdate!');
+  saveAll(); renderToolsGrid(); alert('Tool diupdate!');
 }
 
 function adminDeleteTool(idx){
   if(!confirm('Hapus '+TOOLS[idx].title+'?'))return;
-  TOOLS.splice(idx,1); saveData(); renderToolsGrid();
+  TOOLS.splice(idx,1); saveAll(); renderToolsGrid();
 }
 
 function adminAddRekaman(){
@@ -350,19 +395,19 @@ function adminAddRekaman(){
   var date=prompt('Tanggal (cth: 1 Agustus 2026):'); if(!date)return;
   var yt=prompt('YouTube ID (dari https://youtu.be/XXXXX):'); if(!yt)yt='';
   REKAMAN.push({title:title,date:date,yt:yt});
-  saveData(); renderRekamanGrid(); alert('Rekaman ditambahkan!');
+  saveAll(); renderRekamanGrid(); alert('Rekaman ditambahkan!');
 }
 
 function adminEditRekaman(idx){
   var r=REKAMAN[idx]; var title=prompt('Judul:',r.title); if(title)r.title=title;
   var date=prompt('Tanggal:',r.date); if(date)r.date=date;
   var yt=prompt('YouTube ID:',r.yt); if(yt!==null)r.yt=yt;
-  saveData(); renderRekamanGrid(); alert('Rekaman diupdate!');
+  saveAll(); renderRekamanGrid(); alert('Rekaman diupdate!');
 }
 
 function adminDeleteRekaman(idx){
   if(!confirm('Hapus rekaman '+REKAMAN[idx].title+'?'))return;
-  REKAMAN.splice(idx,1); saveData(); renderRekamanGrid();
+  REKAMAN.splice(idx,1); saveAll(); renderRekamanGrid();
 }
 
 // Update render functions to show admin buttons
@@ -409,13 +454,13 @@ function renderRekamanGrid(){
 }
 
 // ── INIT ────────────────────────────────────────────────────────────────
-loadData();
+loadAll();
 
 if(sessionStorage.getItem('sd_auth')==='1'){
   if(sessionStorage.getItem('sd_admin')==='1') isAdmin = true;
   document.getElementById('loginScreen').style.display='none';
   document.getElementById('mainArea').classList.remove('hidden');
-  renderToolsGrid(); renderRekamanGrid(); bindNav(); lucide.createIcons();
+  renderDashboard(); renderToolsGrid(); renderRekamanGrid(); bindNav(); lucide.createIcons();
 } else {
   renderToolsGrid(); renderRekamanGrid();
 }
