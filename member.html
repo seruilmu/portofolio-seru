@@ -227,10 +227,17 @@ function doLogin(){
     sessionStorage.setItem('sd_auth','1');
     document.getElementById('loginScreen').style.display='none';
     document.getElementById('mainArea').classList.add('show');
+    bindNav();
     show('dashboard');
   }else{
     document.getElementById('loginErr').style.display='block';
   }
+}
+
+function bindNav(){
+  document.querySelectorAll('.nav-btn').forEach(b=>{
+    b.onclick = function(){ show(this.dataset.p); };
+  });
 }
 
 function doLogout(){
@@ -248,13 +255,12 @@ function show(name){
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
-// Auto login if already authed
+// Auto login + bind nav
 if(sessionStorage.getItem('sd_auth')==='1'){
   document.getElementById('loginScreen').style.display='none';
   document.getElementById('mainArea').classList.add('show');
+  bindNav();
 }
-
-// Enter key to login
 document.getElementById('passInput').addEventListener('keydown',function(e){if(e.key==='Enter')doLogin();});
 </script>
 </body>
