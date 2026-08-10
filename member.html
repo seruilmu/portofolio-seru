@@ -104,7 +104,7 @@ document.getElementById('passInput').addEventListener('keydown',function(e){if(e
       </div>
     </div>
     <script>document.getElementById('dash-btn').addEventListener('click',function(e){e.stopPropagation();showPage('tools');});</script>
-    <div class="mt-12 grid md:grid-cols-3 gap-4">
+    <div class="mt-12 grid md:grid-cols-4 gap-4">
       <div onclick="showPage('materi')" class="bg-cardbg rounded-2xl p-6 border border-gray-800 cursor-pointer hover:border-blue-500/30 hover-float group relative overflow-hidden">
         <div class="absolute -top-20 -right-20 w-40 h-40 bg-blue-500/5 rounded-full blur-3xl group-hover:bg-blue-500/15 transition"></div>
         <div class="relative z-10 text-center"><div class="w-14 h-14 mx-auto mb-4 bg-blue-500/10 border border-blue-500/20 rounded-2xl grid place-items-center text-2xl group-hover:scale-110 transition">📚</div><h3 id="qm-title" class="text-white font-bold" data-edit="dashQuickMat">MATERI</h3><p id="qm-sub" class="text-gray-400 text-xs mt-1" data-edit="dashQuickMatSub">Panduan akses & tutorial</p></div>
@@ -116,6 +116,10 @@ document.getElementById('passInput').addEventListener('keydown',function(e){if(e
       <div onclick="showPage('rekaman')" class="bg-cardbg rounded-2xl p-6 border border-gray-800 cursor-pointer hover:border-green-500/30 hover-float group relative overflow-hidden">
         <div class="absolute -top-20 -right-20 w-40 h-40 bg-green-500/5 rounded-full blur-3xl group-hover:bg-green-500/15 transition"></div>
         <div class="relative z-10 text-center"><div class="w-14 h-14 mx-auto mb-4 bg-green-500/10 border border-green-500/20 rounded-2xl grid place-items-center text-2xl group-hover:scale-110 transition">📺</div><h3 id="qr-title" class="text-white font-bold" data-edit="dashQuickRek">REKAMAN LIVE</h3><p id="qr-sub" class="text-gray-400 text-xs mt-1" data-edit="dashQuickRekSub">Arsip sesi pelatihan</p></div>
+      </div>
+      <div class="bg-cardbg rounded-2xl p-6 border border-gray-800 cursor-pointer hover:border-yellow-500/30 hover-float group relative overflow-hidden" onclick="showAccounts()">
+        <div class="absolute -top-20 -right-20 w-40 h-40 bg-yellow-500/5 rounded-full blur-3xl group-hover:bg-yellow-500/15 transition"></div>
+        <div class="relative z-10 text-center"><div class="w-14 h-14 mx-auto mb-4 bg-yellow-500/10 border border-yellow-500/20 rounded-2xl grid place-items-center text-2xl group-hover:scale-110 transition">🔑</div><h3 class="text-white font-bold">AKUN LEONARDO</h3><p class="text-gray-400 text-xs mt-1">Gratis siap pakai</p></div>
       </div>
     </div>
     <div id="adminMemberBtn" class="hidden mt-4 text-center"><button onclick="showMemberManager()" class="px-6 py-3 bg-emerald-600 hover:bg-emerald-500 rounded-xl text-white font-bold text-sm transition">👥 Kelola Member</button></div>
@@ -188,7 +192,14 @@ document.getElementById('passInput').addEventListener('keydown',function(e){if(e
 var PASSWORD = 'serudigital2026';
 var ADMIN_PW = 'seruadmin2026';
 var MEMBERS = [];
+var ACCOUNTS = [];
 var API_URL = 'https://script.google.com/macros/s/AKfycbw3_DXRzBc6QM8Uh7tk6hAnnYF8kc7tjcvDOCekwlvNz4fg6Cyv9aTpSJeuqgcOmd5h/exec';
+
+function loadAccounts(){
+  fetch(API_URL+'?type=accounts').then(r=>r.json()).then(d=>{
+    ACCOUNTS = d;
+  }).catch(function(){});
+}
 
 function loadMembers(){
   fetch(API_URL).then(r=>r.json()).then(d=>{
@@ -609,6 +620,49 @@ function deleteMember(idx){
   fetch(API_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'delete',pw:pw})});
   localStorage.setItem('sd_cache',JSON.stringify(MEMBERS));
   closeMemberManager(); showMemberManager();
+}
+
+// ── AKUN LEONARDO ─────────────────────────────────────────────────────
+function showAccounts(){
+  loadAccounts();
+  var list = ACCOUNTS.map((a,i)=>`<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #1e293b;gap:8px">
+    <span style="color:#9090a8;font-size:12px;flex:1">${i+1}. <span style="color:#fff">${a.email}</span><br><span style="color:#00d2ff">${a.pw}</span></span>
+    <span style="display:flex;gap:4px">
+      <button onclick="copyCode('${a.email}')" style="background:rgba(0,210,255,.1);border:1px solid rgba(0,210,255,.2);color:#00d2ff;cursor:pointer;font-size:10px;padding:2px 6px;border-radius:4px">📧</button>
+      <button onclick="copyCode('${a.pw}')" style="background:rgba(0,210,255,.1);border:1px solid rgba(0,210,255,.2);color:#00d2ff;cursor:pointer;font-size:10px;padding:2px 6px;border-radius:4px">🔑</button>
+      ${(isAdmin&&editMode)?`<button onclick="deleteAccount(${i})" style="background:transparent;border:none;color:#ff6b7a;cursor:pointer;font-size:14px">✕</button>`:''}
+    </span>
+  </div>`).join('');
+  var html = '<div style="background:#0f1018;border:1px solid #1e293b;border-radius:16px;padding:20px;width:min(500px,92vw);max-height:75vh;display:flex;flex-direction:column;margin:0 auto">'+
+    '<h3 style="color:#fff;font-size:16px;margin-bottom:12px;display:flex;justify-content:space-between"><span>🔑 Akun Leonardo ('+ACCOUNTS.length+')</span><button onclick="closeAccModal()" style="color:#666;background:none;border:none;font-size:18px;cursor:pointer">✕</button></h3>'+
+    '<div style="flex:1;overflow-y:auto;margin-bottom:12px">'+(list||'<p style="color:#555">Belum ada akun</p>')+'</div>'+
+    ((isAdmin&&editMode)?'<div style="display:flex;gap:8px"><input id="accEmail" placeholder="Email" style="flex:1;padding:10px;border:1px solid #333;border-radius:8px;background:#0a0a10;color:#fff;font-size:12px"><input id="accPw" placeholder="Password" style="flex:1;padding:10px;border:1px solid #333;border-radius:8px;background:#0a0a10;color:#fff;font-size:12px"><button onclick="addAccount()" style="background:#10b981;color:#fff;border:none;padding:10px 16px;border-radius:8px;font-weight:700;cursor:pointer;font-size:12px">+ Tambah</button></div>':'')+
+    '</div>';
+  var modal = document.createElement('div');
+  modal.id = 'accModal';
+  modal.style.cssText = 'position:fixed;inset:0;z-index:400;background:rgba(0,0,0,.9);display:flex;align-items:center;justify-content:center;padding:16px';
+  modal.innerHTML = html;
+  modal.onclick = function(e){if(e.target===modal)closeAccModal();};
+  document.body.appendChild(modal);
+}
+
+function closeAccModal(){ var m=document.getElementById('accModal');if(m)m.remove(); }
+
+function addAccount(){
+  var email = document.getElementById('accEmail').value.trim();
+  var pw = document.getElementById('accPw').value.trim();
+  if(!email||!pw) return alert('Isi email dan password!');
+  ACCOUNTS.push({email:email,pw:pw});
+  fetch(API_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'addAccount',email:email,pw:pw})});
+  closeAccModal(); setTimeout(showAccounts,300);
+}
+
+function deleteAccount(idx){
+  if(!confirm('Hapus akun ini?'))return;
+  var pw = ACCOUNTS[idx].pw;
+  ACCOUNTS.splice(idx,1);
+  fetch(API_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'deleteAccount',pw:pw})});
+  closeAccModal(); setTimeout(showAccounts,300);
 }
 
 // Update render functions to show admin buttons
