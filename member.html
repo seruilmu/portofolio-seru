@@ -92,6 +92,22 @@ document.getElementById('passInput').addEventListener('keydown',function(e){if(e
 
   <!-- DASHBOARD -->
   <div id="dashboard" class="page fade-in">
+    <!-- Leonardo Announcement Banner -->
+    <div id="leoBanner" class="mb-8 bg-gradient-to-r from-yellow-600/10 via-yellow-500/20 to-yellow-600/10 border border-yellow-500/30 rounded-2xl p-4 overflow-hidden relative">
+      <div class="absolute top-2 left-3 px-2 py-0.5 rounded-full bg-yellow-500/30 border border-yellow-400/50 text-yellow-200 text-[10px] font-bold animate-pulse">🔑 AKUN GRATIS</div>
+      <div class="overflow-hidden mt-4">
+        <div id="leoTicker" class="flex gap-8 animate-marquee whitespace-nowrap text-sm" style="animation:marquee 25s linear infinite"></div>
+      </div>
+    </div>
+    <style>@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}</style>
+    <script>
+    function renderLeoBanner(){
+      var a = ACCOUNTS; if(!a.length){ document.getElementById('leoBanner').style.display='none'; return; }
+      document.getElementById('leoBanner').style.display='block';
+      var items = a.map(x=>`<span class="text-white font-semibold">📧 ${x.email}</span> <span class="text-yellow-300 mx-2">|</span> <span class="text-gray-400">🔑 ${x.pw}</span>`).join(' <span class="text-yellow-500/50 mx-4">•</span> ');
+      document.getElementById('leoTicker').innerHTML = items + ' <span class="text-yellow-500/50 mx-4">•</span> ' + items;
+    }
+    </script>
     <div class="relative overflow-hidden rounded-3xl border border-white/10 mb-12">
       <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover opacity-30">
         <source src="mascot.mp4" type="video/mp4">
@@ -198,8 +214,26 @@ var API_URL = 'https://script.google.com/macros/s/AKfycbw3_DXRzBc6QM8Uh7tk6hAnnY
 
 function loadAccounts(){
   fetch(API_URL+'?type=accounts').then(r=>r.json()).then(d=>{
-    ACCOUNTS = d;
-  }).catch(function(){});
+    if(d&&d.length) ACCOUNTS = d;
+    localStorage.setItem('sd_acc',JSON.stringify(ACCOUNTS));
+    renderLeoBanner();
+  }).catch(function(){
+    var saved = localStorage.getItem('sd_acc');
+    if(saved) try{ ACCOUNTS = JSON.parse(saved); }catch(e){}
+    renderLeoBanner();
+  });
+  // Default accounts langsung tampil
+  if(!ACCOUNTS.length){
+    ACCOUNTS = [
+      {email:'charlottejames4804@randomjuga1.site',pw:'Qwerty1234@@#'},
+      {email:'annettefernandez358@randomjuga1.site',pw:'Qwerty1234@@#'},
+      {email:'aaronporter5394@randomjuga1.site',pw:'Qwerty1234@@#'},
+      {email:'naomipena966@randomjuga1.site',pw:'Qwerty1234@@#'},
+      {email:'christinawoods1008@randomjuga1.site',pw:'Qwerty1234@@#'},
+      {email:'jennywatkins2694@randomjuga1.site',pw:'Qwerty1234@@#'}
+    ];
+    renderLeoBanner();
+  }
 }
 
 function loadMembers(){
