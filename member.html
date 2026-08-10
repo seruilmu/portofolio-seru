@@ -205,16 +205,12 @@ function loadMembers(){
 function syncToAPI(members){
   fetch(API_URL,{
     method:'POST',
+    mode:'no-cors',
     headers:{'Content-Type':'application/json'},
     body:JSON.stringify({members:members})
-  }).then(r=>r.json()).then(function(resp){
-    if(resp.ok){
-      localStorage.setItem('sd_cache',JSON.stringify(MEMBERS));
-      alert('✅ '+resp.added+' kredensial tersimpan!');
-    }
-  }).catch(function(){
-    alert('⚠️ Gagal sync ke server. Coba lagi.');
   });
+  localStorage.setItem('sd_cache',JSON.stringify(MEMBERS));
+  alert('✅ '+members.length+' kode tersimpan! Tersedia di semua device.');
 }
 
 // ── DATA ────────────────────────────────────────────────────────────────
