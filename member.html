@@ -604,9 +604,10 @@ function addMember(){
 
 function deleteMember(idx){
   if(!confirm('Hapus member '+MEMBERS[idx].name+'?'))return;
+  var pw = MEMBERS[idx].pw;
   MEMBERS.splice(idx,1);
-  if(!MEMBERS.length) MEMBERS = [{name:'Default',pw:'serudigital2026'}];
-  saveMembers();
+  fetch(API_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'delete',pw:pw})});
+  localStorage.setItem('sd_cache',JSON.stringify(MEMBERS));
   closeMemberManager(); showMemberManager();
 }
 
