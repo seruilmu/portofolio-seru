@@ -189,10 +189,24 @@ var PASSWORD = 'serudigital2026';
 var ADMIN_PW = 'seruadmin2026';
 var MEMBERS = []; // [{name:'',pw:''}]
 
+var MEMBERS_URL = 'members.json';
+
 function loadMembers(){
-  var saved = localStorage.getItem('sd_members');
+  fetch(MEMBERS_URL).then(r=>r.json()).then(d=>{
+    MEMBERS = d;
+    localStorage.setItem('sd_members_local',JSON.stringify(d));
+  }).catch(function(){
+    var saved = localStorage.getItem('sd_members_local');
+    if(saved) try{ MEMBERS = JSON.parse(saved); }catch(e){}
+  });
+  var saved = localStorage.getItem('sd_members_local');
   if(saved) try{ MEMBERS = JSON.parse(saved); }catch(e){}
-  if(!MEMBERS.length) MEMBERS = [];
+}
+
+function saveMembers(){
+  var data = JSON.stringify(MEMBERS,null,2);
+  localStorage.setItem('sd_members_local',data);
+  // Save locally for now until backend is set up
 }
 
 // ── DATA ────────────────────────────────────────────────────────────────
@@ -578,7 +592,7 @@ function addMember(){
     var label = n>1 ? name+' #'+(i+1) : name;
     MEMBERS.push({name:label,pw:pw});
   }
-  localStorage.setItem('sd_members',JSON.stringify(MEMBERS));
+  saveMembers();
   closeMemberManager(); showMemberManager();
 }
 
@@ -586,7 +600,7 @@ function deleteMember(idx){
   if(!confirm('Hapus member '+MEMBERS[idx].name+'?'))return;
   MEMBERS.splice(idx,1);
   if(!MEMBERS.length) MEMBERS = [{name:'Default',pw:'serudigital2026'}];
-  localStorage.setItem('sd_members',JSON.stringify(MEMBERS));
+  saveMembers();
   closeMemberManager(); showMemberManager();
 }
 
