@@ -92,24 +92,8 @@ document.getElementById('passInput').addEventListener('keydown',function(e){if(e
 
   <!-- DASHBOARD -->
   <div id="dashboard" class="page fade-in">
-    <!-- Leonardo Announcement Banner -->
-    <div id="leoBanner" class="mb-8 bg-gradient-to-r from-blue-600/10 via-cyan-500/15 to-blue-600/10 border border-cyan-500/20 rounded-2xl p-4 overflow-hidden relative">
-      <div class="absolute top-2 left-3 px-2 py-0.5 rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-200 text-[10px] font-bold">🔑 AKUN GRATIS</div>
-      <div class="overflow-hidden mt-4">
-        <div id="leoTicker" class="flex gap-8 animate-marquee whitespace-nowrap text-sm" style="animation:marquee 25s linear infinite"></div>
-      </div>
-    </div>
-    <style>@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}</style>
-    <script>
-    function renderLeoBanner(){
-      var a = ACCOUNTS;
-      document.getElementById('leoBanner').style.display='block';
-      var msg = a.length 
-        ? '🔑 AKUN LEONARDO GRATIS MINGGU INI SUDAH UPDATE — '+a.length+' akun siap pakai! Klik kartu AKUN LEONARDO di bawah buat lihat & copy.' 
-        : '🔑 AKUN LEONARDO GRATIS — Update tiap minggu. Klik kartu AKUN LEONARDO di bawah.';
-      document.getElementById('leoTicker').innerHTML = '<span class="text-cyan-200 text-sm font-semibold">'+msg+'</span> <span class="text-cyan-500/50 mx-4">•</span> <span class="text-cyan-200 text-sm font-semibold">'+msg+'</span> <span class="text-cyan-500/50 mx-4">•</span> <span class="text-cyan-200 text-sm font-semibold">'+msg+'</span>';
-    }
-    </script>
+    <!-- Leonardo Announcement Banner (hidden -- info ada di card) -->
+    <div id="leoBanner" style="display:none"></div>
     <div class="relative overflow-hidden rounded-3xl border border-white/10 mb-12">
       <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover opacity-30">
         <source src="mascot.mp4" type="video/mp4">
@@ -137,7 +121,6 @@ document.getElementById('passInput').addEventListener('keydown',function(e){if(e
       </div>
       <div class="bg-cardbg rounded-2xl p-6 border border-cyan-500/20 cursor-pointer hover:border-cyan-400 hover-float group relative overflow-hidden shadow-[0_0_30px_rgba(0,210,255,.08)]" onclick="showAccounts()">
         <div class="absolute -top-20 -right-20 w-40 h-40 bg-cyan-400/5 rounded-full blur-3xl group-hover:bg-cyan-400/10 transition"></div>
-        <div class="absolute top-3 right-3 px-2 py-0.5 rounded-full bg-cyan-500/15 border border-cyan-500/30 text-cyan-300 text-[10px] font-bold">✨ GRATIS</div>
         <div class="relative z-10 text-center"><div class="w-14 h-14 mx-auto mb-4 bg-cyan-500/10 border border-cyan-500/20 rounded-2xl grid place-items-center text-2xl group-hover:scale-110 transition">🔑</div><h3 class="text-white font-bold">AKUN LEONARDO</h3><p class="text-gray-400 text-xs mt-1">Update tiap minggu</p></div>
       </div>
     </div>
