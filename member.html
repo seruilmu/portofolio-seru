@@ -88,7 +88,14 @@ body::before{content:"";
     <div id="dash-badge" class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-300 text-xs font-semibold mb-6" data-edit="heroBadge">🚀 Terima Kasih Telah Bergabung!</div>
     <h1 id="dash-title" class="text-4xl md:text-6xl font-extrabold text-white mb-4 leading-tight" data-edit="heroTitle">Selamat Datang di<br><span class="text-gradient">Ruang Kerja Kreatif</span></h1>
     <p id="dash-desc" class="text-gray-400 text-lg max-w-xl mb-10" data-edit="heroDesc">Pusat resmi tools AI kreatif, materi panduan, dan rekaman pelatihan.</p>
-    <button onclick="showPage('tools')" id="dash-btn" class="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-secondary to-blue-600 rounded-xl text-white font-bold shadow-lg shadow-blue-500/20 hover:-translate-y-1 transition" data-edit="heroBtn">⚡ Jelajahi Tools AI</button>
+    <div class="flex flex-col md:flex-row items-start gap-6">
+      <button onclick="showPage('tools')" id="dash-btn" class="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-secondary to-blue-600 rounded-xl text-white font-bold shadow-lg shadow-blue-500/20 hover:-translate-y-1 transition shrink-0" data-edit="heroBtn">⚡ Jelajahi Tools AI</button>
+      <div class="hidden md:block w-48 h-48 rounded-2xl overflow-hidden border border-white/10 shadow-2xl opacity-80 hover:opacity-100 transition">
+        <video autoplay loop muted playsinline class="w-full h-full object-cover">
+          <source src="mascot.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
     <script>document.getElementById('dash-btn').addEventListener('click',function(e){e.stopPropagation();showPage('tools');});</script>
     <div class="mt-12 grid md:grid-cols-3 gap-4">
       <div onclick="showPage('materi')" class="bg-cardbg rounded-2xl p-6 border border-gray-800 cursor-pointer hover:border-blue-500/30 hover-float group relative overflow-hidden">
