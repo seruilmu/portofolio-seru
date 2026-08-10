@@ -102,10 +102,12 @@ document.getElementById('passInput').addEventListener('keydown',function(e){if(e
     <style>@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}</style>
     <script>
     function renderLeoBanner(){
-      var a = ACCOUNTS; if(!a.length){ document.getElementById('leoBanner').style.display='none'; return; }
+      var a = ACCOUNTS;
       document.getElementById('leoBanner').style.display='block';
-      var items = a.map(x=>`<span class="text-white font-semibold">📧 ${x.email}</span> <span class="text-yellow-300 mx-2">|</span> <span class="text-gray-400">🔑 ${x.pw}</span>`).join(' <span class="text-yellow-500/50 mx-4">•</span> ');
-      document.getElementById('leoTicker').innerHTML = items + ' <span class="text-yellow-500/50 mx-4">•</span> ' + items;
+      var msg = a.length 
+        ? '🔑 AKUN LEONARDO GRATIS MINGGU INI SUDAH UPDATE — '+a.length+' akun siap pakai! Klik kartu AKUN LEONARDO di bawah buat lihat & copy.' 
+        : '🔑 AKUN LEONARDO GRATIS — Update tiap minggu. Klik kartu AKUN LEONARDO di bawah.';
+      document.getElementById('leoTicker').innerHTML = '<span class="text-yellow-200 text-sm font-semibold">'+msg+'</span> <span class="text-yellow-500/50 mx-4">•</span> <span class="text-yellow-200 text-sm font-semibold">'+msg+'</span> <span class="text-yellow-500/50 mx-4">•</span> <span class="text-yellow-200 text-sm font-semibold">'+msg+'</span>';
     }
     </script>
     <div class="relative overflow-hidden rounded-3xl border border-white/10 mb-12">
