@@ -93,8 +93,8 @@ document.getElementById('passInput').addEventListener('keydown',function(e){if(e
   <!-- DASHBOARD -->
   <div id="dashboard" class="page fade-in">
     <!-- Leonardo Announcement Banner -->
-    <div id="leoBanner" class="mb-8 bg-gradient-to-r from-yellow-600/10 via-yellow-500/20 to-yellow-600/10 border border-yellow-500/30 rounded-2xl p-4 overflow-hidden relative">
-      <div class="absolute top-2 left-3 px-2 py-0.5 rounded-full bg-yellow-500/30 border border-yellow-400/50 text-yellow-200 text-[10px] font-bold animate-pulse">🔑 AKUN GRATIS</div>
+    <div id="leoBanner" class="mb-8 bg-gradient-to-r from-blue-600/10 via-cyan-500/15 to-blue-600/10 border border-cyan-500/20 rounded-2xl p-4 overflow-hidden relative">
+      <div class="absolute top-2 left-3 px-2 py-0.5 rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-200 text-[10px] font-bold">🔑 AKUN GRATIS</div>
       <div class="overflow-hidden mt-4">
         <div id="leoTicker" class="flex gap-8 animate-marquee whitespace-nowrap text-sm" style="animation:marquee 25s linear infinite"></div>
       </div>
@@ -107,7 +107,7 @@ document.getElementById('passInput').addEventListener('keydown',function(e){if(e
       var msg = a.length 
         ? '🔑 AKUN LEONARDO GRATIS MINGGU INI SUDAH UPDATE — '+a.length+' akun siap pakai! Klik kartu AKUN LEONARDO di bawah buat lihat & copy.' 
         : '🔑 AKUN LEONARDO GRATIS — Update tiap minggu. Klik kartu AKUN LEONARDO di bawah.';
-      document.getElementById('leoTicker').innerHTML = '<span class="text-yellow-200 text-sm font-semibold">'+msg+'</span> <span class="text-yellow-500/50 mx-4">•</span> <span class="text-yellow-200 text-sm font-semibold">'+msg+'</span> <span class="text-yellow-500/50 mx-4">•</span> <span class="text-yellow-200 text-sm font-semibold">'+msg+'</span>';
+      document.getElementById('leoTicker').innerHTML = '<span class="text-cyan-200 text-sm font-semibold">'+msg+'</span> <span class="text-cyan-500/50 mx-4">•</span> <span class="text-cyan-200 text-sm font-semibold">'+msg+'</span> <span class="text-cyan-500/50 mx-4">•</span> <span class="text-cyan-200 text-sm font-semibold">'+msg+'</span>';
     }
     </script>
     <div class="relative overflow-hidden rounded-3xl border border-white/10 mb-12">
@@ -135,10 +135,10 @@ document.getElementById('passInput').addEventListener('keydown',function(e){if(e
         <div class="absolute -top-20 -right-20 w-40 h-40 bg-green-500/5 rounded-full blur-3xl group-hover:bg-green-500/15 transition"></div>
         <div class="relative z-10 text-center"><div class="w-14 h-14 mx-auto mb-4 bg-green-500/10 border border-green-500/20 rounded-2xl grid place-items-center text-2xl group-hover:scale-110 transition">📺</div><h3 id="qr-title" class="text-white font-bold" data-edit="dashQuickRek">REKAMAN LIVE</h3><p id="qr-sub" class="text-gray-400 text-xs mt-1" data-edit="dashQuickRekSub">Arsip sesi pelatihan</p></div>
       </div>
-      <div class="bg-cardbg rounded-2xl p-6 border border-yellow-500/30 cursor-pointer hover:border-yellow-400 hover-float group relative overflow-hidden shadow-[0_0_30px_rgba(234,179,8,.1)]" onclick="showAccounts()">
-        <div class="absolute -top-20 -right-20 w-40 h-40 bg-yellow-400/8 rounded-full blur-3xl group-hover:bg-yellow-400/15 transition"></div>
-        <div class="absolute top-3 right-3 px-2 py-0.5 rounded-full bg-yellow-500/20 border border-yellow-500/40 text-yellow-300 text-[10px] font-bold animate-pulse">✨ GRATIS</div>
-        <div class="relative z-10 text-center"><div class="w-14 h-14 mx-auto mb-4 bg-yellow-500/15 border border-yellow-500/30 rounded-2xl grid place-items-center text-2xl group-hover:scale-110 transition">🔑</div><h3 class="text-white font-bold">AKUN LEONARDO</h3><p class="text-gray-400 text-xs mt-1">Update tiap minggu</p></div>
+      <div class="bg-cardbg rounded-2xl p-6 border border-cyan-500/20 cursor-pointer hover:border-cyan-400 hover-float group relative overflow-hidden shadow-[0_0_30px_rgba(0,210,255,.08)]" onclick="showAccounts()">
+        <div class="absolute -top-20 -right-20 w-40 h-40 bg-cyan-400/5 rounded-full blur-3xl group-hover:bg-cyan-400/10 transition"></div>
+        <div class="absolute top-3 right-3 px-2 py-0.5 rounded-full bg-cyan-500/15 border border-cyan-500/30 text-cyan-300 text-[10px] font-bold">✨ GRATIS</div>
+        <div class="relative z-10 text-center"><div class="w-14 h-14 mx-auto mb-4 bg-cyan-500/10 border border-cyan-500/20 rounded-2xl grid place-items-center text-2xl group-hover:scale-110 transition">🔑</div><h3 class="text-white font-bold">AKUN LEONARDO</h3><p class="text-gray-400 text-xs mt-1">Update tiap minggu</p></div>
       </div>
     </div>
     <div id="adminMemberBtn" class="hidden mt-4 text-center"><button onclick="showMemberManager()" class="px-6 py-3 bg-emerald-600 hover:bg-emerald-500 rounded-xl text-white font-bold text-sm transition">👥 Kelola Member</button></div>
@@ -215,27 +215,22 @@ var ACCOUNTS = [];
 var API_URL = 'https://script.google.com/macros/s/AKfycbw3_DXRzBc6QM8Uh7tk6hAnnYF8kc7tjcvDOCekwlvNz4fg6Cyv9aTpSJeuqgcOmd5h/exec';
 
 function loadAccounts(){
+  // Default accounts langsung tampil
+  ACCOUNTS = [
+    {email:'charlottejames4804@randomjuga1.site',pw:'Qwerty1234@@#'},
+    {email:'annettefernandez358@randomjuga1.site',pw:'Qwerty1234@@#'},
+    {email:'aaronporter5394@randomjuga1.site',pw:'Qwerty1234@@#'},
+    {email:'naomipena966@randomjuga1.site',pw:'Qwerty1234@@#'},
+    {email:'christinawoods1008@randomjuga1.site',pw:'Qwerty1234@@#'},
+    {email:'jennywatkins2694@randomjuga1.site',pw:'Qwerty1234@@#'}
+  ];
+  renderLeoBanner();
+  // Sync from API in background
   fetch(API_URL+'?type=accounts').then(r=>r.json()).then(d=>{
     if(d&&d.length) ACCOUNTS = d;
     localStorage.setItem('sd_acc',JSON.stringify(ACCOUNTS));
     renderLeoBanner();
-  }).catch(function(){
-    var saved = localStorage.getItem('sd_acc');
-    if(saved) try{ ACCOUNTS = JSON.parse(saved); }catch(e){}
-    renderLeoBanner();
-  });
-  // Default accounts langsung tampil
-  if(!ACCOUNTS.length){
-    ACCOUNTS = [
-      {email:'charlottejames4804@randomjuga1.site',pw:'Qwerty1234@@#'},
-      {email:'annettefernandez358@randomjuga1.site',pw:'Qwerty1234@@#'},
-      {email:'aaronporter5394@randomjuga1.site',pw:'Qwerty1234@@#'},
-      {email:'naomipena966@randomjuga1.site',pw:'Qwerty1234@@#'},
-      {email:'christinawoods1008@randomjuga1.site',pw:'Qwerty1234@@#'},
-      {email:'jennywatkins2694@randomjuga1.site',pw:'Qwerty1234@@#'}
-    ];
-    renderLeoBanner();
-  }
+  }).catch(function(){});
 }
 
 function loadMembers(){
