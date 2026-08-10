@@ -218,14 +218,6 @@ function render(){
   });
   let usedCats=[...new Set(Object.values(catAssign))];
 
-  let marquee=`<div class="marquee-bar"><div class="marquee-inner">
-    <span>🔑 AKUN LEONARDO GRATIS MINGGU INI SUDAH UPDATE — Klik kartu AKUN LEONARDO di Member Area </span>
-    <span>•</span>
-    <span>🔑 AKUN LEONARDO GRATIS MINGGU INI SUDAH UPDATE — Klik kartu AKUN LEONARDO di Member Area </span>
-    <span>•</span>
-    <span>🔑 AKUN LEONARDO GRATIS MINGGU INI SUDAH UPDATE — Klik kartu AKUN LEONARDO di Member Area </span>
-  </div></div>`;
-
   let nav=`<nav class="nav"><div class="nav-inner"><span class="nav-brand">${E(brand)}</span><div class="nav-menu"><a href="#layanan">Layanan</a><a href="#kelas">Kelas</a><a href="#karya">Karya</a><a href="#testimoni">Testimoni</a><a class="nav-cta" href="#kontak">Mulai Project</a></div></div></nav>`;
 
   let heroBg=`<div class="hero-bg"><video autoplay muted loop playsinline preload="auto" src="${E(hvid)}"></video></div>`;
@@ -279,7 +271,7 @@ function render(){
   let footer=`<footer>${E(brand)} <em>✦</em> SERU DIGITAL LABS <em>✦</em> 2026</footer>`;
   let modal=`<div class="modal" id="videoModal"><button class="modal-x" id="modalClose">&times;</button><div class="modal-vid"><iframe id="modalIframe" src="" allow="autoplay;encrypted-media" allowfullscreen></iframe></div></div>`;
 
-  document.getElementById("app").innerHTML=nav+marquee+hero+statsSec+aboutSec+svcSec+classSec+vidSec+testiSec+contactSec+footer+modal;
+  document.getElementById("app").innerHTML=nav+hero+statsSec+aboutSec+svcSec+classSec+vidSec+testiSec+contactSec+footer+modal;
   init();
 }
 
