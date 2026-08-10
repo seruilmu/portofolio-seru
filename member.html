@@ -134,12 +134,15 @@ document.getElementById('passInput').addEventListener('keydown',function(e){if(e
   <style>@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}</style>
   <script>
   function renderLeoBanner(){
-    if(!ACCOUNTS.length) return;
-    var items = ACCOUNTS.map(a=>a.email+' | '+a.pw).join('  •  ');
+    var msg = ACCOUNTS.length 
+      ? '🔑 AKUN LEONARDO GRATIS SUDAH TERSEDIA — '+ACCOUNTS.length+' akun siap pakai! Klik kartu AKUN LEONARDO di bawah.'
+      : '🔑 AKUN LEONARDO GRATIS — Update setiap minggu. Klik kartu AKUN LEONARDO untuk akses.';
     document.querySelectorAll('#leoTickerMini div').forEach(function(el){
-      el.innerHTML = items + '  •  ' + items;
+      el.textContent = msg + '  •  ' + msg + '  •  ' + msg;
     });
   }
+  // Jalankan segera
+  setTimeout(renderLeoBanner,100);
   </script>
 
   <!-- TOOLS AI LIST -->
