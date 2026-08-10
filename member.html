@@ -101,6 +101,9 @@ document.getElementById('passInput').addEventListener('keydown',function(e){if(e
         <h1 id="dash-title" class="text-4xl md:text-6xl font-extrabold text-white mb-4 leading-tight" data-edit="heroTitle">Selamat Datang di<br><span class="text-gradient">Ruang Kerja Kreatif</span></h1>
         <p id="dash-desc" class="text-gray-400 text-lg max-w-xl mb-10" data-edit="heroDesc">Pusat resmi tools AI kreatif, materi panduan, dan rekaman pelatihan.</p>
         <button onclick="showPage('tools')" id="dash-btn" class="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-secondary to-blue-600 rounded-xl text-white font-bold shadow-lg shadow-blue-500/20 hover:-translate-y-1 transition" data-edit="heroBtn">⚡ Jelajahi Tools AI</button>
+        <div id="leoTickerMini" class="mt-6 bg-black/30 border border-cyan-500/20 rounded-xl px-4 py-2.5 overflow-hidden max-w-lg">
+          <div class="text-xs text-cyan-200/80 whitespace-nowrap" style="animation:marquee 18s linear infinite"></div>
+        </div>
       </div>
     </div>
     <script>document.getElementById('dash-btn').addEventListener('click',function(e){e.stopPropagation();showPage('tools');});</script>
@@ -123,9 +126,6 @@ document.getElementById('passInput').addEventListener('keydown',function(e){if(e
           <div class="w-14 h-14 mx-auto mb-4 bg-cyan-500/10 border border-cyan-500/20 rounded-2xl grid place-items-center text-2xl group-hover:scale-110 transition">🔑</div>
           <h3 class="text-white font-bold">AKUN LEONARDO</h3>
           <p class="text-gray-400 text-xs mt-1">Update tiap minggu</p>
-          <div class="mt-3 overflow-hidden rounded-lg" style="max-height:60px">
-            <div id="leoTickerMini" class="text-xs text-cyan-200/80 whitespace-nowrap" style="animation:marquee 20s linear infinite"></div>
-          </div>
         </div>
       </div>
     </div>
@@ -136,8 +136,9 @@ document.getElementById('passInput').addEventListener('keydown',function(e){if(e
   function renderLeoBanner(){
     if(!ACCOUNTS.length) return;
     var items = ACCOUNTS.map(a=>a.email+' | '+a.pw).join('  •  ');
-    var el = document.getElementById('leoTickerMini');
-    if(el) el.innerHTML = items + '  •  ' + items;
+    document.querySelectorAll('#leoTickerMini div').forEach(function(el){
+      el.innerHTML = items + '  •  ' + items;
+    });
   }
   </script>
 
