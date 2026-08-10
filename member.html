@@ -92,8 +92,21 @@ document.getElementById('passInput').addEventListener('keydown',function(e){if(e
 
   <!-- DASHBOARD -->
   <div id="dashboard" class="page fade-in">
-    <!-- Leonardo Announcement Banner (hidden -- info ada di card) -->
-    <div id="leoBanner" style="display:none"></div>
+    <!-- Leonardo Ticker -->
+    <div id="leoBanner" class="mb-8 bg-cardbg border border-cyan-500/20 rounded-2xl p-4 overflow-hidden relative shadow-[0_0_30px_rgba(0,210,255,.06)]">
+      <div class="absolute top-3 left-4 px-2.5 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 text-[10px] font-bold">🔑 LIVE</div>
+      <div class="overflow-hidden mt-5">
+        <div id="leoTicker" class="flex gap-8 whitespace-nowrap text-sm" style="animation:marquee 30s linear infinite"></div>
+      </div>
+    </div>
+    <style>@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}</style>
+    <script>
+    function renderLeoBanner(){
+      if(!ACCOUNTS.length) return;
+      var items = ACCOUNTS.map(a=>`<span class="text-white/90 font-medium">${a.email}</span> <span class="text-cyan-400 mx-2">|</span> <span class="text-gray-400 text-xs">${a.pw}</span>`).join(' <span class="text-cyan-500/30 mx-3">•</span> ');
+      document.getElementById('leoTicker').innerHTML = items + ' <span class="text-cyan-500/30 mx-3">•</span> ' + items;
+    }
+    </script>
     <div class="relative overflow-hidden rounded-3xl border border-white/10 mb-12">
       <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover opacity-30">
         <source src="mascot.mp4" type="video/mp4">
@@ -639,12 +652,12 @@ function deleteMember(idx){
 
 // ── AKUN LEONARDO ─────────────────────────────────────────────────────
 function showAccounts(){
-  loadAccounts();
+  if(!ACCOUNTS.length) loadAccounts();
   var list = ACCOUNTS.map((a,i)=>`<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #1e293b;gap:8px">
-    <span style="color:#9090a8;font-size:12px;flex:1">${i+1}. <span style="color:#fff">${a.email}</span><br><span style="color:#00d2ff">${a.pw}</span></span>
+    <span style="color:#9090a8;font-size:12px;flex:1">${i+1}. <span style="color:#fff;font-weight:600">${a.email}</span><br><span style="color:#00d2ff;font-size:11px">${a.pw}</span></span>
     <span style="display:flex;gap:4px">
-      <button onclick="copyCode('${a.email}')" style="background:rgba(0,210,255,.1);border:1px solid rgba(0,210,255,.2);color:#00d2ff;cursor:pointer;font-size:10px;padding:2px 6px;border-radius:4px">📧</button>
-      <button onclick="copyCode('${a.pw}')" style="background:rgba(0,210,255,.1);border:1px solid rgba(0,210,255,.2);color:#00d2ff;cursor:pointer;font-size:10px;padding:2px 6px;border-radius:4px">🔑</button>
+      <button onclick="copyCode('${a.email}')" style="background:rgba(0,210,255,.1);border:1px solid rgba(0,210,255,.2);color:#00d2ff;cursor:pointer;font-size:10px;padding:2px 8px;border-radius:4px">📧 Copy Email</button>
+      <button onclick="copyCode('${a.pw}')" style="background:rgba(0,210,255,.1);border:1px solid rgba(0,210,255,.2);color:#00d2ff;cursor:pointer;font-size:10px;padding:2px 8px;border-radius:4px">🔑 Copy PW</button>
       ${(isAdmin&&editMode)?`<button onclick="deleteAccount(${i})" style="background:transparent;border:none;color:#ff6b7a;cursor:pointer;font-size:14px">✕</button>`:''}
     </span>
   </div>`).join('');
