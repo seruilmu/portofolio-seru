@@ -37,7 +37,10 @@ body::before{content:"";
     <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary to-secondary grid place-items-center text-2xl font-extrabold text-white mx-auto mb-6 shadow-lg shadow-blue-500/20">∞</div>
     <h1 class="text-2xl font-bold text-white mb-2">Member Area</h1>
     <p class="text-gray-400 text-sm mb-8">Masukkan kode kredensial Anda</p>
-    <input type="password" id="passInput" placeholder="SD-XXXX-XXXX-XXXX" autofocus class="w-full px-5 py-3.5 bg-white/[0.04] border border-white/[0.1] rounded-xl text-white text-center text-sm outline-none focus:border-primary transition mb-4">
+    <div class="relative">
+      <input type="password" id="passInput" placeholder="SD-XXXX-XXXX-XXXX" autofocus class="w-full px-5 py-3.5 pr-12 bg-white/[0.04] border border-white/[0.1] rounded-xl text-white text-center text-sm tracking-widest outline-none focus:border-primary transition mb-4">
+      <button onclick="togglePass()" class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-white text-xs" id="showPass">👁️</button>
+    </div>
     <button onclick="doLogin()" class="w-full py-3.5 bg-gradient-to-r from-secondary to-primary rounded-xl text-white font-bold text-sm hover:-translate-y-0.5 transition">Masuk</button>
     <p id="loginErr" class="text-red-400 text-xs mt-3 hidden">Kode tidak valid</p>
     <p class="text-gray-600 text-xs mt-4">Dapatkan kode dari admin</p>
@@ -624,6 +627,12 @@ function renderRekamanGrid(){
         <p class="text-gray-500 text-xs">${r.date}</p>${!r.yt ? '<p class="text-gray-600 text-[10px] mt-1">Video segera tersedia</p>' : ''}
       </div></div>`).join('');
   if(isAdmin&&editMode) grid.insertAdjacentHTML('beforeend','<div onclick="adminAddRekaman()" class="bg-cardbg rounded-2xl p-6 border border-dashed border-gray-600 cursor-pointer hover:border-green-500/50 grid place-items-center min-h-[200px]"><span class="text-3xl text-gray-600 hover:text-green-400">+ Tambah Rekaman</span></div>');
+}
+
+function togglePass(){
+  var el = document.getElementById('passInput');
+  if(el.type==='password'){el.type='text';document.getElementById('showPass').textContent='🙈';}
+  else{el.type='password';document.getElementById('showPass').textContent='👁️';}
 }
 
 // ── INIT ────────────────────────────────────────────────────────────────
