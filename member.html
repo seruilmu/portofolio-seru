@@ -513,7 +513,7 @@ function adminDeleteRekaman(idx){
 
 function showMemberManager(){
   var list = MEMBERS.map((m,i)=>`${i+1}. ${m.name} — ${m.pw}  <button onclick="deleteMember(${i})" style="color:#ff6b7a;margin-left:8px;cursor:pointer">✕</button>`).join('<br>');
-  var html = '<div style="background:#0f1018;border:1px solid #1e293b;border-radius:16px;padding:24px;max-width:500px;margin:0 auto">'+
+  var html = '<div style="background:#0f1018;border:1px solid #1e293b;border-radius:16px;padding:24px;max-width:500px;max-height:80vh;overflow-y:auto;margin:0 auto">'+
     '<h3 style="color:#fff;font-size:18px;margin-bottom:16px">👥 Kelola Member</h3>'+
     '<div style="color:#9090a8;font-size:13px;margin-bottom:16px;line-height:2">'+list+'</div>'+
     '<button onclick="addMember()" style="background:#10b981;color:#fff;border:none;padding:10px 20px;border-radius:8px;font-weight:700;cursor:pointer">+ Tambah Member</button>'+
