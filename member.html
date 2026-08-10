@@ -187,26 +187,34 @@ document.getElementById('passInput').addEventListener('keydown',function(e){if(e
 <script>
 var PASSWORD = 'serudigital2026';
 var ADMIN_PW = 'seruadmin2026';
-var MEMBERS = []; // [{name:'',pw:''}]
-
-var MEMBERS_URL = 'members.json';
+var MEMBERS = [];
+var API_URL = 'https://script.google.com/macros/s/AKfycbxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/exec'; // GANTI dengan URL Apps Script
 
 function loadMembers(){
-  fetch(MEMBERS_URL).then(r=>r.json()).then(d=>{
+  fetch(API_URL).then(r=>r.json()).then(d=>{
     MEMBERS = d;
-    localStorage.setItem('sd_members_local',JSON.stringify(d));
+    localStorage.setItem('sd_cache',JSON.stringify(d));
   }).catch(function(){
-    var saved = localStorage.getItem('sd_members_local');
+    var saved = localStorage.getItem('sd_cache');
     if(saved) try{ MEMBERS = JSON.parse(saved); }catch(e){}
   });
-  var saved = localStorage.getItem('sd_members_local');
+  var saved = localStorage.getItem('sd_cache');
   if(saved) try{ MEMBERS = JSON.parse(saved); }catch(e){}
 }
 
-function saveMembers(){
-  var data = JSON.stringify(MEMBERS,null,2);
-  localStorage.setItem('sd_members_local',data);
-  // Save locally for now until backend is set up
+function syncToAPI(members){
+  fetch(API_URL,{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({members:members})
+  }).then(r=>r.json()).then(function(resp){
+    if(resp.ok){
+      localStorage.setItem('sd_cache',JSON.stringify(MEMBERS));
+      alert('✅ '+resp.added+' kredensial tersimpan!');
+    }
+  }).catch(function(){
+    alert('⚠️ Gagal sync ke server. Coba lagi.');
+  });
 }
 
 // ── DATA ────────────────────────────────────────────────────────────────
@@ -587,12 +595,14 @@ function addMember(){
   var name = prompt('Nama member:'); if(!name)return;
   var count = prompt('Jumlah kredensial (1-50):','1');
   var n = parseInt(count)||1; if(n<1)n=1; if(n>50)n=50;
+  var newMembers = [];
   for(var i=0;i<n;i++){
     var pw = 'SD-'+generateCode()+'-'+generateCode()+'-'+generateCode();
     var label = n>1 ? name+' #'+(i+1) : name;
+    newMembers.push({name:label,pw:pw});
     MEMBERS.push({name:label,pw:pw});
   }
-  saveMembers();
+  syncToAPI(newMembers);
   closeMemberManager(); showMemberManager();
 }
 
