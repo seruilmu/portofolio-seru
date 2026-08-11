@@ -52,6 +52,8 @@ a{color:inherit;text-decoration:none;}
 .nav-menu{display:flex;gap:6px;align-items:center;}
 .nav-menu a{font-size:12.5px;font-weight:500;padding:7px 16px;border-radius:8px;color:var(--t2);transition:all .2s;}
 .nav-menu a:hover{color:var(--t1);background:rgba(255,255,255,.05);}
+.nav-wa{width:42px;height:42px;padding:0 !important;border-radius:999px !important;display:grid !important;place-items:center;border:1px solid rgba(37,211,102,.22);background:rgba(37,211,102,.08);color:#7ff0ab !important;box-shadow:0 0 24px rgba(37,211,102,.10);font-size:18px !important;}
+.nav-wa:hover{transform:translateY(-1px) scale(1.03);background:rgba(37,211,102,.14) !important;border-color:rgba(37,211,102,.42);color:#b4ffcf !important;box-shadow:0 0 30px rgba(37,211,102,.20);}
 .nav-cta{padding:9px 20px;border-radius:8px;font-size:12.5px;font-weight:600;background:var(--t1);color:var(--bg)!important;}
 .nav-cta:hover{transform:scale(1.02);box-shadow:0 4px 20px rgba(255,255,255,.06);background:var(--t1)!important;}
 @media(max-width:768px){.nav-menu a:not(.nav-cta){display:none;}.nav-inner{padding:0 20px;}}
@@ -91,7 +93,8 @@ a{color:inherit;text-decoration:none;}
 .section p.desc{color:var(--t2);font-size:15px;max-width:44ch;margin-bottom:36px;}
 
 /* Showcase reel */
-.showcase-shell{position:relative;overflow:hidden;border:1px solid var(--b1);background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.01));border-radius:28px;padding:26px;box-shadow:0 20px 60px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.04);}
+.showcase-shell{position:relative;overflow:hidden;border:1px solid var(--b1);background:radial-gradient(circle at 50% 0%,rgba(0,212,255,.10),transparent 28%),linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.01));border-radius:32px;padding:28px;box-shadow:0 20px 80px rgba(0,0,0,.34), inset 0 1px 0 rgba(255,255,255,.05);}
+.showcase-shell::before{content:"";position:absolute;left:50%;top:108px;transform:translateX(-50%);width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(79,172,254,.20),rgba(79,172,254,0) 70%);filter:blur(24px);pointer-events:none;}
 .showcase-top{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:22px;}
 .showcase-kicker{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;display:block;}
 .showcase-top h3{font-size:clamp(24px,3vw,36px);line-height:1.05;letter-spacing:-.03em;max-width:10ch;}
@@ -99,12 +102,20 @@ a{color:inherit;text-decoration:none;}
 .showcase-nav{display:flex;gap:10px;flex:none;}
 .showcase-btn{width:44px;height:44px;border-radius:50%;border:1px solid var(--b1);background:rgba(255,255,255,.03);color:var(--t1);cursor:pointer;transition:all .25s;}
 .showcase-btn:hover{border-color:var(--accent);color:var(--accent);box-shadow:0 0 24px rgba(79,172,254,.18);}
-.showcase-track{display:grid;grid-template-columns:.85fr 1.3fr .85fr;gap:18px;align-items:center;}
-.reel-card{position:relative;min-height:430px;border-radius:24px;overflow:hidden;border:1px solid var(--b1);background:var(--s1);cursor:pointer;transition:transform .45s cubic-bezier(.16,1,.3,1),opacity .35s,border-color .3s,box-shadow .35s;}
+.showcase-stage{position:relative;perspective:1800px;padding:18px 0 8px;}
+.showcase-track{display:grid;grid-template-columns:.78fr 1.45fr .78fr;gap:6px;align-items:center;transform-style:preserve-3d;}
+.showcase-caption{display:flex;justify-content:space-between;gap:18px;align-items:center;margin-top:16px;color:var(--t2);font-size:12px;}
+.showcase-caption strong{color:var(--t1);font-size:13px;display:block;margin-bottom:2px;}
+.showcase-dots{display:flex;gap:8px;align-items:center;}
+.showcase-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.16);transition:all .25s;}
+.showcase-dot.active{width:22px;border-radius:999px;background:linear-gradient(90deg,var(--accent),var(--accent2));box-shadow:0 0 18px rgba(79,172,254,.3);}
+.reel-card{position:relative;min-height:430px;border-radius:28px;overflow:hidden;border:1px solid var(--b1);background:var(--s1);cursor:pointer;transition:transform .55s cubic-bezier(.16,1,.3,1),opacity .35s,border-color .3s,box-shadow .35s,filter .35s;transform-style:preserve-3d;}
 .reel-card::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.04),rgba(0,0,0,.62) 72%,rgba(0,0,0,.92));z-index:1;}
 .reel-card img,.reel-card .reel-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
-.reel-card.side{opacity:.58;transform:scale(.92);}
-.reel-card.center{min-height:520px;box-shadow:0 24px 80px rgba(0,0,0,.45),0 0 50px rgba(79,172,254,.12);border-color:rgba(79,172,254,.24);}
+.reel-card.side{opacity:.42;filter:saturate(.8) blur(.2px);}
+.reel-card.left{transform:rotateY(48deg) scale(.88) translateX(28px);transform-origin:right center;}
+.reel-card.right{transform:rotateY(-48deg) scale(.88) translateX(-28px);transform-origin:left center;}
+.reel-card.center{min-height:540px;transform:translateZ(60px) scale(1.02);box-shadow:0 26px 100px rgba(0,0,0,.50),0 0 65px rgba(79,172,254,.16);border-color:rgba(79,172,254,.30);}
 .reel-card:hover{border-color:rgba(79,172,254,.35);}
 .reel-play{position:absolute;top:20px;right:20px;z-index:2;width:54px;height:54px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.10);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.16);}
 .reel-play::before{content:"";display:block;margin-left:4px;border-left:14px solid #fff;border-top:9px solid transparent;border-bottom:9px solid transparent;}
@@ -112,7 +123,7 @@ a{color:inherit;text-decoration:none;}
 .reel-pill{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.08);backdrop-filter:blur(12px);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#dff5ff;margin-bottom:14px;}
 .reel-meta h4{font-size:clamp(18px,2vw,28px);line-height:1.08;letter-spacing:-.03em;margin-bottom:8px;}
 .reel-meta p{color:rgba(242,242,247,.8);font-size:13px;max-width:34ch;}
-@media(max-width:980px){.showcase-track{grid-template-columns:1fr;}.reel-card.side{display:none;}.reel-card.center{min-height:420px}.showcase-top{flex-direction:column;align-items:flex-start;}.showcase-nav{align-self:flex-end;}}
+@media(max-width:980px){.showcase-track{grid-template-columns:1fr;}.reel-card.side{display:none;}.reel-card.center{min-height:420px;transform:none}.showcase-top{flex-direction:column;align-items:flex-start;}.showcase-nav{align-self:flex-end;}.showcase-caption{flex-direction:column;align-items:flex-start;}}
 @media(max-width:640px){.showcase-shell{padding:18px}.reel-card,.reel-card.center{min-height:340px}.showcase-top h3{max-width:none;font-size:28px}}
 .section p.desc{color:var(--t2);font-size:15px;max-width:44ch;margin-bottom:36px;}
 
@@ -251,7 +262,7 @@ function render(){
   });
   let usedCats=[...new Set(Object.values(catAssign))];
 
-  let nav=`<nav class="nav"><div class="nav-inner"><span class="nav-brand">${E(brand)}</span><div class="nav-menu"><a href="#layanan">Layanan</a><a href="#kelas">Kelas</a><a href="#karya">Karya</a><a href="#testimoni">Testimoni</a><a class="nav-cta" href="#kontak">Mulai Project</a></div></div></nav>`;
+  let nav=`<nav class="nav"><div class="nav-inner"><span class="nav-brand">${E(brand)}</span><div class="nav-menu"><a href="#layanan">Layanan</a><a href="#kelas">Kelas</a><a href="#karya">Karya</a><a href="#testimoni">Testimoni</a>${D.whatsapp?`<a class="nav-wa" href="${E(D.whatsapp)}" target="_blank" aria-label="Chat WhatsApp">✆</a>`:''}<a class="nav-cta" href="#kontak">Mulai Project</a></div></div></nav>`;
 
   let heroBg=`<div class="hero-bg"><video autoplay muted loop playsinline preload="auto" src="${E(hvid)}"></video></div>`;
   let hero=`<section class="hero">${heroBg}<div class="hero-content">
@@ -269,7 +280,7 @@ function render(){
   };
   let showcaseSec='';
   if(featured.length>=1){
-    showcaseSec=`<section class="section reveal"><div class="section-inner"><div class="showcase-shell"><div class="showcase-top"><div><span class="showcase-kicker">Showcase Reel</span><h3>Preview karya yang terasa hidup.</h3></div><div><p>Versi yang lebih premium dari portfolio biasa — fokus ke satu karya utama, dengan preview karya lain di kiri kanan.</p><div class="showcase-nav"><button class="showcase-btn" id="showPrev" aria-label="Sebelumnya">←</button><button class="showcase-btn" id="showNext" aria-label="Berikutnya">→</button></div></div></div><div class="showcase-track" id="showcaseTrack" data-items='${E(JSON.stringify(featured))}'></div></div></div></section>`;
+    showcaseSec=`<section class="section reveal"><div class="section-inner"><div class="showcase-shell"><div class="showcase-top"><div><span class="showcase-kicker">Signature Wheel</span><h3>Portfolio yang lebih hidup dan lebih menjual.</h3></div><div><p>Gaya coverflow premium: fokus ke satu karya utama, preview lain terasa seperti wheel visual yang muter pelan di sekelilingnya.</p><div class="showcase-nav"><button class="showcase-btn" id="showPrev" aria-label="Sebelumnya">←</button><button class="showcase-btn" id="showNext" aria-label="Berikutnya">→</button></div></div></div><div class="showcase-stage"><div class="showcase-track" id="showcaseTrack" data-items='${E(JSON.stringify(featured))}'></div></div><div class="showcase-caption"><div><strong id="showcaseTitle">Featured Work</strong><span id="showcaseMeta">Selected project showcase</span></div><div class="showcase-dots" id="showcaseDots"></div></div></div></div></section>`;
   }
 
   let statsHtml='<div class="stats">'+(D.stats||[]).map(s=>`<div class="stat"><div class="stat-val">${E(s.value)}</div><div class="stat-lbl">${E(s.label)}</div><div class="stat-sub">${E(s.caption)}</div></div>`).join('')+'</div>';
@@ -325,13 +336,20 @@ function init(){
     let items=[];
     try{items=JSON.parse(showcaseTrack.dataset.items||'[]')}catch{}
     let idx=0;
+    let dots=document.getElementById('showcaseDots');
+    let titleEl=document.getElementById('showcaseTitle');
+    let metaEl=document.getElementById('showcaseMeta');
+    if(dots){dots.innerHTML=items.map((_,i)=>`<span class="showcase-dot${i===0?' active':''}"></span>`).join('');}
     let paint=()=>{
       if(!items.length)return;
       let prev=items[(idx-1+items.length)%items.length];
       let cur=items[idx%items.length];
       let next=items[(idx+1)%items.length];
-      let card=(v,pos)=>{let id=ytId(v.youtube),img=id?thumb(id):'';return `<article class="reel-card ${pos}" data-video="${E(v.youtube||'')}" tabindex="0"><img src="${E(img)}" alt="${E(v.title||'Video showcase')}" loading="lazy" onerror="this.src='https://img.youtube.com/vi/${id}/hqdefault.jpg'"><div class="reel-play"></div><div class="reel-meta"><div class="reel-pill">${pos==='center'?'Now Showing':'Preview'}</div><h4>${E(v.title||'Untitled')}</h4><p>${E(v.desc||'Karya pilihan Seru Digital.')}</p></div></article>`};
-      showcaseTrack.innerHTML=card(prev,'side')+card(cur,'center')+card(next,'side');
+      let card=(v,pos,side='')=>{let id=ytId(v.youtube),img=id?thumb(id):'';return `<article class="reel-card ${pos} ${side}" data-video="${E(v.youtube||'')}" tabindex="0"><img src="${E(img)}" alt="${E(v.title||'Video showcase')}" loading="lazy" onerror="this.src='https://img.youtube.com/vi/${id}/hqdefault.jpg'"><div class="reel-play"></div><div class="reel-meta"><div class="reel-pill">${pos==='center'?'Now Showing':'Preview'}</div><h4>${E(v.title||'Untitled')}</h4><p>${E(v.desc||'Karya pilihan Seru Digital.')}</p></div></article>`};
+      showcaseTrack.innerHTML=card(prev,'side','left')+card(cur,'center')+card(next,'side','right');
+      if(titleEl) titleEl.textContent=cur.title||'Featured Work';
+      if(metaEl) metaEl.textContent=cur.desc||'Selected project showcase';
+      dots?.querySelectorAll('.showcase-dot').forEach((d,i)=>d.classList.toggle('active',i===idx));
       showcaseTrack.querySelectorAll('.reel-card').forEach(c=>c.addEventListener('click',()=>{
         let vid=c.dataset.video,id=ytId(vid),modal=document.getElementById('videoModal'),iframe=document.getElementById('modalIframe');if(!id)return;iframe.src='https://www.youtube.com/embed/'+id+'?autoplay=1&rel=0';modal.classList.add('open');document.body.style.overflow='hidden';
       }));
