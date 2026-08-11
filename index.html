@@ -84,11 +84,36 @@ a{color:inherit;text-decoration:none;}
 .marquee-inner span{color:rgba(0,210,255,.85);font-size:12.5px;font-weight:600;letter-spacing:.03em;padding:0 24px;}
 @keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-33.33%)}}
 
-.section{padding:64px 32px;position:relative;z-index:1;}
-.section-inner{max-width:var(--maxw);margin:0 auto;}
-.label{display:inline-flex;align-items:center;gap:7px;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;}
-.label::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--accent);}
+.section{padding:110px 0;position:relative;}
+.section-inner{max-width:var(--maxw);margin:0 auto;padding:0 32px;}
+.label{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:18px;}
 .section h2{font-size:clamp(24px,3.5vw,40px);font-weight:800;letter-spacing:-.03em;line-height:1.08;margin-bottom:12px;}
+.section p.desc{color:var(--t2);font-size:15px;max-width:44ch;margin-bottom:36px;}
+
+/* Showcase reel */
+.showcase-shell{position:relative;overflow:hidden;border:1px solid var(--b1);background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.01));border-radius:28px;padding:26px;box-shadow:0 20px 60px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.04);}
+.showcase-top{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:22px;}
+.showcase-kicker{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;display:block;}
+.showcase-top h3{font-size:clamp(24px,3vw,36px);line-height:1.05;letter-spacing:-.03em;max-width:10ch;}
+.showcase-top p{color:var(--t2);max-width:44ch;font-size:14px;}
+.showcase-nav{display:flex;gap:10px;flex:none;}
+.showcase-btn{width:44px;height:44px;border-radius:50%;border:1px solid var(--b1);background:rgba(255,255,255,.03);color:var(--t1);cursor:pointer;transition:all .25s;}
+.showcase-btn:hover{border-color:var(--accent);color:var(--accent);box-shadow:0 0 24px rgba(79,172,254,.18);}
+.showcase-track{display:grid;grid-template-columns:.85fr 1.3fr .85fr;gap:18px;align-items:center;}
+.reel-card{position:relative;min-height:430px;border-radius:24px;overflow:hidden;border:1px solid var(--b1);background:var(--s1);cursor:pointer;transition:transform .45s cubic-bezier(.16,1,.3,1),opacity .35s,border-color .3s,box-shadow .35s;}
+.reel-card::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.04),rgba(0,0,0,.62) 72%,rgba(0,0,0,.92));z-index:1;}
+.reel-card img,.reel-card .reel-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.reel-card.side{opacity:.58;transform:scale(.92);}
+.reel-card.center{min-height:520px;box-shadow:0 24px 80px rgba(0,0,0,.45),0 0 50px rgba(79,172,254,.12);border-color:rgba(79,172,254,.24);}
+.reel-card:hover{border-color:rgba(79,172,254,.35);}
+.reel-play{position:absolute;top:20px;right:20px;z-index:2;width:54px;height:54px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.10);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.16);}
+.reel-play::before{content:"";display:block;margin-left:4px;border-left:14px solid #fff;border-top:9px solid transparent;border-bottom:9px solid transparent;}
+.reel-meta{position:absolute;left:22px;right:22px;bottom:22px;z-index:2;}
+.reel-pill{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.08);backdrop-filter:blur(12px);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#dff5ff;margin-bottom:14px;}
+.reel-meta h4{font-size:clamp(18px,2vw,28px);line-height:1.08;letter-spacing:-.03em;margin-bottom:8px;}
+.reel-meta p{color:rgba(242,242,247,.8);font-size:13px;max-width:34ch;}
+@media(max-width:980px){.showcase-track{grid-template-columns:1fr;}.reel-card.side{display:none;}.reel-card.center{min-height:420px}.showcase-top{flex-direction:column;align-items:flex-start;}.showcase-nav{align-self:flex-end;}}
+@media(max-width:640px){.showcase-shell{padding:18px}.reel-card,.reel-card.center{min-height:340px}.showcase-top h3{max-width:none;font-size:28px}}
 .section p.desc{color:var(--t2);font-size:15px;max-width:44ch;margin-bottom:36px;}
 
 /* Premium micro-interactions */
@@ -213,6 +238,7 @@ function render(){
   let D=window.SD||{};
   let brand=D.brand||"Seru Digital";
   let hvid=D.heroVideo||"/mascot.mp4";
+  let vids=D.videos||[];
 
   let catAssign={};
   (D.videos||[]).forEach((v,i)=>{
@@ -234,6 +260,17 @@ function render(){
     <p class="hero-sub">${E(D.heroText||'Seru Digital membuat video animasi dan konten sinematik berbasis AI, sekaligus mengajarkan orang cara memproduksinya sendiri lewat ekosistem SERU DIGITAL LABS.')}</p>
     <div class="hero-btns"><a class="btn btn-fill" href="#karya">Lihat Karya</a><a class="btn btn-line" href="#kontak">Ajak Kolaborasi</a></div>
   </div></section>`;
+
+  let featured=vids.slice(0,Math.min(vids.length,6));
+  let reelCard=(v,pos)=>{
+    if(!v)return '<div></div>';
+    let id=ytId(v.youtube),img=id?thumb(id):'';
+    return `<article class="reel-card ${pos}" data-video="${E(v.youtube||'')}" tabindex="0"><img src="${E(img)}" alt="${E(v.title||'Video showcase')}" loading="lazy" onerror="this.src='https://img.youtube.com/vi/${id}/hqdefault.jpg'"><div class="reel-play"></div><div class="reel-meta"><div class="reel-pill">Featured Work</div><h4>${E(v.title||'Untitled')}</h4><p>${E(v.desc||'Karya pilihan Seru Digital untuk brand, storytelling, dan campaign visual.')}</p></div></article>`;
+  };
+  let showcaseSec='';
+  if(featured.length>=1){
+    showcaseSec=`<section class="section reveal"><div class="section-inner"><div class="showcase-shell"><div class="showcase-top"><div><span class="showcase-kicker">Showcase Reel</span><h3>Preview karya yang terasa hidup.</h3></div><div><p>Versi yang lebih premium dari portfolio biasa — fokus ke satu karya utama, dengan preview karya lain di kiri kanan.</p><div class="showcase-nav"><button class="showcase-btn" id="showPrev" aria-label="Sebelumnya">←</button><button class="showcase-btn" id="showNext" aria-label="Berikutnya">→</button></div></div></div><div class="showcase-track" id="showcaseTrack" data-items='${E(JSON.stringify(featured))}'></div></div></div></section>`;
+  }
 
   let statsHtml='<div class="stats">'+(D.stats||[]).map(s=>`<div class="stat"><div class="stat-val">${E(s.value)}</div><div class="stat-lbl">${E(s.label)}</div><div class="stat-sub">${E(s.caption)}</div></div>`).join('')+'</div>';
   let statsSec=sec('stats','Seru Digital dalam angka','','',statsHtml);
@@ -278,11 +315,33 @@ function render(){
   let footer=`<footer>${E(brand)} <em>✦</em> SERU DIGITAL LABS <em>✦</em> 2026</footer>`;
   let modal=`<div class="modal" id="videoModal"><button class="modal-x" id="modalClose">&times;</button><div class="modal-vid"><iframe id="modalIframe" src="" allow="autoplay;encrypted-media" allowfullscreen></iframe></div></div>`;
 
-  document.getElementById("app").innerHTML=nav+hero+statsSec+aboutSec+svcSec+classSec+vidSec+testiSec+contactSec+footer+modal;
+  document.getElementById("app").innerHTML=nav+hero+showcaseSec+statsSec+aboutSec+svcSec+classSec+vidSec+testiSec+contactSec+footer+modal;
   init();
 }
 
 function init(){
+  let showcaseTrack=document.getElementById('showcaseTrack');
+  if(showcaseTrack){
+    let items=[];
+    try{items=JSON.parse(showcaseTrack.dataset.items||'[]')}catch{}
+    let idx=0;
+    let paint=()=>{
+      if(!items.length)return;
+      let prev=items[(idx-1+items.length)%items.length];
+      let cur=items[idx%items.length];
+      let next=items[(idx+1)%items.length];
+      let card=(v,pos)=>{let id=ytId(v.youtube),img=id?thumb(id):'';return `<article class="reel-card ${pos}" data-video="${E(v.youtube||'')}" tabindex="0"><img src="${E(img)}" alt="${E(v.title||'Video showcase')}" loading="lazy" onerror="this.src='https://img.youtube.com/vi/${id}/hqdefault.jpg'"><div class="reel-play"></div><div class="reel-meta"><div class="reel-pill">${pos==='center'?'Now Showing':'Preview'}</div><h4>${E(v.title||'Untitled')}</h4><p>${E(v.desc||'Karya pilihan Seru Digital.')}</p></div></article>`};
+      showcaseTrack.innerHTML=card(prev,'side')+card(cur,'center')+card(next,'side');
+      showcaseTrack.querySelectorAll('.reel-card').forEach(c=>c.addEventListener('click',()=>{
+        let vid=c.dataset.video,id=ytId(vid),modal=document.getElementById('videoModal'),iframe=document.getElementById('modalIframe');if(!id)return;iframe.src='https://www.youtube.com/embed/'+id+'?autoplay=1&rel=0';modal.classList.add('open');document.body.style.overflow='hidden';
+      }));
+    };
+    paint();
+    document.getElementById('showPrev')?.addEventListener('click',()=>{idx=(idx-1+items.length)%items.length;paint();});
+    document.getElementById('showNext')?.addEventListener('click',()=>{idx=(idx+1)%items.length;paint();});
+    if(items.length>2){setInterval(()=>{idx=(idx+1)%items.length;paint();},4500);}
+  }
+
   document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener("click",function(e){
     e.preventDefault();let t=document.querySelector(this.getAttribute("href"));if(t)t.scrollIntoView({behavior:"smooth"});
   }));
