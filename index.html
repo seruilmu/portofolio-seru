@@ -95,28 +95,29 @@ a{color:inherit;text-decoration:none;}
 /* Showcase reel */
 .showcase-shell{position:relative;overflow:hidden;border:1px solid var(--b1);background:radial-gradient(circle at 50% 0%,rgba(0,212,255,.10),transparent 28%),linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.01));border-radius:32px;padding:28px;box-shadow:0 20px 80px rgba(0,0,0,.34), inset 0 1px 0 rgba(255,255,255,.05);}
 .showcase-shell::before{content:"";position:absolute;left:50%;top:108px;transform:translateX(-50%);width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(79,172,254,.20),rgba(79,172,254,0) 70%);filter:blur(24px);pointer-events:none;}
-.showcase-top{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:22px;}
+.showcase-top{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;margin-bottom:18px;}
 .showcase-kicker{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;display:block;}
-.showcase-top h3{font-size:clamp(24px,3vw,36px);line-height:1.05;letter-spacing:-.03em;max-width:10ch;}
-.showcase-top p{color:var(--t2);max-width:44ch;font-size:14px;}
-.showcase-nav{display:flex;gap:10px;flex:none;}
+.showcase-top h3{font-size:clamp(18px,2vw,24px);line-height:1.15;letter-spacing:-.03em;max-width:20ch;font-weight:700;}
+.showcase-nav{display:flex;gap:10px;flex:none;padding-top:6px;}
 .showcase-btn{width:44px;height:44px;border-radius:50%;border:1px solid var(--b1);background:rgba(255,255,255,.03);color:var(--t1);cursor:pointer;transition:all .25s;}
 .showcase-btn:hover{border-color:var(--accent);color:var(--accent);box-shadow:0 0 24px rgba(79,172,254,.18);}
-.showcase-stage{position:relative;perspective:1800px;padding:18px 0 8px;}
-.showcase-track{display:grid;grid-template-columns:.78fr 1.45fr .78fr;gap:6px;align-items:center;transform-style:preserve-3d;user-select:none;touch-action:pan-y;cursor:grab;transform:translate3d(var(--dragX,0px),0,0);transition:transform .42s cubic-bezier(.16,1,.3,1);will-change:transform;}
-.showcase-track.dragging{cursor:grabbing;transition:none;}
+.showcase-stage{position:relative;perspective:1800px;height:560px;padding:8px 0 0;overflow:hidden;user-select:none;touch-action:pan-y;cursor:grab;}
+.showcase-stage.dragging{cursor:grabbing;}
+.showcase-track{position:relative;height:100%;transform-style:preserve-3d;}
 .showcase-caption{display:flex;justify-content:space-between;gap:18px;align-items:center;margin-top:16px;color:var(--t2);font-size:12px;}
 .showcase-caption strong{color:var(--t1);font-size:13px;display:block;margin-bottom:2px;}
 .showcase-dots{display:flex;gap:8px;align-items:center;}
 .showcase-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.16);transition:all .25s;}
 .showcase-dot.active{width:22px;border-radius:999px;background:linear-gradient(90deg,var(--accent),var(--accent2));box-shadow:0 0 18px rgba(79,172,254,.3);}
-.reel-card{position:relative;min-height:430px;border-radius:28px;overflow:hidden;border:1px solid var(--b1);background:var(--s1);cursor:pointer;transition:transform .55s cubic-bezier(.16,1,.3,1),opacity .35s,border-color .3s,box-shadow .35s,filter .35s;transform-style:preserve-3d;}
+.reel-card{position:absolute;top:0;left:50%;width:36%;height:100%;min-width:260px;border-radius:28px;overflow:hidden;border:1px solid var(--b1);background:var(--s1);cursor:pointer;transition:transform .72s cubic-bezier(.16,1,.3,1),opacity .5s,border-color .3s,box-shadow .45s,filter .45s;transform-style:preserve-3d;}
 .reel-card::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.04),rgba(0,0,0,.62) 72%,rgba(0,0,0,.92));z-index:1;}
 .reel-card img,.reel-card .reel-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
-.reel-card.side{opacity:.42;filter:saturate(.8) blur(.2px);}
-.reel-card.left{transform:rotateY(48deg) scale(.88) translateX(28px);transform-origin:right center;}
-.reel-card.right{transform:rotateY(-48deg) scale(.88) translateX(-28px);transform-origin:left center;}
-.reel-card.center{min-height:540px;transform:translateZ(60px) scale(1.02);box-shadow:0 26px 100px rgba(0,0,0,.50),0 0 65px rgba(79,172,254,.16);border-color:rgba(79,172,254,.30);}
+.reel-card.pos-center{opacity:1;z-index:5;transform:translateX(-50%) translateZ(60px) scale(1);box-shadow:0 26px 100px rgba(0,0,0,.50),0 0 65px rgba(79,172,254,.16);border-color:rgba(79,172,254,.30);}
+.reel-card.pos-left{opacity:.54;z-index:4;transform:translateX(calc(-50% - 305px)) rotateY(52deg) scale(.84);transform-origin:right center;filter:saturate(.82);}
+.reel-card.pos-right{opacity:.54;z-index:4;transform:translateX(calc(-50% + 305px)) rotateY(-52deg) scale(.84);transform-origin:left center;filter:saturate(.82);}
+.reel-card.pos-far-left{opacity:.18;z-index:2;transform:translateX(calc(-50% - 505px)) rotateY(62deg) scale(.70);transform-origin:right center;filter:blur(1px) saturate(.7);}
+.reel-card.pos-far-right{opacity:.18;z-index:2;transform:translateX(calc(-50% + 505px)) rotateY(-62deg) scale(.70);transform-origin:left center;filter:blur(1px) saturate(.7);}
+.reel-card.pos-hidden{opacity:0;pointer-events:none;transform:translateX(-50%) scale(.58);}
 .reel-card:hover{border-color:rgba(79,172,254,.35);}
 .showcase-stage::after{content:"Geser untuk melihat karya lain";position:absolute;left:50%;bottom:-8px;transform:translateX(-50%);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.34);pointer-events:none;}
 .reel-play{position:absolute;top:20px;right:20px;z-index:2;width:54px;height:54px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.10);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.16);}
@@ -125,8 +126,8 @@ a{color:inherit;text-decoration:none;}
 .reel-pill{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.08);backdrop-filter:blur(12px);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#dff5ff;margin-bottom:14px;}
 .reel-meta h4{font-size:clamp(18px,2vw,28px);line-height:1.08;letter-spacing:-.03em;margin-bottom:8px;}
 .reel-meta p{color:rgba(242,242,247,.8);font-size:13px;max-width:34ch;}
-@media(max-width:980px){.showcase-track{grid-template-columns:1fr;}.reel-card.side{display:none;}.reel-card.center{min-height:420px;transform:none}.showcase-top{flex-direction:column;align-items:flex-start;}.showcase-nav{align-self:flex-end;}.showcase-caption{flex-direction:column;align-items:flex-start;}}
-@media(max-width:640px){.showcase-shell{padding:18px}.reel-card,.reel-card.center{min-height:340px}.showcase-top h3{max-width:none;font-size:28px}}
+@media(max-width:980px){.showcase-stage{height:430px}.reel-card{width:62%;min-width:0}.reel-card.pos-left,.reel-card.pos-right{opacity:.22}.reel-card.pos-far-left,.reel-card.pos-far-right{display:none}.showcase-top h3{max-width:16ch}.showcase-caption{flex-direction:column;align-items:flex-start;}}
+@media(max-width:640px){.showcase-shell{padding:18px}.showcase-top{align-items:center}.showcase-top h3{max-width:none;font-size:18px}.showcase-stage{height:360px}.reel-card{width:84%}.reel-card.pos-left,.reel-card.pos-right{opacity:0;pointer-events:none}.showcase-stage::after{font-size:10px;bottom:-2px}}
 .section p.desc{color:var(--t2);font-size:15px;max-width:44ch;margin-bottom:36px;}
 
 /* Premium micro-interactions */
@@ -282,7 +283,7 @@ function render(){
   };
   let showcaseSec='';
   if(featured.length>=1){
-    showcaseSec=`<section class="section reveal"><div class="section-inner"><div class="showcase-shell"><div class="showcase-top"><div><span class="showcase-kicker">Curated Highlights</span><h3>Pilihan karya sinematik untuk brand yang ingin tampil lebih berkesan.</h3></div><div><p>Kurasi visual Seru Digital — disusun untuk menghadirkan pengalaman melihat karya yang lebih halus, fokus, dan elegan.</p><div class="showcase-nav"><button class="showcase-btn" id="showPrev" aria-label="Sebelumnya">←</button><button class="showcase-btn" id="showNext" aria-label="Berikutnya">→</button></div></div></div><div class="showcase-stage"><div class="showcase-track" id="showcaseTrack" data-items='${E(JSON.stringify(featured))}'></div></div><div class="showcase-caption"><div><strong id="showcaseTitle">Featured Work</strong><span id="showcaseMeta">Selected project showcase</span></div><div class="showcase-dots" id="showcaseDots"></div></div></div></div></section>`;
+    showcaseSec=`<section class="section reveal"><div class="section-inner"><div class="showcase-shell"><div class="showcase-top"><div><span class="showcase-kicker">Curated Highlights</span><h3>Pilihan karya terbaik Seru Digital.</h3></div><div class="showcase-nav"><button class="showcase-btn" id="showPrev" aria-label="Sebelumnya">←</button><button class="showcase-btn" id="showNext" aria-label="Berikutnya">→</button></div></div><div class="showcase-stage" id="showcaseStage"><div class="showcase-track" id="showcaseTrack" data-items='${E(JSON.stringify(featured))}'></div></div><div class="showcase-caption"><div><strong id="showcaseTitle">Featured Work</strong><span id="showcaseMeta">Selected project showcase</span></div><div class="showcase-dots" id="showcaseDots"></div></div></div></div></section>`;
   }
 
   let statsHtml='<div class="stats">'+(D.stats||[]).map(s=>`<div class="stat"><div class="stat-val">${E(s.value)}</div><div class="stat-lbl">${E(s.label)}</div><div class="stat-sub">${E(s.caption)}</div></div>`).join('')+'</div>';
@@ -335,21 +336,32 @@ function render(){
 function init(){
   let showcaseTrack=document.getElementById('showcaseTrack');
   if(showcaseTrack){
+    let showcaseStage=document.getElementById('showcaseStage');
     let items=[];
     try{items=JSON.parse(showcaseTrack.dataset.items||'[]')}catch{}
     let idx=0;
-    let drag={active:false,startX:0,currentX:0,moved:false};
+    let drag={active:false,startX:0,currentX:0,moved:false,offset:0};
     let dots=document.getElementById('showcaseDots');
     let titleEl=document.getElementById('showcaseTitle');
     let metaEl=document.getElementById('showcaseMeta');
     if(dots){dots.innerHTML=items.map((_,i)=>`<span class="showcase-dot${i===0?' active':''}"></span>`).join('');}
+    const slot=['pos-far-left','pos-left','pos-center','pos-right','pos-far-right'];
+    const rel=(i)=>{
+      let diff=i-idx;
+      let half=Math.floor(items.length/2);
+      if(diff>half) diff-=items.length;
+      if(diff<-half) diff+=items.length;
+      return diff;
+    };
     let paint=()=>{
       if(!items.length)return;
-      let prev=items[(idx-1+items.length)%items.length];
+      showcaseTrack.innerHTML=items.map((v,i)=>{
+        let r=rel(i), cls='pos-hidden';
+        if(r>=-2 && r<=2) cls=slot[r+2];
+        let id=ytId(v.youtube),img=id?thumb(id):'';
+        return `<article class="reel-card ${cls}" data-rel="${r}" data-video="${E(v.youtube||'')}" tabindex="0"><img src="${E(img)}" alt="${E(v.title||'Video showcase')}" loading="lazy" onerror="this.src='https://img.youtube.com/vi/${id}/hqdefault.jpg'"><div class="reel-play"></div><div class="reel-meta"><div class="reel-pill">${r===0?'Now Showing':'Preview'}</div><h4>${E(v.title||'Untitled')}</h4><p>${E(v.desc||'Karya pilihan Seru Digital.')}</p></div></article>`;
+      }).join('');
       let cur=items[idx%items.length];
-      let next=items[(idx+1)%items.length];
-      let card=(v,pos,side='')=>{let id=ytId(v.youtube),img=id?thumb(id):'';return `<article class="reel-card ${pos} ${side}" data-video="${E(v.youtube||'')}" tabindex="0"><img src="${E(img)}" alt="${E(v.title||'Video showcase')}" loading="lazy" onerror="this.src='https://img.youtube.com/vi/${id}/hqdefault.jpg'"><div class="reel-play"></div><div class="reel-meta"><div class="reel-pill">${pos==='center'?'Now Showing':'Preview'}</div><h4>${E(v.title||'Untitled')}</h4><p>${E(v.desc||'Karya pilihan Seru Digital.')}</p></div></article>`};
-      showcaseTrack.innerHTML=card(prev,'side','left')+card(cur,'center')+card(next,'side','right');
       if(titleEl) titleEl.textContent=cur.title||'Featured Work';
       if(metaEl) metaEl.textContent=cur.desc||'Selected project showcase';
       dots?.querySelectorAll('.showcase-dot').forEach((d,i)=>d.classList.toggle('active',i===idx));
@@ -361,13 +373,13 @@ function init(){
     paint();
     document.getElementById('showPrev')?.addEventListener('click',()=>{idx=(idx-1+items.length)%items.length;paint();});
     document.getElementById('showNext')?.addEventListener('click',()=>{idx=(idx+1)%items.length;paint();});
-    let start=(x)=>{drag.active=true;drag.startX=x;drag.currentX=x;drag.moved=false;showcaseTrack.classList.add('dragging');showcaseTrack.style.setProperty('--dragX','0px');};
-    let move=(x)=>{if(!drag.active)return; drag.currentX=x; let dx=x-drag.startX; if(Math.abs(dx)>8) drag.moved=true; showcaseTrack.style.setProperty('--dragX',`${Math.max(-140,Math.min(140,dx))}px`);};
-    let end=(x)=>{if(!drag.active)return; let dx=x-drag.startX; drag.active=false; showcaseTrack.classList.remove('dragging'); showcaseTrack.style.setProperty('--dragX','0px'); if(Math.abs(dx)>70){ idx = dx<0 ? (idx+1)%items.length : (idx-1+items.length)%items.length; paint(); }};
-    showcaseTrack.addEventListener('mousedown',e=>start(e.clientX));
+    let start=(x)=>{drag.active=true;drag.startX=x;drag.currentX=x;drag.moved=false;drag.offset=0;showcaseStage.classList.add('dragging');};
+    let move=(x)=>{if(!drag.active)return; drag.currentX=x; let dx=x-drag.startX; drag.offset=dx; if(Math.abs(dx)>8) drag.moved=true; showcaseTrack.querySelectorAll('.reel-card').forEach(card=>{ let r=Number(card.dataset.rel||99); if(Math.abs(r)>2) return; let extra=dx*(r===0?0.16:0.28); card.style.marginLeft = `${extra}px`; });};
+    let end=(x)=>{if(!drag.active)return; let dx=x-drag.startX; drag.active=false; showcaseStage.classList.remove('dragging'); showcaseTrack.querySelectorAll('.reel-card').forEach(card=>card.style.marginLeft='0px'); if(Math.abs(dx)>90){ idx = dx<0 ? (idx+1)%items.length : (idx-1+items.length)%items.length; } paint(); };
+    showcaseStage.addEventListener('mousedown',e=>start(e.clientX));
     window.addEventListener('mousemove',e=>move(e.clientX));
     window.addEventListener('mouseup',e=>end(e.clientX));
-    showcaseTrack.addEventListener('touchstart',e=>start(e.touches[0].clientX),{passive:true});
+    showcaseStage.addEventListener('touchstart',e=>start(e.touches[0].clientX),{passive:true});
     window.addEventListener('touchmove',e=>move(e.touches[0].clientX),{passive:true});
     window.addEventListener('touchend',e=>end((e.changedTouches&&e.changedTouches[0]&&e.changedTouches[0].clientX)||drag.startX),{passive:true});
     if(items.length>2){setInterval(()=>{idx=(idx+1)%items.length;paint();},4500);}
