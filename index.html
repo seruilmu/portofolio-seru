@@ -236,7 +236,7 @@ footer em{font-style:normal;color:var(--accent);}
 (function(){
 let E=s=>{let d=document.createElement('span');d.textContent=s??"";return d.innerHTML;};
 let ytId=u=>{let m=String(u??"").match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([\w-]{11})/);return m?m[1]:u;};
-let thumb=id=>'https://img.youtube.com/vi/'+id+'/maxresdefault.jpg';
+let thumb=id=>'https://i.ytimg.com/vi/'+id+'/maxresdefault.jpg';
 let nl2p=t=>String(t??"").split(/\n{2,}|\n/).filter(x=>x.trim()).map(p=>'<p>'+E(p)+'</p>').join('');
 
 function sec(id,label,title,desc,body){
@@ -284,8 +284,6 @@ function render(){
   let statsHtml='<div class="stats">'+(D.stats||[]).map(s=>`<div class="stat"><div class="stat-val">${E(s.value)}</div><div class="stat-lbl">${E(s.label)}</div><div class="stat-sub">${E(s.caption)}</div></div>`).join('')+'</div>';
   let statsSec=sec('stats','Seru Digital dalam angka','','',statsHtml);
 
-  let aboutSec=sec('tentang',D.aboutTitle||'Tentang Seru Digital','','','<div class="about-text">'+nl2p(D.aboutText)+'</div>');
-
   let svcHtml='<div class="svc-grid">'+(D.services||[]).map(s=>`<div class="svc-card"><div class="svc-ico">${E(s.icon)}</div><h3>${E(s.title)}</h3><p>${E(s.desc)}</p></div>`).join('')+'</div>';
   let svcSec=sec('layanan','Layanan','Apa yang bisa saya bantu','Solusi konten video, animasi, dan mentoring AI untuk brand dan kreator.',svcHtml);
 
@@ -311,8 +309,6 @@ function render(){
     }
     return `<article class="v-card" data-cat="${E(catAssign[i]||'Commercial')}" data-video="${E(v.youtube)}"><div class="v-thumb${isShort?' v-short':''}">${thumbHtml}<div class="v-play"><div class="v-play-ico"></div></div></div><div class="v-body"><div class="v-cat">${E(catAssign[i]||'Commercial')}</div><h3>${E(v.title)}</h3><div class="v-desc">${E(v.desc)}</div></div></article>`;
   }).join('')+'</div>';
-  let vidSec=sec('karya','Portfolio','Karya pilihan','Beberapa video yang sudah saya produksi — dari sinematik sampai konten iklan.',filterBar+vidHtml);
-
   let testiHtml='<div class="testi-grid">'+(D.testimonials||[]).map(t=>`<div class="testi-card"><p class="testi-q">${E(t.quote)}</p><div class="testi-n">${E(t.name)}</div><div class="testi-r">${E(t.meta)}</div></div>`).join('')+'</div>';
   let testiSec=sec('testimoni','Testimoni','Apa kata klien & murid','',testiHtml);
 
@@ -324,7 +320,7 @@ function render(){
   let footer=`<footer>${E(brand)} <em>✦</em> SERU DIGITAL LABS <em>✦</em> 2026</footer>`;
   let modal=`<div class="modal" id="videoModal"><button class="modal-x" id="modalClose">&times;</button><div class="modal-vid"><iframe id="modalIframe" src="" allow="autoplay;encrypted-media" allowfullscreen></iframe></div></div>`;
 
-  document.getElementById("app").innerHTML=nav+hero+showcaseSec+statsSec+aboutSec+svcSec+classSec+vidSec+testiSec+contactSec+footer+modal;
+  document.getElementById("app").innerHTML=nav+hero+statsSec+showcaseSec+svcSec+classSec+testiSec+contactSec+footer+modal;
   init();
 }
 
