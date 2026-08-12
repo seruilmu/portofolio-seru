@@ -283,7 +283,7 @@ function render(){
   }
 
   let statsHtml='<div class="stats">'+(D.stats||[]).map(s=>`<div class="stat"><div class="stat-val">${E(s.value)}</div><div class="stat-lbl">${E(s.label)}</div><div class="stat-sub">${E(s.caption)}</div></div>`).join('')+'</div>';
-  let statsSec=sec('stats','Seru Digital dalam angka','','',statsHtml);
+  let statsSec=`<section id="stats" class="section reveal"><div class="section-inner">${statsHtml}</div></section>`;
 
   let svcHtml='<div class="svc-grid">'+(D.services||[]).map(s=>`<div class="svc-card"><div class="svc-ico">${E(s.icon)}</div><h3>${E(s.title)}</h3><p>${E(s.desc)}</p></div>`).join('')+'</div>';
   let svcSec=sec('layanan','Layanan','Apa yang bisa saya bantu','Solusi konten video, animasi, dan mentoring AI untuk brand dan kreator.',svcHtml);
