@@ -237,6 +237,7 @@ footer em{font-style:normal;color:var(--accent);}
 let E=s=>{let d=document.createElement('span');d.textContent=s??"";return d.innerHTML;};
 let ytId=u=>{let m=String(u??"").match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([\w-]{11})/);return m?m[1]:u;};
 let thumb=id=>'https://i.ytimg.com/vi/'+id+'/maxresdefault.jpg';
+let customThumbs={'v6Kiu2qaIsY':'/assets/shortmovie-highlight-hd.jpg'};
 let nl2p=t=>String(t??"").split(/\n{2,}|\n/).filter(x=>x.trim()).map(p=>'<p>'+E(p)+'</p>').join('');
 
 function sec(id,label,title,desc,body){
@@ -273,7 +274,7 @@ function render(){
   let featured=vids.slice(0,Math.min(vids.length,6));
   let reelCard=(v,pos)=>{
     if(!v)return '<div></div>';
-    let id=ytId(v.youtube),img=id?thumb(id):'';
+    let id=ytId(v.youtube),img=id?(customThumbs[id]||thumb(id)):'';
     return `<article class="reel-card ${pos}" data-video="${E(v.youtube||'')}" tabindex="0"><img src="${E(img)}" alt="${E(v.title||'Video showcase')}" loading="lazy" onerror="this.src='https://img.youtube.com/vi/${id}/hqdefault.jpg'"><div class="reel-play"></div><div class="reel-meta"><div class="reel-pill">Featured Work</div><h4>${E(v.title||'Untitled')}</h4><p>${E(v.desc||'Karya pilihan Seru Digital untuk brand, storytelling, dan campaign visual.')}</p></div></article>`;
   };
   let showcaseSec='';
@@ -370,7 +371,7 @@ function init(){
     let paint=()=>{
       if(!items.length)return;
       showcaseTrack.innerHTML=items.map((v,i)=>{
-        let id=ytId(v.youtube),img=id?thumb(id):'';
+        let id=ytId(v.youtube),img=id?(customThumbs[id]||thumb(id)):'';
         return `<article class="reel-card" data-index="${i}" data-video="${E(v.youtube||'')}" tabindex="0"><img src="${E(img)}" alt="${E(v.title||'Video showcase')}" loading="lazy" onerror="this.src='https://img.youtube.com/vi/${id}/hqdefault.jpg'"><div class="reel-play"></div><div class="reel-meta"><div class="reel-pill">Preview</div><h4>${E(v.title||'Untitled')}</h4><p>${E(v.desc||'Karya pilihan Seru Digital.')}</p></div></article>`;
       }).join('');
       showcaseTrack.querySelectorAll('.reel-card').forEach(c=>c.addEventListener('click',()=>{
