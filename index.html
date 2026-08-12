@@ -103,7 +103,8 @@ a{color:inherit;text-decoration:none;}
 .showcase-btn{width:44px;height:44px;border-radius:50%;border:1px solid var(--b1);background:rgba(255,255,255,.03);color:var(--t1);cursor:pointer;transition:all .25s;}
 .showcase-btn:hover{border-color:var(--accent);color:var(--accent);box-shadow:0 0 24px rgba(79,172,254,.18);}
 .showcase-stage{position:relative;perspective:1800px;padding:18px 0 8px;}
-.showcase-track{display:grid;grid-template-columns:.78fr 1.45fr .78fr;gap:6px;align-items:center;transform-style:preserve-3d;}
+.showcase-track{display:grid;grid-template-columns:.78fr 1.45fr .78fr;gap:6px;align-items:center;transform-style:preserve-3d;user-select:none;touch-action:pan-y;cursor:grab;}
+.showcase-track.dragging{cursor:grabbing;}
 .showcase-caption{display:flex;justify-content:space-between;gap:18px;align-items:center;margin-top:16px;color:var(--t2);font-size:12px;}
 .showcase-caption strong{color:var(--t1);font-size:13px;display:block;margin-bottom:2px;}
 .showcase-dots{display:flex;gap:8px;align-items:center;}
@@ -117,6 +118,7 @@ a{color:inherit;text-decoration:none;}
 .reel-card.right{transform:rotateY(-48deg) scale(.88) translateX(-28px);transform-origin:left center;}
 .reel-card.center{min-height:540px;transform:translateZ(60px) scale(1.02);box-shadow:0 26px 100px rgba(0,0,0,.50),0 0 65px rgba(79,172,254,.16);border-color:rgba(79,172,254,.30);}
 .reel-card:hover{border-color:rgba(79,172,254,.35);}
+.showcase-stage::after{content:"Geser untuk melihat karya lain";position:absolute;left:50%;bottom:-8px;transform:translateX(-50%);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.34);pointer-events:none;}
 .reel-play{position:absolute;top:20px;right:20px;z-index:2;width:54px;height:54px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.10);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.16);}
 .reel-play::before{content:"";display:block;margin-left:4px;border-left:14px solid #fff;border-top:9px solid transparent;border-bottom:9px solid transparent;}
 .reel-meta{position:absolute;left:22px;right:22px;bottom:22px;z-index:2;}
@@ -280,7 +282,7 @@ function render(){
   };
   let showcaseSec='';
   if(featured.length>=1){
-    showcaseSec=`<section class="section reveal"><div class="section-inner"><div class="showcase-shell"><div class="showcase-top"><div><span class="showcase-kicker">Signature Wheel</span><h3>Portfolio yang lebih hidup dan lebih menjual.</h3></div><div><p>Gaya coverflow premium: fokus ke satu karya utama, preview lain terasa seperti wheel visual yang muter pelan di sekelilingnya.</p><div class="showcase-nav"><button class="showcase-btn" id="showPrev" aria-label="Sebelumnya">←</button><button class="showcase-btn" id="showNext" aria-label="Berikutnya">→</button></div></div></div><div class="showcase-stage"><div class="showcase-track" id="showcaseTrack" data-items='${E(JSON.stringify(featured))}'></div></div><div class="showcase-caption"><div><strong id="showcaseTitle">Featured Work</strong><span id="showcaseMeta">Selected project showcase</span></div><div class="showcase-dots" id="showcaseDots"></div></div></div></div></section>`;
+    showcaseSec=`<section class="section reveal"><div class="section-inner"><div class="showcase-shell"><div class="showcase-top"><div><span class="showcase-kicker">Curated Highlights</span><h3>Pilihan karya sinematik untuk brand yang ingin tampil lebih berkesan.</h3></div><div><p>Kurasi visual Seru Digital — disusun untuk menghadirkan pengalaman melihat karya yang lebih halus, fokus, dan elegan.</p><div class="showcase-nav"><button class="showcase-btn" id="showPrev" aria-label="Sebelumnya">←</button><button class="showcase-btn" id="showNext" aria-label="Berikutnya">→</button></div></div></div><div class="showcase-stage"><div class="showcase-track" id="showcaseTrack" data-items='${E(JSON.stringify(featured))}'></div></div><div class="showcase-caption"><div><strong id="showcaseTitle">Featured Work</strong><span id="showcaseMeta">Selected project showcase</span></div><div class="showcase-dots" id="showcaseDots"></div></div></div></div></section>`;
   }
 
   let statsHtml='<div class="stats">'+(D.stats||[]).map(s=>`<div class="stat"><div class="stat-val">${E(s.value)}</div><div class="stat-lbl">${E(s.label)}</div><div class="stat-sub">${E(s.caption)}</div></div>`).join('')+'</div>';
@@ -336,6 +338,7 @@ function init(){
     let items=[];
     try{items=JSON.parse(showcaseTrack.dataset.items||'[]')}catch{}
     let idx=0;
+    let drag={active:false,startX:0,moved:false};
     let dots=document.getElementById('showcaseDots');
     let titleEl=document.getElementById('showcaseTitle');
     let metaEl=document.getElementById('showcaseMeta');
@@ -351,12 +354,22 @@ function init(){
       if(metaEl) metaEl.textContent=cur.desc||'Selected project showcase';
       dots?.querySelectorAll('.showcase-dot').forEach((d,i)=>d.classList.toggle('active',i===idx));
       showcaseTrack.querySelectorAll('.reel-card').forEach(c=>c.addEventListener('click',()=>{
+        if(drag.moved){drag.moved=false;return;}
         let vid=c.dataset.video,id=ytId(vid),modal=document.getElementById('videoModal'),iframe=document.getElementById('modalIframe');if(!id)return;iframe.src='https://www.youtube.com/embed/'+id+'?autoplay=1&rel=0';modal.classList.add('open');document.body.style.overflow='hidden';
       }));
     };
     paint();
     document.getElementById('showPrev')?.addEventListener('click',()=>{idx=(idx-1+items.length)%items.length;paint();});
     document.getElementById('showNext')?.addEventListener('click',()=>{idx=(idx+1)%items.length;paint();});
+    let start=(x)=>{drag.active=true;drag.startX=x;drag.moved=false;showcaseTrack.classList.add('dragging');};
+    let move=(x)=>{if(!drag.active)return; if(Math.abs(x-drag.startX)>8) drag.moved=true;};
+    let end=(x)=>{if(!drag.active)return; let dx=x-drag.startX; drag.active=false; showcaseTrack.classList.remove('dragging'); if(Math.abs(dx)>55){ idx = dx<0 ? (idx+1)%items.length : (idx-1+items.length)%items.length; paint(); }};
+    showcaseTrack.addEventListener('mousedown',e=>start(e.clientX));
+    window.addEventListener('mousemove',e=>move(e.clientX));
+    window.addEventListener('mouseup',e=>end(e.clientX));
+    showcaseTrack.addEventListener('touchstart',e=>start(e.touches[0].clientX),{passive:true});
+    window.addEventListener('touchmove',e=>move(e.touches[0].clientX),{passive:true});
+    window.addEventListener('touchend',e=>end((e.changedTouches&&e.changedTouches[0]&&e.changedTouches[0].clientX)||drag.startX),{passive:true});
     if(items.length>2){setInterval(()=>{idx=(idx+1)%items.length;paint();},4500);}
   }
 
