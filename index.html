@@ -60,14 +60,15 @@ a{color:inherit;text-decoration:none;}
 
 .hero{position:relative;min-height:92vh;display:flex;align-items:center;overflow:hidden;padding-top:82px;}
 .hero-bg{position:absolute;inset:0;overflow:hidden;}
-.hero-bg video{position:absolute;top:50%;left:50%;width:177.78vh;height:56.25vw;min-width:100%;min-height:100%;transform:translate(-50%,-50%);object-fit:cover;filter:brightness(.56) saturate(.84);}
-.hero-bg::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:var(--hero-spot-opacity,0);
-  background:radial-gradient(circle 220px at var(--hero-spot-x,78%) var(--hero-spot-y,42%),rgba(255,255,255,.14),rgba(88,198,255,.16) 18%,rgba(0,210,255,.10) 34%,rgba(0,210,255,0) 62%);
-  mix-blend-mode:screen;transition:opacity .18s ease;z-index:1;}
+.hero-video-base,.hero-video-spot{position:absolute;top:50%;left:50%;width:177.78vh;height:56.25vw;min-width:100%;min-height:100%;transform:translate(-50%,-50%);object-fit:cover;}
+.hero-video-base{filter:brightness(.56) saturate(.84);z-index:0;}
+.hero-video-spot{filter:brightness(1) saturate(1);opacity:var(--hero-spot-opacity,0);z-index:1;transition:opacity .16s ease;
+  -webkit-mask-image:radial-gradient(circle 180px at var(--hero-spot-x,78%) var(--hero-spot-y,42%),rgba(0,0,0,1) 0,rgba(0,0,0,.96) 38%,rgba(0,0,0,.72) 58%,rgba(0,0,0,0) 78%);
+  mask-image:radial-gradient(circle 180px at var(--hero-spot-x,78%) var(--hero-spot-y,42%),rgba(0,0,0,1) 0,rgba(0,0,0,.96) 38%,rgba(0,0,0,.72) 58%,rgba(0,0,0,0) 78%);
+  -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;}
 .hero-bg::after{content:"";position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(ellipse at 22% 38%,rgba(0,210,255,.14),transparent 32%),
-    radial-gradient(ellipse at 78% 34%,rgba(79,172,254,.16),transparent 26%),
-    radial-gradient(circle at 78% 40%,rgba(0,210,255,.10),transparent 18%),
+  background:radial-gradient(ellipse at 22% 38%,rgba(0,210,255,.10),transparent 32%),
+    radial-gradient(ellipse at 78% 34%,rgba(79,172,254,.10),transparent 26%),
     linear-gradient(90deg,rgba(5,5,8,.12) 0%,rgba(5,5,8,.36) 32%,rgba(5,5,8,.68) 58%,rgba(5,5,8,.88) 100%),
     linear-gradient(180deg,rgba(5,5,8,.12),rgba(5,5,8,.58) 62%,var(--bg) 92%);z-index:2;}
 .hero-content{position:relative;z-index:2;width:100%;max-width:var(--maxw);margin:0 auto;padding:0 32px;display:block;}
@@ -275,7 +276,7 @@ function render(){
 
   let nav=`<nav class="nav"><div class="nav-inner"><span class="nav-brand">${E(brand)}</span><div class="nav-menu"><a href="#layanan">Layanan</a><a href="#kelas">Kelas</a><a href="#karya">Karya</a><a href="#testimoni">Testimoni</a>${D.whatsapp?`<a class="nav-wa" href="${E(D.whatsapp)}" target="_blank" aria-label="Chat WhatsApp">✆</a>`:''}<a class="nav-cta" href="#kontak">Mulai Project</a></div></div></nav>`;
 
-  let heroBg=`<div class="hero-bg"><video autoplay muted loop playsinline preload="auto" src="${E(hvid)}"></video></div>`;
+  let heroBg=`<div class="hero-bg"><video class="hero-video-base" autoplay muted loop playsinline preload="auto" src="${E(hvid)}"></video><video class="hero-video-spot" autoplay muted loop playsinline preload="auto" src="${E(hvid)}"></video></div>`;
   let hero=`<section class="hero">${heroBg}<div class="hero-content"><div class="hero-copy">
     <span class="hero-chip">${E(D.heroEyebrow||'Kreator & Mentor Video Animasi AI')}</span>
     <h1>${(D.heroTitle||'Mengubah ide jadi cerita visual yang hidup.').replace('cerita visual','<em>cerita visual</em>')}</h1>
@@ -465,7 +466,7 @@ function init(){
         heroEl.style.setProperty('--hero-spot-x',px+'%');
         heroEl.style.setProperty('--hero-spot-y',py+'%');
         let rightBias=Math.max(0,Math.min(1,(px-48)/34));
-        let intensity=(0.18+(rightBias*.82)).toFixed(3);
+        let intensity=(0.08+(rightBias*.92)).toFixed(3);
         heroEl.style.setProperty('--hero-spot-opacity',intensity);
       }else{
         heroEl.style.setProperty('--hero-spot-opacity','0');
