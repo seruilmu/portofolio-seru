@@ -217,14 +217,20 @@ a{color:inherit;text-decoration:none;}
 .testi-r{color:var(--t3);font-size:12px;margin-top:1px;}
 
 /* Contact */
-.contact-box{text-align:center;padding:68px 28px;background:linear-gradient(135deg,rgba(13,18,28,.92),rgba(10,11,18,.98));border:1px solid rgba(255,255,255,.07);border-radius:30px;box-shadow:0 24px 70px rgba(0,0,0,.26), inset 0 1px 0 rgba(255,255,255,.04);position:relative;overflow:hidden;}
-.contact-box::before{content:"";position:absolute;inset:auto auto -80px -60px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(0,210,255,.12),transparent 70%);filter:blur(16px);pointer-events:none;}
-.contact-box h2{font-size:clamp(24px,3.5vw,38px);margin-bottom:10px;}
-.contact-box p{color:var(--t2);font-size:15px;margin-bottom:26px;max-width:38ch;margin:0 auto 26px;}
-.contact-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.contact-box{padding:44px 44px 40px;background:linear-gradient(135deg,rgba(13,18,28,.94),rgba(10,11,18,.985));border:1px solid rgba(255,255,255,.07);border-radius:30px;box-shadow:0 24px 70px rgba(0,0,0,.26), inset 0 1px 0 rgba(255,255,255,.04);position:relative;overflow:hidden;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(320px,.95fr);gap:34px;align-items:center;}
+.contact-box::before{content:"";position:absolute;inset:auto auto -72px -56px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(0,210,255,.14),transparent 70%);filter:blur(18px);pointer-events:none;}
+.contact-box::after{content:"";position:absolute;top:-80px;right:-40px;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(58,123,213,.08),transparent 72%);filter:blur(26px);pointer-events:none;}
+.contact-copy,.contact-actions{position:relative;z-index:1;}
+.contact-copy .label{margin-bottom:18px;}
+.contact-box h2{font-size:clamp(34px,4.8vw,56px);line-height:.95;letter-spacing:-.055em;margin:0;max-width:9ch;}
+.contact-actions{display:flex;flex-direction:column;align-items:flex-start;gap:18px;}
+.contact-box p{color:var(--t2);font-size:15px;line-height:1.75;max-width:35ch;margin:0;}
+.contact-cta{display:flex;gap:12px;justify-content:flex-start;flex-wrap:wrap;}
+.contact-cta .btn{min-width:118px;justify-content:center;}
 
-footer{padding:32px;text-align:center;color:var(--t3);font-size:12px;border-top:1px solid var(--b1);}
-footer em{font-style:normal;color:var(--accent);}
+footer{padding:22px 32px 34px;text-align:center;color:rgba(160,160,184,.55);font-size:11px;letter-spacing:.03em;border-top:1px solid rgba(255,255,255,.04);}
+footer em{font-style:normal;color:rgba(0,210,255,.72);}
+@media(max-width:860px){.contact-box{grid-template-columns:1fr;padding:38px 24px 34px;gap:18px;text-align:left;}.contact-box h2{max-width:12ch;font-size:clamp(30px,9vw,42px);}.contact-actions{align-items:flex-start;}.contact-cta{justify-content:flex-start;}.contact-cta .btn{min-width:0;}}
 
 .modal{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.94);backdrop-filter:blur(12px);align-items:center;justify-content:center;}
 .modal.open{display:flex;}
@@ -325,7 +331,7 @@ function render(){
   let ctBtns='<a class="btn btn-fill" href="mailto:'+E(D.email)+'">Email Saya</a>'+
     (D.whatsapp?'<a class="btn btn-line" href="'+E(D.whatsapp)+'" target="_blank">WhatsApp</a>':'')+
     (D.instagram?'<a class="btn btn-line" href="'+E(D.instagram)+'" target="_blank">Instagram</a>':'');
-  let contactSec=`<section id="kontak" class="section reveal"><div class="section-inner"><div class="contact-box"><span class="label">Kontak</span><h2>${E(D.contactTitle||'Ayo kerja bareng')}</h2><p>${E(D.contactText||'Punya project video, butuh konten, atau ingin belajar? Hubungi Seru Digital.')}</p><div class="contact-cta">${ctBtns}</div></div></div></section>`;
+  let contactSec=`<section id="kontak" class="section reveal"><div class="section-inner"><div class="contact-box"><div class="contact-copy"><span class="label">Kontak</span><h2>${E(D.contactTitle||'Ayo kerja bareng')}</h2></div><div class="contact-actions"><p>${E(D.contactText||'Punya project video, butuh konten, atau ingin belajar? Hubungi Seru Digital.')}</p><div class="contact-cta">${ctBtns}</div></div></div></div></section>`;
 
   let footer=`<footer>${E(brand)} <em>✦</em> SERU DIGITAL LABS <em>✦</em> 2026</footer>`;
   let modal=`<div class="modal" id="videoModal"><button class="modal-x" id="modalClose">&times;</button><div class="modal-vid"><iframe id="modalIframe" src="" allow="autoplay;encrypted-media" allowfullscreen></iframe></div></div>`;
