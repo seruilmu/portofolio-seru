@@ -114,7 +114,7 @@ document.getElementById('passInput').addEventListener('keydown',function(e){if(e
       </div>
       <div onclick="showPage('tools')" class="bg-cardbg rounded-2xl p-6 border border-gray-800 cursor-pointer hover:border-purple-500/30 hover-float group relative overflow-hidden">
         <div class="absolute -top-20 -right-20 w-40 h-40 bg-purple-500/5 rounded-full blur-3xl group-hover:bg-purple-500/15 transition"></div>
-        <div class="relative z-10 text-center"><div class="w-14 h-14 mx-auto mb-4 bg-purple-500/10 border border-purple-500/20 rounded-2xl grid place-items-center text-2xl group-hover:scale-110 transition">🛠️</div><h3 id="qt-title" class="text-white font-bold" data-edit="dashQuickTools">SERA AI TOOLS</h3><p id="qt-sub" class="text-gray-400 text-xs mt-1" data-edit="dashQuickToolsSub">9 tools eksklusif</p></div>
+        <div class="relative z-10 text-center"><div class="w-14 h-14 mx-auto mb-4 bg-purple-500/10 border border-purple-500/20 rounded-2xl grid place-items-center text-2xl group-hover:scale-110 transition">🛠️</div><h3 id="qt-title" class="text-white font-bold" data-edit="dashQuickTools">SERA AI TOOLS</h3><p id="qt-sub" class="text-gray-400 text-xs mt-1" data-edit="dashQuickToolsSub">10 tools eksklusif</p></div>
       </div>
       <div onclick="showPage('rekaman')" class="bg-cardbg rounded-2xl p-6 border border-gray-800 cursor-pointer hover:border-green-500/30 hover-float group relative overflow-hidden">
         <div class="absolute -top-20 -right-20 w-40 h-40 bg-green-500/5 rounded-full blur-3xl group-hover:bg-green-500/15 transition"></div>
@@ -303,7 +303,12 @@ var TOOLS = [
    desc:'Tool pendeteksi dan analisis prompt AI. Membantu mengidentifikasi struktur prompt, mengoptimalkan kata kunci, dan meningkatkan kualitas output AI.',
    pills:['Prompt Analyzer','Keyword Optimizer','Style Detector','Quality Score','Export Report'],
    steps:['Paste prompt yang ingin dianalisis — AI akan membaca strukturnya.','Lihat hasil analisis — dapatkan skor kualitas dan saran optimasi.','Terapkan improvement — gunakan prompt yang sudah dioptimalkan untuk hasil lebih baik.'],
-   link:'https://gemini.google.com/share/77ad9260b4e0'}
+   link:'https://gemini.google.com/share/77ad9260b4e0'},
+  {id:'movieproduction',emoji:'🎞️',title:'SERA MOVIE PRODUCTION',cat:'Film',catColor:'sky',color:'blue',colorHex:'#3b82f6',
+   desc:'Tool produksi film AI untuk alur kerja yang lebih lengkap. Mulai dari brainstorming ide, pecah scene, bikin prompt character sheet, sampai menyusun prompt video cinematic yang siap dipakai ke workflow produksi.',
+   pills:['Brainstorming','Scene Breakdown','Character Sheet Prompt','Cinematic Video Prompt','Film Workflow'],
+   steps:['Mulai dari brainstorming — kembangkan ide film, tema, mood, konflik, dan arah cerita utama.','Pecah cerita jadi scene — susun struktur adegan agar alur produksi lebih rapi dan mudah dieksekusi.','Lanjut ke produksi prompt — hasilkan prompt character sheet dan prompt video cinematic untuk tiap kebutuhan visual.'],
+   link:'https://chatgpt.com/g/g-6a727a8cbe308191bcbe271bf91310ab-sera-movie-production'}
 ];
 
 var REKAMAN = [
@@ -494,7 +499,7 @@ var CONTENT = {
   helpDesc:'Kendala akses, pertanyaan materi, atau saran? Hubungi admin.',
   helpBtn:'💬 Chat Admin via WhatsApp',
   dashQuickMat:'MATERI', dashQuickMatSub:'Panduan akses & tutorial',
-  dashQuickTools:'SERA AI TOOLS', dashQuickToolsSub:'9 tools eksklusif',
+  dashQuickTools:'SERA AI TOOLS', dashQuickToolsSub:'10 tools eksklusif',
   dashQuickRek:'REKAMAN LIVE', dashQuickRekSub:'Arsip sesi pelatihan'
 };
 
