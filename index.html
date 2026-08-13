@@ -242,7 +242,7 @@ footer em{font-style:normal;color:var(--accent);}
 .modal-vid{width:min(92vw,1000px);aspect-ratio:16/9;}
 .modal-vid iframe{width:100%;height:100%;border:0;border-radius:10px;}
 
-.reveal{opacity:0;transform:translateY(36px);transition:opacity .65s cubic-bezier(.25,.6,.2,1),transform .65s cubic-bezier(.25,.6,.2,1);}
+.reveal{opacity:1;transform:none;transition:opacity .65s cubic-bezier(.25,.6,.2,1),transform .65s cubic-bezier(.25,.6,.2,1);}
 .reveal.in{opacity:1;transform:translateY(0);}
 @media(prefers-reduced-motion){.reveal{opacity:1;transform:none}}
 </style></head><body>
@@ -457,7 +457,7 @@ function init(){
   modal.addEventListener("click",e=>{if(e.target===modal)close()});
   document.addEventListener("keydown",e=>{if(e.key==="Escape")close()});
   let obs=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");obs.unobserve(e.target);}})},{threshold:.06,rootMargin:"0px 0px -16px 0px"});
-  document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
+  document.querySelectorAll(".reveal").forEach(el=>{el.classList.add("in");obs.observe(el);});
   // Custom cursor
   let cr=document.querySelector(".cursor"),cd=document.querySelector(".cursor-dot");
   document.addEventListener("mousemove",e=>{let x=e.clientX,y=e.clientY;cr.style.left=x+"px";cr.style.top=y+"px";cd.style.left=x+"px";cd.style.top=y+"px";});
