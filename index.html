@@ -407,29 +407,41 @@ function init(){
   document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener("click",function(e){
     e.preventDefault();let t=document.querySelector(this.getAttribute("href"));if(t)t.scrollIntoView({behavior:"smooth"});
   }));
-  let runStatCounters=()=>{
-    let els=document.querySelectorAll('.stat-val[data-target]');
-    if(!els.length)return;
-    els.forEach(el=>{
-      let raw=(el.dataset.target||'0').trim();
-      let num=parseInt(raw.replace(/\D/g,''),10)||0;
-      let suffix=raw.replace(/[\d\s]/g,'')||'';
-      let duration=1100;
-      let start=null;
-      let formatValue=v=> raw.includes('thn') ? `${v} thn` : `${v}${suffix}`;
-      let tick=(ts)=>{
-        if(start===null) start=ts;
-        let p=Math.min(1,(ts-start)/duration);
-        let eased=1-Math.pow(1-p,3);
-        let current=Math.round(num*eased);
-        el.textContent=formatValue(current);
-        if(p<1) requestAnimationFrame(tick);
-        else el.textContent=raw;
-      };
-      requestAnimationFrame(tick);
+  let formatStatValue=(raw,v)=> raw.includes('thn') ? `${v} thn` : `${v}${raw.replace(/[\d\s]/g,'')||''}`;
+  let animateStatCounter=(el)=>{
+    if(!el) return;
+    let raw=(el.dataset.target||'0').trim();
+    let num=parseInt(raw.replace(/\D/g,''),10)||0;
+    let duration=950;
+    let start=null;
+    let token=String(Date.now()+Math.random());
+    el.dataset.animToken=token;
+    el.textContent=formatStatValue(raw,0);
+    let tick=(ts)=>{
+      if(el.dataset.animToken!==token) return;
+      if(start===null) start=ts;
+      let p=Math.min(1,(ts-start)/duration);
+      let eased=1-Math.pow(1-p,3);
+      let current=Math.round(num*eased);
+      el.textContent=formatStatValue(raw,current);
+      if(p<1) requestAnimationFrame(tick);
+      else el.textContent=raw;
+    };
+    requestAnimationFrame(tick);
+  };
+  let bindStatCounters=()=>{
+    let cards=document.querySelectorAll('.stat');
+    if(!cards.length) return;
+    cards.forEach(card=>{
+      let val=card.querySelector('.stat-val[data-target]');
+      if(!val) return;
+      val.textContent=(val.dataset.target||'0').trim();
+      let trigger=()=>animateStatCounter(val);
+      card.addEventListener('mouseenter',trigger);
+      card.addEventListener('focusin',trigger);
     });
   };
-  runStatCounters();
+  bindStatCounters();
   document.querySelector(".filter-bar")?.addEventListener("click",function(e){
     let btn=e.target.closest(".filter-chip");if(!btn)return;
     this.querySelectorAll(".filter-chip").forEach(b=>b.classList.remove("active"));
