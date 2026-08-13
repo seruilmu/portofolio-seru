@@ -60,17 +60,15 @@ a{color:inherit;text-decoration:none;}
 
 .hero{position:relative;min-height:92vh;display:flex;align-items:center;overflow:hidden;padding-top:82px;}
 .hero-bg{position:absolute;inset:0;overflow:hidden;}
-.hero-video-base,.hero-video-spot{position:absolute;top:50%;left:50%;width:177.78vh;height:56.25vw;min-width:100%;min-height:100%;transform:translate(-50%,-50%);object-fit:cover;}
-.hero-video-base{filter:brightness(.56) saturate(.84);z-index:0;}
-.hero-video-spot{filter:brightness(1) saturate(1);opacity:var(--hero-spot-opacity,0);z-index:1;transition:opacity .16s ease;
-  -webkit-mask-image:radial-gradient(circle 180px at var(--hero-spot-x,78%) var(--hero-spot-y,42%),rgba(0,0,0,1) 0,rgba(0,0,0,.96) 38%,rgba(0,0,0,.72) 58%,rgba(0,0,0,0) 78%);
-  mask-image:radial-gradient(circle 180px at var(--hero-spot-x,78%) var(--hero-spot-y,42%),rgba(0,0,0,1) 0,rgba(0,0,0,.96) 38%,rgba(0,0,0,.72) 58%,rgba(0,0,0,0) 78%);
-  -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;}
-.hero-bg::after{content:"";position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(ellipse at 22% 38%,rgba(0,210,255,.10),transparent 32%),
-    radial-gradient(ellipse at 78% 34%,rgba(79,172,254,.10),transparent 26%),
-    linear-gradient(90deg,rgba(5,5,8,.12) 0%,rgba(5,5,8,.36) 32%,rgba(5,5,8,.68) 58%,rgba(5,5,8,.88) 100%),
-    linear-gradient(180deg,rgba(5,5,8,.12),rgba(5,5,8,.58) 62%,var(--bg) 92%);z-index:2;}
+.hero-bg video{position:absolute;top:50%;left:50%;width:177.78vh;height:56.25vw;min-width:100%;min-height:100%;transform:translate(-50%,-50%);object-fit:cover;filter:brightness(.94) saturate(.96);z-index:0;}
+.hero-bg::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:1;
+  background:radial-gradient(circle var(--hero-spot-radius,190px) at var(--hero-spot-x,78%) var(--hero-spot-y,42%),rgba(5,5,8,.02) 0,rgba(5,5,8,.06) 24%,rgba(5,5,8,.18) 42%,rgba(5,5,8,.42) 62%,rgba(5,5,8,.70) 82%),
+    linear-gradient(90deg,rgba(5,5,8,.12) 0%,rgba(5,5,8,.34) 32%,rgba(5,5,8,.68) 58%,rgba(5,5,8,.88) 100%),
+    linear-gradient(180deg,rgba(5,5,8,.10),rgba(5,5,8,.54) 62%,var(--bg) 92%);
+  opacity:1;transition:background-position .12s ease;}
+.hero-bg::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:2;
+  background:radial-gradient(ellipse at 22% 38%,rgba(0,210,255,.06),transparent 32%),
+    radial-gradient(ellipse at 78% 34%,rgba(79,172,254,.06),transparent 26%);}
 .hero-content{position:relative;z-index:2;width:100%;max-width:var(--maxw);margin:0 auto;padding:0 32px;display:block;}
 .hero-copy{max-width:690px;position:relative;z-index:3;}
 .hero-chip{display:inline-flex;align-items:center;gap:7px;padding:7px 16px;border:1px solid rgba(255,255,255,.12);border-radius:100px;
@@ -276,7 +274,7 @@ function render(){
 
   let nav=`<nav class="nav"><div class="nav-inner"><span class="nav-brand">${E(brand)}</span><div class="nav-menu"><a href="#layanan">Layanan</a><a href="#kelas">Kelas</a><a href="#karya">Karya</a><a href="#testimoni">Testimoni</a>${D.whatsapp?`<a class="nav-wa" href="${E(D.whatsapp)}" target="_blank" aria-label="Chat WhatsApp">✆</a>`:''}<a class="nav-cta" href="#kontak">Mulai Project</a></div></div></nav>`;
 
-  let heroBg=`<div class="hero-bg"><video class="hero-video-base" autoplay muted loop playsinline preload="auto" src="${E(hvid)}"></video><video class="hero-video-spot" autoplay muted loop playsinline preload="auto" src="${E(hvid)}"></video></div>`;
+  let heroBg=`<div class="hero-bg"><video autoplay muted loop playsinline preload="auto" src="${E(hvid)}"></video></div>`;
   let hero=`<section class="hero">${heroBg}<div class="hero-content"><div class="hero-copy">
     <span class="hero-chip">${E(D.heroEyebrow||'Kreator & Mentor Video Animasi AI')}</span>
     <h1>${(D.heroTitle||'Mengubah ide jadi cerita visual yang hidup.').replace('cerita visual','<em>cerita visual</em>')}</h1>
@@ -466,14 +464,17 @@ function init(){
         heroEl.style.setProperty('--hero-spot-x',px+'%');
         heroEl.style.setProperty('--hero-spot-y',py+'%');
         let rightBias=Math.max(0,Math.min(1,(px-48)/34));
-        let intensity=(0.08+(rightBias*.92)).toFixed(3);
-        heroEl.style.setProperty('--hero-spot-opacity',intensity);
+        let radius=(150+(rightBias*70)).toFixed(1);
+        heroEl.style.setProperty('--hero-spot-radius',radius+'px');
+        heroEl.style.setProperty('--hero-spot-opacity','1');
       }else{
-        heroEl.style.setProperty('--hero-spot-opacity','0');
+        heroEl.style.setProperty('--hero-spot-x','78%');
+        heroEl.style.setProperty('--hero-spot-y','42%');
+        heroEl.style.setProperty('--hero-spot-radius','190px');
       }
     }
   });
-  heroEl?.addEventListener('mouseleave',()=>heroEl.style.setProperty('--hero-spot-opacity','0'));
+  heroEl?.addEventListener('mouseleave',()=>{heroEl.style.setProperty('--hero-spot-x','78%');heroEl.style.setProperty('--hero-spot-y','42%');heroEl.style.setProperty('--hero-spot-radius','190px');});
   document.querySelectorAll("a,button,.v-card,.filter-chip,.btn").forEach(el=>{
     el.addEventListener("mouseenter",()=>cr.classList.add("hover"));
     el.addEventListener("mouseleave",()=>cr.classList.remove("hover"));
