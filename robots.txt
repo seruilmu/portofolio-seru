@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /member.html
+Disallow: /admin/
+
+Sitemap: https://serudigital.my.id/sitemap.xml
