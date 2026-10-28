@@ -1,0 +1,46 @@
+/* Native Inter wordmark beside the existing infinity symbol. */
+.brand{min-width:0;gap:9px;align-items:center;letter-spacing:0}
+.brand-symbol{width:62px;height:36px}
+.brand-wordmark{font-family:Inter,Arial,sans-serif;font-size:22px;line-height:1;letter-spacing:-1.05px;font-weight:700;white-space:nowrap;color:#f3f6fb}
+.brand-wordmark .brand-light{font-weight:400}.brand-wordmark b{color:#82c8ff;font-weight:700}
+.footer-brand .brand-symbol{width:70px;height:40px}.footer-brand .brand-wordmark{font-size:26px}
+.service-rate{margin-top:14px;display:flex;align-items:baseline;gap:6px;flex-wrap:wrap;font-size:11px;color:#9db4cc;line-height:1.7}
+.service-rate strong{color:#c1e8ff;font-weight:600;font-size:13px;letter-spacing:-.02em}.service-rate strong span{font-size:10px;font-weight:400}
+.service-rate small{font-size:10px;color:#8ca7c3;margin-left:10px}
+.pricing-section{border-block:1px solid #a6cfff1a;background:linear-gradient(135deg,#15223b66,#1015296b)}
+.pricing-section .section-heading{margin-bottom:42px}
+.pricing-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;align-items:stretch}
+.pricing-single>.wrap{display:grid;grid-template-columns:1fr 1fr;gap:90px;align-items:start}
+.pricing-single .section-heading{display:block;position:sticky;top:140px;margin:0}
+.pricing-single .section-heading-side{margin-top:25px;max-width:340px}.pricing-single .pricing-grid{grid-template-columns:1fr}
+.price-card{display:flex;flex-direction:column;position:relative;min-width:0;padding:35px 35px 28px;border:1px solid #aacaf247;border-radius:19px;background:linear-gradient(155deg,#141f31ed,#101726f0);box-shadow:0 18px 45px #0206151c;transition:border-color .25s,box-shadow .25s}
+.price-card:hover{border-color:#a4d9ff8c;box-shadow:0 20px 50px #02061536}
+.price-card-accent{border-color:#aba1ec76;background:linear-gradient(155deg,#282441ec,#131b2aee)}
+.price-category{font-size:8px;letter-spacing:.15em;color:#8bb9d8;font-weight:500;display:block;line-height:1.5}
+.price-card h3{font-size:28px;line-height:1.2;letter-spacing:-.04em;margin-block:17px 13px;font-weight:500;color:#eff6ff}
+.price-description{font-size:12px;line-height:1.85;color:#acbbd0;max-width:44ch;min-height:45px}
+.price-main{margin-top:30px;padding-bottom:28px;border-bottom:1px solid #aac7f122}
+.price-from{font-size:11px;color:#95abc5;display:block;margin-bottom:8px;line-height:1.6}
+.price-amount{font-size:clamp(38px,4vw,54px);line-height:1.12;letter-spacing:-.06em;font-weight:600;color:#f2f5ff;white-space:nowrap}
+.price-amount>span{display:inline-block;font-size:13px;font-weight:400;letter-spacing:-.01em;color:#b6c5dc;margin-left:7px;vertical-align:baseline}
+.price-caption{font-size:10px;color:#839ab5;display:block;margin-top:13px;line-height:1.6}
+.price-focus{font-size:8px;letter-spacing:.08em;text-transform:uppercase;color:#7e9cb6;margin-top:24px}
+.price-features{list-style:none;margin:13px 0 32px;padding:0;display:grid;gap:12px;flex:1}
+.price-features li{font-size:12px;line-height:1.75;color:#c7d5e6;display:flex;gap:12px;align-items:flex-start}
+.price-features li:before{content:'✓';font-size:12px;color:#9cded6;flex-shrink:0}
+.price-card>.button{width:100%;justify-content:center;gap:22px;min-height:50px;margin-top:auto;font-size:11px}
+.price-card-accent>.button.primary{background:linear-gradient(105deg,#bbb1f1,#a5c9fb)}
+.price-secondary{display:block;align-self:center;margin-top:17px;font-size:10px;line-height:1.7;color:#8da9c7;text-decoration:underline;text-underline-offset:4px}
+.price-secondary:hover{color:#c4e3fc}
+.pricing-scope{font-size:11px;color:#829ab5;line-height:1.9;margin-top:22px;max-width:85ch}
+.pricing-single .pricing-scope{max-width:55ch}
+.program-rate{border-bottom:1px solid #a8c9f22b;padding:2px 0 28px;margin-bottom:12px}
+.program-rate .price-category{font-size:8px;margin-bottom:21px}
+.program-rate .price-amount{font-size:clamp(36px,4vw,52px)}
+.program-rate .price-amount>span{font-size:15px}
+.rate-note{font-size:10px;color:#8ca5c0;line-height:1.85;margin-top:14px;max-width:45ch}
+@media(max-width:1180px){.brand{gap:7px}.brand-symbol{width:54px;height:32px}.brand-wordmark{font-size:20px}.pricing-single>.wrap{gap:55px}.price-card{padding:30px 28px 26px}.price-card h3{font-size:26px}.price-amount{font-size:43px}.price-amount>span{font-size:12px}.price-description{font-size:11px}.price-features li{font-size:11px}}
+@media(max-width:980px){.brand{min-width:0}.brand-symbol{width:52px;height:31px}.brand-wordmark{font-size:21px}.pricing-single>.wrap{gap:35px}.price-card{padding:27px 24px 24px}.price-amount{font-size:38px}.price-amount>span{font-size:11px}.price-card h3{font-size:24px}.price-description{min-height:0}.price-secondary{font-size:9px}.service-rate small{margin-left:5px}.program-rate .price-amount{font-size:40px}}
+@media(max-width:700px){.brand{gap:7px}.brand-symbol{width:48px;height:29px}.brand-wordmark{font-size:20px;letter-spacing:-.9px}.header-contact{gap:8px}.header-contact>span{font-size:9px}.footer-brand .brand-symbol{width:56px;height:34px}.footer-brand .brand-wordmark{font-size:23px}.footer-bottom>div:first-child{grid-column:1/-1}.footer-social{justify-content:flex-start}.copyright{grid-column:auto;text-align:right;justify-self:end}.service-rate{font-size:10px;margin-top:12px;gap:5px;max-width:34ch}.service-rate strong{font-size:12px}.service-rate small{font-size:9px;width:100%;margin-left:0}.service-rate strong span{font-size:9px}.pricing-grid{grid-template-columns:1fr;gap:22px}.pricing-single>.wrap{grid-template-columns:1fr;gap:30px}.pricing-single .section-heading{position:static}.pricing-single .section-heading-side{margin-top:22px;max-width:100%}.pricing-section .section-heading{margin-bottom:31px}.pricing-single .section-heading{margin-bottom:0}.price-card{padding:28px 25px 25px;border-radius:16px}.price-card h3{font-size:27px;margin-top:17px}.price-description{font-size:12px}.price-main{margin-top:26px;padding-bottom:26px}.price-amount{font-size:45px}.price-amount>span{font-size:12px;margin-left:6px}.price-features li{font-size:11px}.price-focus{font-size:7px}.price-from{font-size:10px}.pricing-scope{font-size:10px;margin-top:19px;line-height:1.85}.program-rate .price-amount{font-size:43px}.program-rate .price-amount>span{font-size:13px}.program-rate{padding-bottom:24px}.rate-note{font-size:10px}.price-card>.button{font-size:10px}.price-secondary{font-size:10px}}
+@media(max-width:380px){.brand{gap:6px}.brand-symbol{width:42px;height:26px}.brand-wordmark{font-size:18px;letter-spacing:-.8px}.price-amount{font-size:39px}.price-amount>span{font-size:11px}.program-rate .price-amount{font-size:39px}.price-card{padding-inline:23px}}
+@media(max-width:360px){.header-contact>span{display:none}.header-contact{padding:9px;gap:0}.header-contact svg{width:14px;height:14px}}

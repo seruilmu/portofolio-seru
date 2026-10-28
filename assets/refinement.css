@@ -1,0 +1,26 @@
+/* Persistent contact and restrained, accessible motion controls. */
+.whatsapp-float{position:fixed;z-index:75;right:max(22px,env(safe-area-inset-right));bottom:max(22px,env(safe-area-inset-bottom));display:grid;place-items:center;width:58px;height:58px;border-radius:50%;color:#fff;background:#19bd62;border:1px solid #ffffff32;box-shadow:0 8px 28px #0005;transition:background .18s,transform .18s}
+.whatsapp-float>svg{width:29px;height:29px}
+.whatsapp-float:hover{background:#149b51;transform:translateY(-2px)}
+.whatsapp-float:focus-visible{outline:3px solid #fff;outline-offset:4px}
+.whatsapp-hint{position:absolute;right:calc(100% + 12px);white-space:nowrap;background:#142335;color:#fff;border:1px solid #bfd9f433;border-radius:8px;padding:9px 12px;font-size:11px;line-height:1.5;opacity:0;visibility:hidden;transform:translateX(4px);transition:opacity .18s,transform .18s,visibility .18s;pointer-events:none}
+.whatsapp-float:hover .whatsapp-hint,.whatsapp-float:focus-visible .whatsapp-hint{opacity:1;visibility:visible;transform:none}
+.motion-control{left:auto;right:max(29px,calc(env(safe-area-inset-right) + 7px));bottom:max(92px,calc(env(safe-area-inset-bottom) + 70px));width:44px;height:44px;padding:0;justify-content:center}
+.motion-control>span{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.motion-control>svg{width:16px;height:16px}
+.motion-control:focus-visible{outline:2px solid #fff;outline-offset:3px}
+.site-footer{padding-bottom:68px}
+.hero-copy>p{max-width:48ch}
+.class-hero h1{max-width:11ch}
+@media(max-width:700px){
+ .whatsapp-float{width:54px;height:54px;right:max(16px,env(safe-area-inset-right));bottom:max(16px,env(safe-area-inset-bottom))}
+ .whatsapp-float>svg{width:27px;height:27px}
+ .motion-control{left:auto;right:max(21px,calc(env(safe-area-inset-right) + 5px));bottom:max(82px,calc(env(safe-area-inset-bottom) + 66px))}
+ .whatsapp-hint{display:none}
+ .curriculum article{grid-template-columns:1fr;gap:13px}
+ .curriculum article>span{grid-column:auto}
+ .curriculum h3{line-height:1.25}
+ .curriculum p{max-width:49ch;margin-top:0}
+}
+@media(max-width:380px){.video-category .deck-stage{margin-inline:-16px}}
+@media(prefers-reduced-motion:reduce){.whatsapp-float,.whatsapp-hint{transition:none}.whatsapp-float:hover{transform:none}}

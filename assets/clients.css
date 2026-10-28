@@ -1,0 +1,21 @@
+/* Original artwork is blended into the page through CSS, with no white tiles. */
+.client-section{position:relative;padding-block:20px 22px;border-block:1px solid #b5d0ee12;background:transparent;--client-slot:150px;--client-gap:62px;scroll-margin-top:100px}
+.clients-caption{font-family:Inter,sans-serif;text-align:center;font-size:9px;font-weight:500;line-height:1.5;letter-spacing:.17em;text-transform:uppercase;color:#7f99b2;margin:0 0 12px}
+.client-marquee{width:100%;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;mix-blend-mode:screen;-webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+.client-marquee::-webkit-scrollbar{display:none}
+.client-marquee:focus-visible{outline:1px solid #c4e4ff;outline-offset:4px}
+.clients-track{display:flex;width:max-content;animation:client-roll 48s linear infinite;will-change:transform}
+.clients-group{display:flex;align-items:center;flex-shrink:0;gap:var(--client-gap);padding:0 var(--client-gap) 0 0;margin:0;list-style:none}
+.client-logo{position:relative;flex:0 0 var(--client-slot);width:var(--client-slot);height:56px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.client-logo>img{display:block;flex:0 0 auto;width:144px;height:auto;max-width:none;max-height:none;object-fit:contain;filter:grayscale(1) invert(1) contrast(1.65);opacity:.63;transition:opacity .2s}
+.client-logo:hover>img{opacity:.95}
+.logo-kind-group>img{width:115px;transform:translateY(-7px);clip-path:inset(29% 0 0)}
+.logo-kind-group>img[src$="/sucofindo.webp"]{clip-path:inset(30.5% 0 0)}
+.logo-kind-lemon>img{width:82px;transform:translateY(3px)}
+.logo-kind-clinic>img{width:115px}
+.logo-kind-square>img{width:72px}
+.logo-kind-institution>img{width:106px}
+.client-marquee:hover .clients-track,.client-marquee:focus-within .clients-track,.motion-paused .clients-track{animation-play-state:paused}
+@keyframes client-roll{to{transform:translateX(-50%)}}
+@media(max-width:700px){.client-section{padding-block:17px 19px;--client-slot:130px;--client-gap:34px;scroll-margin-top:80px}.clients-caption{font-size:8px;margin-bottom:10px}.client-logo{height:51px}.client-logo>img{width:124px}.logo-kind-group>img{width:105px;transform:translateY(-7px)}.logo-kind-lemon>img{width:73px}.logo-kind-clinic>img{width:104px}.logo-kind-square>img{width:66px}.logo-kind-institution>img{width:96px}}
+@media(prefers-reduced-motion:reduce){.clients-track{animation:none;transform:none;will-change:auto}.clients-group[aria-hidden="true"]{display:none}.client-marquee{-webkit-mask-image:none;mask-image:none}.client-logo>img{transition:none}}
