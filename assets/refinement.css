@@ -23,4 +23,9 @@
  .curriculum p{max-width:49ch;margin-top:0}
 }
 @media(max-width:380px){.video-category .deck-stage{margin-inline:-16px}}
+body[data-page="about"] .about-hero{padding-bottom:32px}
+.about-identity{padding-block:40px 64px}
+.about-identity .company-name{font-size:clamp(28px,3vw,42px);line-height:1.2;letter-spacing:-.035em;max-width:17ch}
+.about-identity .legal-caption{font-size:14px;line-height:1.6;margin-top:14px;color:#b7cbe0}
+@media(max-width:700px){body[data-page="about"] .about-hero{padding-bottom:24px}.about-identity{padding-block:28px 48px}.about-identity .editorial-grid{gap:28px}.about-identity .company-name{font-size:clamp(26px,7.2vw,36px)}}
 @media(prefers-reduced-motion:reduce){.whatsapp-float,.whatsapp-hint{transition:none}.whatsapp-float:hover{transform:none}}
