@@ -23,19 +23,24 @@
   let lastTrigger;
   function openVideo(trigger){
     const id=trigger.dataset.video;
-    if(!/^[\w-]{11}$/.test(id||'') || !dialog) return;
+    const provider=trigger.dataset.provider||'youtube';
+    const valid=provider==='youtube'?/^[\w-]{11}$/.test(id||''):provider==='drive'?/^[\w-]{20,128}$/.test(id||''):false;
+    if(!valid || !dialog) return;
+    const isDrive=provider==='drive';
     closeMenu();
     lastTrigger=trigger;
     const title=trigger.dataset.title||'Karya Seru Digital';
     document.getElementById('video-dialog-title').textContent=title;
     const iframe=document.createElement('iframe');
     iframe.title=`Video ${title} — Seru Digital`;
-    iframe.src=`https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`;
+    iframe.src=isDrive?`https://drive.google.com/file/d/${id}/preview`:`https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`;
     iframe.allow='autoplay; encrypted-media; picture-in-picture; fullscreen';
     iframe.referrerPolicy='strict-origin-when-cross-origin';
     iframe.allowFullscreen=true;
     dialog.querySelector('.video-frame').replaceChildren(iframe);
-    document.getElementById('video-external').href=`https://www.youtube.com/watch?v=${id}`;
+    document.getElementById('video-external').href=isDrive?`https://drive.google.com/file/d/${id}/view`:`https://www.youtube.com/watch?v=${id}`;
+    document.getElementById('video-provider-label').textContent=isDrive?'Video diputar melalui Google Drive.':'Video diputar melalui YouTube.';
+    document.getElementById('video-external-label').textContent=isDrive?'Buka di Google Drive':'Buka di YouTube';
     dialog.showModal();
     document.body.classList.add('dialog-open');
   }
