@@ -6,6 +6,10 @@
   ],
   "headers": [
     {
+      "source": "/member.html",
+      "headers": [ { "key": "X-Seru-Route-Check", "value": "workspace" } ]
+    },
+    {
       "source": "/workspace/api/:path*",
       "headers": [
         { "key": "Cache-Control", "value": "private, no-store, max-age=0" },
