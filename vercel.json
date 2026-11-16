@@ -2,6 +2,8 @@
   "version": 2,
   "trailingSlash": true,
   "rewrites": [
+    { "source": "/workspace/", "destination": "https://team.43.129.40.230.sslip.io/workspace/" },
+    { "source": "/workspace/:path*/", "destination": "https://team.43.129.40.230.sslip.io/workspace/:path*/" },
     { "source": "/workspace/:path*", "destination": "https://team.43.129.40.230.sslip.io/workspace/:path*" }
   ],
   "headers": [
