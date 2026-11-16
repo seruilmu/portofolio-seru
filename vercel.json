@@ -1,7 +1,17 @@
 {
   "version": 2,
   "trailingSlash": true,
+  "rewrites": [
+    { "source": "/workspace/:path*", "destination": "https://team.43.129.40.230.sslip.io/workspace/:path*" }
+  ],
   "headers": [
+    {
+      "source": "/workspace/api/:path*",
+      "headers": [
+        { "key": "Cache-Control", "value": "private, no-store, max-age=0" },
+        { "key": "x-vercel-enable-rewrite-caching", "value": "0" }
+      ]
+    },
     {
       "source": "/assets/particle-shapes.mjs",
       "headers": [
